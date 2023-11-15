@@ -12,3 +12,13 @@ class UserModel(models.Model):
 
     def __str__(self):
         return self.firstName+ " " + self.lastName
+    
+
+# {
+#     "firstName": "na",
+#     "lastName": "da",
+#     "phoneNumber": "da",
+#     "email": "da@ffvv.com",
+#     "address": "da",
+#     "password": "da"
+# }
