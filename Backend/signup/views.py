@@ -1,5 +1,5 @@
 from django.shortcuts import render
-from signup.models import SignupModel
+from signup.models import UserModel
 
 # Create your views here.
 
