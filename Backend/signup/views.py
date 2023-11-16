@@ -16,9 +16,15 @@ def signupView(request):
                 user = UserModel.objects.get(
                     phoneNumber=request.data["phoneNumber"])
             except UserModel.DoesNotExist:
-                serializer.save()
-                return Response("User created succssfully!", status=status.HTTP_201_CREATED)
+                serializer.save() 
+                return Response(f"User created succssfully!{serializer.data}", status=status.HTTP_201_CREATED)
             return Response("This phone Number is already taken!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("This email is already taken!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(["GET"])
+def allusers(request):
+    users = UserModel.objects.all()
+    serializer = UserSerializer(users, many=True)
+    return Response(serializer.data)

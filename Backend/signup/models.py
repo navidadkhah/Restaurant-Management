@@ -15,10 +15,10 @@ class UserModel(models.Model):
     
 
 # {
-#     "firstName": "na",
-#     "lastName": "da",
-#     "phoneNumber": "da",
-#     "email": "da@ffvv.com",
-#     "address": "da",
-#     "password": "da"
+#     "firstName": "nawid",
+#     "lastName": "dadkhah",
+#     "phoneNumber": "09109207102",
+#     "email": "nnd1380@gmail.com",
+#     "address": "shahrara",
+#     "password": "12345"
 # }
