@@ -23,3 +23,14 @@ class UserModel(models.Model):
 #     "address": "shahrara",
 #     "password": "12345"
 # }
+
+# {
+#     "email": "nndfd@ffv.com",
+#     "password": "dfdfd"
+# }
+
+
+# {
+#     "email": "nnd1380@gm33ail.com",
+#     "password": "dfdfd"
+# }

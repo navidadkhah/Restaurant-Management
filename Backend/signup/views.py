@@ -2,28 +2,12 @@ from django.shortcuts import render
 from signup.models import UserModel
 from rest_framework import status
 from rest_framework.decorators import api_view
-from rest_framework.authtoken.models import Token
 from rest_framework.response import Response
-from .serializers import UserSerializer
-from django.contrib.auth import get_user_model, authenticate
+from .serializers import UserSerializer, MyTokenObtainPairSerializer, LoginUserSerializer
+from rest_framework.authtoken.models import Token
+from django.contrib.auth import get_user_model
 
-from rest_framework_simplejwt.serializers import TokenObtainPairSerializer
-from rest_framework_simplejwt.views import TokenObtainPairView
-from rest_framework_simplejwt.tokens import AccessToken
-
-
-
-class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
-    @classmethod
-    def get_token(cls, user):
-        token = super().get_token(user)
-
-        # Add custom claims
-        token['firstName'] = user.firstName
-        # ...
-
-        return token
-    
+from rest_framework_simplejwt.tokens import RefreshToken
 
 @api_view(["POST"])
 def signupView(request):
@@ -36,25 +20,42 @@ def signupView(request):
                 user = UserModel.objects.get(
                     phoneNumber=request.data["phoneNumber"])
             except UserModel.DoesNotExist:
-                serializer.save() 
-                # user = get_user_model().objects.first()
-                
-                email = serializer.data["email"]
-                password = serializer.data["password"]
-                print(email, password)
-                user = UserModel.objects.get(email=request.data["email"])
-                print(user)
-                if user is None:
-                  print(user)
-                  return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
-
-                refresh = AccessToken.for_user(user)
-           
-                return Response({"token": refresh}, status=status.HTTP_201_CREATED)
+                serializer.save()  
+                return Response("User created successfully", status=status.HTTP_201_CREATED)
             return Response("This phone Number is already taken!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("This email is already taken!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
+
+@api_view(["POST"])
+def loginView(request):
+    serializer = LoginUserSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+         UserModel.objects.get(
+            email=request.data["email"])
+        except UserModel.DoesNotExist:
+            return Response(f"There is no {request.data['email']}", status=status.HTTP_400_BAD_REQUEST)
+        try:
+         UserModel.objects.get(
+            email=request.data["email"], password=request.data["password"])
+        except UserModel.DoesNotExist:
+            return Response("Password is incorrect", status=status.HTTP_400_BAD_REQUEST)
+         
+        user = UserModel.objects.get(email=serializer.data['email'])
+        print(user.address)
+        refresh = RefreshToken.for_user(user)
+        detail = {}
+        detail["firstName"] = user.firstName
+        detail["lastName"] = user.lastName
+        detail["phoneNumber"] = user.phoneNumber
+        detail["email"] = user.email
+        detail["address"] = user.address
+        return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_201_CREATED)
+    return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
+
+
+    
 
 @api_view(["GET"])
 def allusers(request):
