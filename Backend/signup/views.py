@@ -3,10 +3,7 @@ from signup.models import UserModel
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import UserSerializer, MyTokenObtainPairSerializer, LoginUserSerializer
-from rest_framework.authtoken.models import Token
-from django.contrib.auth import get_user_model
-
+from .serializers import UserSerializer, LoginUserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
 
 @api_view(["POST"])
@@ -14,10 +11,10 @@ def signupView(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         try:
-          user = UserModel.objects.get(email=request.data["email"])
+           UserModel.objects.get(email=request.data["email"])
         except UserModel.DoesNotExist:
             try:
-                user = UserModel.objects.get(
+                UserModel.objects.get(
                     phoneNumber=request.data["phoneNumber"])
             except UserModel.DoesNotExist:
                 serializer.save()  
