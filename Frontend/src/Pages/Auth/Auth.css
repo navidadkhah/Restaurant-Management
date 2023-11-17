@@ -1,0 +1,72 @@
+.Auth {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+    gap: 4rem;
+    position: relative;
+  }
+  
+  .Auth > div {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+  
+  .a-left {
+    gap: 2rem;
+  }
+  
+  .Wbname h1 {
+    font-size: 3rem;
+    background-color: red;
+    background-image: var(--buttonBg);
+    background-size: 100%;
+    background-repeat: repeat;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    -moz-background-clip: text;
+    -moz-text-fill-color: transparent;
+  }
+  
+  .Wbname h6 {
+      font-size: 0.85rem;
+  }
+  
+  .infoForm {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 2rem;
+    background-color: var(--cardColor);
+    border-radius: 1rem;
+    padding: 1rem;
+  }
+  
+  .infoInput {
+    border: none;
+    outline: none;
+    background-color: var(--inputColor);
+    border-radius: 8px;
+    padding: 20px;
+    flex: 1;
+    font-size: 17px;
+  }
+  
+  .infoForm>div {
+      display: flex;
+      gap: 1rem;
+      height: 2rem;
+      width: 100%;
+      align-items: center;
+      justify-content: center;
+  }
+  
+  #infoButton {
+      width: 6rem;
+      height: 2rem;
+      align-self: flex-end;
+  }
+  
+  
