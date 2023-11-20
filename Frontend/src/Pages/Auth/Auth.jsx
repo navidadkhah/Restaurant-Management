@@ -7,7 +7,8 @@ export const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
   const confirmRef = useRef();
   const [isMatch, setIsMatch] = useState(true);
-  const [isError, setIsError] = useState(false);
+  const [isFill, setisFill] = useState(false);
+  const [isValidPhone, setIsValidPhone] = useState(true);
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -17,7 +18,6 @@ export const Auth = () => {
     password: "",
   });
 
-  const [confirmPass, setConfirmPass] = useState(true);
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -25,27 +25,31 @@ export const Auth = () => {
   const handleSubmit = (e) => {
     e.preventDefault();
     let flag = true;
+
     for (let key in data) {
       if (data[key] === "") {
-        setIsError(true);
+        setisFill(true);
         flag = false;
         break;
       }
     }
     if (flag) {
-      setIsError(false);
-      console.log(isError);
+      setisFill(false);
+      let regex = /^\d{11}$/; 
+      if (!regex.test(data.phoneNumber)) {
+        setIsValidPhone(false);
+      } else {
+        setIsValidPhone(true);
+      }
       if (data.password !== confirmRef.current.value) {
         setIsMatch(false);
       } else {
         setIsMatch(true);
-        console.log(data);
       }
     }
   };
 
   const resetForm = () => {
-    setConfirmPass(true);
     setData({
       firstName: "",
       lastName: "",
@@ -152,7 +156,8 @@ export const Auth = () => {
               <p style={{ color: "red" }}>Passwords does not match!</p>
             </div>
           )}
-          {isError && <p style={{ color: "red" }}>Please fill all fields!</p>}
+          {isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
+          {!isValidPhone && <p style={{ color: "red" }}>Invalid phone number!</p>}
           <span
             onClick={() => {
               setIsSignup((prev) => !prev);
