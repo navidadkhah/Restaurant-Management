@@ -1,13 +1,13 @@
 import React, { useRef } from "react";
 import { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
-import { login, signup } from "../../api/AuthController";
+import { login_API, signup_API } from "../../api/AuthController";
 import "./Auth.css";
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
   const confirmRef = useRef();
   const [isMatch, setIsMatch] = useState(true);
-  const [isFill, setisFill] = useState(false);
+  const [isFill, setisFill] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
   const [data, setData] = useState({
     firstName: "",
@@ -28,13 +28,13 @@ export const Auth = () => {
 
     for (let key in data) {
       if (data[key] === "") {
-        setisFill(true);
+        setisFill(false);
         flag = false;
         break;
       }
     }
     if (flag) {
-      setisFill(false);
+      setisFill(true);
       let regex = /^\d{11}$/; 
       if (!regex.test(data.phoneNumber)) {
         setIsValidPhone(false);
@@ -46,6 +46,14 @@ export const Auth = () => {
       } else {
         setIsMatch(true);
       }
+    }
+    console.log(isFill)
+    console.log(isFill)
+    console.log(isValidPhone)
+    if (isFill && isMatch && isValidPhone) {
+      delete data.confirmPassword
+      console.log(data)
+      signup_API(data);
     }
   };
 
@@ -156,7 +164,7 @@ export const Auth = () => {
               <p style={{ color: "red" }}>Passwords does not match!</p>
             </div>
           )}
-          {isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
+          {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
           {!isValidPhone && <p style={{ color: "red" }}>Invalid phone number!</p>}
           <span
             onClick={() => {
