@@ -1,0 +1,20 @@
+* {
+    overflow: hidden;
+}
+
+.home {}
+
+.navbar {
+    background-color: rgb(119, 133, 128);
+}
+
+.navbar-ul {
+    padding: 0px;
+    display: flex;
+    justify-content: flex-end;
+    /* right: 1rem; */
+}
+
+.navbar-ul i {
+    padding: 20px;
+}
