@@ -1,5 +1,5 @@
 import { React, useEffect, useState } from 'react'
-import { Cards } from '../Components/Cards'
+import { Cards } from '../Components/Cards/Cards'
 import Logo from '../../images/logo.png'
 import "../Homepage/Homepage.css"
 
@@ -21,6 +21,13 @@ export const Homepage = () => {
         </ul>
       </div>
       <div className="home-content">
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
         <Cards></Cards>
         <Cards></Cards>
         <Cards></Cards>
