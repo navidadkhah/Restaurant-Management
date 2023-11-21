@@ -1,6 +1,7 @@
 import { React, useEffect, useState } from 'react'
-import "../Homepage/Homepage.css"
+import { Cards } from '../Components/Cards'
 import Logo from '../../images/logo.png'
+import "../Homepage/Homepage.css"
 
 export const Homepage = () => {
   useEffect(() => {
@@ -20,63 +21,15 @@ export const Homepage = () => {
         </ul>
       </div>
       <div className="home-content">
-        homepage
-        <br />
-        homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br /> homepage
-        <br />
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        <Cards></Cards>
+        
       </div>
     </div>
   )

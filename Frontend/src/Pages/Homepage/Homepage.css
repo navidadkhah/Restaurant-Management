@@ -12,6 +12,7 @@
     padding: 0px;
     display: flex;
     justify-content: space-between;
+    border-radius: 0 0 10px 10px;
     width: 100%;
     box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, .2);
 }
@@ -52,6 +53,20 @@
 }
 
 .home-content {
-    margin: 100px 0;
+    margin: 100px auto;
     overflow: hidden;
+    display: flex;
+    flex-wrap: wrap;
+    flex-basis: 50%;
+    justify-content: center;
+}
+
+@media only screen and (max-width: 560px) {
+    .home-content {
+        /* align-items: center;
+        justify-content: center; */
+        margin: 100px auto;
+        flex-direction: column;
+        /* align-self: center; */
+    }
 }
