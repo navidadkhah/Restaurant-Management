@@ -1,5 +1,7 @@
 import { React, useEffect, useState } from 'react'
 import "../Homepage/Homepage.css"
+import Logo from '../../images/logo.png'
+
 export const Homepage = () => {
   useEffect(() => {
 
@@ -7,6 +9,9 @@ export const Homepage = () => {
   return (
     <div className='home'>
       <div className="navbar">
+        <div className='navbar-img'>
+          <img src={Logo} alt="logo" />
+        </div>
         <ul className="navbar-ul">
           <i><a href="#">Home</a></i>
           <i><a href="#">About</a></i>
