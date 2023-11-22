@@ -18,7 +18,6 @@ export const Auth = () => {
     password: "",
   });
 
-
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -61,7 +60,8 @@ export const Auth = () => {
       const loginData = { email: data.email, password: data.password };
       login_API(loginData);
     }
-  }; 
+}; 
+
 
   const resetForm = () => {
     setData({
