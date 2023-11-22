@@ -2,7 +2,7 @@ import { React, useEffect, useState } from 'react'
 import { Cards } from '../Components/Cards/Cards'
 import Logo from '../../images/logo.png'
 import { IoSearchSharp } from "react-icons/io5";
-import "../Homepage/Homepage.css"
+import "./Homepage.css"
 
 export const Homepage = () => {
   useEffect(() => {
