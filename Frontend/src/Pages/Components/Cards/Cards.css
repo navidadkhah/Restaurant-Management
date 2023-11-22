@@ -2,10 +2,12 @@
     margin: 50px 20px 40px 20px;
     width: 250px;
     height: 300px;
-    background-color: rgb(145, 113, 73);
+    /* background-color: rgba(106, 106, 125, 0.4); */
+    background: linear-gradient(98.63deg, #bfe0e8 30%, #7fcfe1 70%);
     border-radius: 50px 10px;
-    box-shadow: 10px 10px 20px red;
+    box-shadow: 10px 10px 20px rgb(96, 154, 159);
     position: relative;
+    transition: .3s ease-in-out;
 }
 
 .card .card-image img {
@@ -13,14 +15,52 @@
     height: 200px;
     border-radius: 50px 10px 50px 0;
     cursor: pointer;
+    transition: .2s ease-in;
 }
 
+.card:hover {
+    animation: textanimate 0.6s alternate infinite;
+}
+
+@keyframes textanimate {
+    0% {
+        bottom: 0px;
+    }
+    100% {
+        bottom: 10px;
+    }
+}
+
+
+/* .card::after>.aa {
+    transition: .2s ease-in;
+}
+ */
+
+
+/* .card:hover>.card-image {
+    height: 400px;
+} */
+
+
+/* .card:hover {
+    margin: 50px 20px 40px 20px;
+    width: 260px;
+    height: 310px;
+ 
+    background: linear-gradient(98.63deg, #bfe0e8 30%, #7fcfe1 70%);
+    border: 2px solid red;
+    box-shadow: 10px 10px 20px rgb(96, 154, 159);
+    position: relative;
+} */
+
 .card .card-title p {
-    margin: 0 auto;
-    padding: 5px 85px;
+    margin: auto;
+    padding: 5px 0;
     font-size: large;
     font-weight: 600;
     font-style: italic;
+    display: flex;
     justify-content: center;
     align-items: center;
     text-transform: uppercase;
@@ -32,12 +72,12 @@
 }
 
 .card .cart-food-type {
-    width: 100%;
+    width: 30%;
     height: 30px;
     border: 1px solid black;
     margin: 10px 10px;
     border-radius: 20px;
-    background-color: rgb(209, 183, 150);
+    background-color: rgb(153, 190, 201);
 }
 
 .card .cart-food-type p {
@@ -46,11 +86,6 @@
     display: flex;
     justify-content: center;
     align-items: center;
-}
-
-.card .card-title-description .cart-restaurant-order {
-    line-height: 15px;
-    margin: 0 30px;
 }
 
 .order-button {
