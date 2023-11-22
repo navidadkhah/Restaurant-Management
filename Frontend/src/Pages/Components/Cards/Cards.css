@@ -1,0 +1,119 @@
+.card {
+    margin: 50px 20px 40px 20px;
+    width: 250px;
+    height: 300px;
+    /* background-color: rgba(106, 106, 125, 0.4); */
+    background: linear-gradient(98.63deg, #bfe0e8 30%, #7fcfe1 70%);
+    border-radius: 50px 10px;
+    box-shadow: 10px 10px 20px rgb(96, 154, 159);
+    position: relative;
+    transition: .3s ease-in-out;
+}
+
+.card .card-image img {
+    width: 100%;
+    height: 200px;
+    border-radius: 50px 10px 50px 0;
+    cursor: pointer;
+    transition: .2s ease-in;
+}
+
+.card:hover {
+    animation: textanimate 0.6s alternate infinite;
+}
+
+@keyframes textanimate {
+    0% {
+        bottom: 0px;
+    }
+    100% {
+        bottom: 10px;
+    }
+}
+
+
+/* .card::after>.aa {
+    transition: .2s ease-in;
+}
+ */
+
+
+/* .card:hover>.card-image {
+    height: 400px;
+} */
+
+
+/* .card:hover {
+    margin: 50px 20px 40px 20px;
+    width: 260px;
+    height: 310px;
+ 
+    background: linear-gradient(98.63deg, #bfe0e8 30%, #7fcfe1 70%);
+    border: 2px solid red;
+    box-shadow: 10px 10px 20px rgb(96, 154, 159);
+    position: relative;
+} */
+
+.card .card-title p {
+    margin: auto;
+    padding: 5px 0;
+    font-size: large;
+    font-weight: 600;
+    font-style: italic;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-transform: uppercase;
+}
+
+.card .card-title-description {
+    display: flex;
+    justify-content: space-between;
+}
+
+.card .cart-food-type {
+    width: 30%;
+    height: 30px;
+    border: 1px solid black;
+    margin: 10px 10px;
+    border-radius: 20px;
+    background-color: rgb(153, 190, 201);
+}
+
+.card .cart-food-type p {
+    margin: auto;
+    line-height: 26px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.order-button {
+    width: 90px;
+    height: 30px;
+    background-color: #ff5252;
+    border-radius: 6px;
+    margin: 9px 2px;
+    border: 2px solid black;
+    box-shadow: 3px 2px black;
+    text-align: center;
+    color: white;
+    font-weight: 600;
+    padding: 1px 0 0 0;
+    line-height: 24px;
+    transition: 0.15s ease-in;
+}
+
+.order-button:hover {
+    background-color: white;
+    color: #ff5252;
+    border: 2px solid #ff5252;
+    box-shadow: 3px 2px #ff5252;
+    cursor: pointer;
+}
+
+.order-button:active {
+    font-size: 15px;
+    box-shadow: 0px 0px black;
+    margin: 12px 2px;
+}

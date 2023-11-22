@@ -60,7 +60,8 @@ export const Auth = () => {
       const loginData = { email: data.email, password: data.password };
       login_API(loginData);
     }
-  };
+}; 
+
 
   const resetForm = () => {
     setData({
