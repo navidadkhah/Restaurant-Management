@@ -63,14 +63,6 @@
     justify-content: center;
 }
 
-
-/* Media Queries */
-
-
-/* 
-@media only screen and (max-width: 560px) {
-    .home-content {
-        margin: 100px auto;
-        flex-direction: column;
-    }
-} */
+.search {
+    padding: 20px 0;
+}
