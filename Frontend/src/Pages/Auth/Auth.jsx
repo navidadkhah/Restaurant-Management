@@ -19,7 +19,6 @@ export const Auth = () => {
   });
 
 
-  const [confirmPass, setConfirmPass] = useState(true);
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -64,7 +63,16 @@ export const Auth = () => {
     }
   }; 
 
-
+  const resetForm = () => {
+    setData({
+      firstName: "",
+      lastName: "",
+      phoneNumber: "",
+      email: "",
+      address: "",
+      password: "",
+    });
+  };
   return (
     <div className="Auth">
       {/* left side */}
@@ -101,7 +109,6 @@ export const Auth = () => {
               />
             </div>
           )}
-
           {isSignup && (
             <div>
               <input
@@ -169,7 +176,7 @@ export const Auth = () => {
           <span
             onClick={() => {
               setIsSignup((prev) => !prev);
-              
+              resetForm();
             }}
             style={{ fontSize: "12px", cursor: "pointer" }}
           >
@@ -183,7 +190,7 @@ export const Auth = () => {
             type="submit"
             onClick={handleSubmit}
           >
-            { isSignup ? "Sign Up" : "Login"}
+            {isSignup ? "Sign Up" : "Login"}
           </button>
         </form>
       </div>
