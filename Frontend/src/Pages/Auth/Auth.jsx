@@ -24,36 +24,41 @@ export const Auth = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    let flag = true;
+    if (isSignup) {
+      let flag = true;
 
-    for (let key in data) {
-      if (data[key] === "") {
-        setisFill(false);
-        flag = false;
-        break;
+      for (let key in data) {
+        if (data[key] === "") {
+          setisFill(false);
+          flag = false;
+          break;
+        }
       }
-    }
-    if (flag) {
-      setisFill(true);
-      let regex = /^\d{11}$/; 
-      if (!regex.test(data.phoneNumber)) {
-        setIsValidPhone(false);
-      } else {
-        setIsValidPhone(true);
+      if (flag) {
+        setisFill(true);
+        let regex = /^\d{11}$/;
+        if (!regex.test(data.phoneNumber)) {
+          setIsValidPhone(false);
+        } else {
+          setIsValidPhone(true);
+        }
+        if (data.password !== confirmRef.current.value) {
+          setIsMatch(false);
+        } else {
+          setIsMatch(true);
+        }
       }
-      if (data.password !== confirmRef.current.value) {
-        setIsMatch(false);
-      } else {
-        setIsMatch(true);
+      console.log(isFill);
+      console.log(isFill);
+      console.log(isValidPhone);
+      if (isFill && isMatch && isValidPhone) {
+        delete data.confirmPassword;
+        console.log(data);
+        signup_API(data);
       }
-    }
-    console.log(isFill)
-    console.log(isFill)
-    console.log(isValidPhone)
-    if (isFill && isMatch && isValidPhone) {
-      delete data.confirmPassword
-      console.log(data)
-      signup_API(data);
+    } else {
+      const loginData = { email: data.email, password: data.password };
+      login_API(loginData);
     }
   };
 
@@ -103,40 +108,39 @@ export const Auth = () => {
               />
             </div>
           )}
-
+          {isSignup && (
+            <div>
+              <input
+                type="text"
+                className="infoInput"
+                name="phoneNumber"
+                placeholder="Phone number"
+                onChange={handleChange}
+                value={data.phoneNumber}
+              />
+            </div>
+          )}
           <div>
             <input
-              type="text"
+              type="email"
               className="infoInput"
-              name="phoneNumber"
-              placeholder="Phone number"
+              name="email"
+              placeholder="E-mail"
               onChange={handleChange}
-              value={data.phoneNumber}
+              value={data.email}
             />
           </div>
           {isSignup && (
-            <>
-              <div>
-                <input
-                  type="email"
-                  className="infoInput"
-                  name="email"
-                  placeholder="E-mail"
-                  onChange={handleChange}
-                  value={data.email}
-                />
-              </div>
-              <div>
-                <input
-                  type="text"
-                  className="infoInput"
-                  name="address"
-                  placeholder="address"
-                  onChange={handleChange}
-                  value={data.address}
-                />
-              </div>
-            </>
+            <div>
+              <input
+                type="text"
+                className="infoInput"
+                name="address"
+                placeholder="address"
+                onChange={handleChange}
+                value={data.address}
+              />
+            </div>
           )}
           <div>
             <input
@@ -165,7 +169,9 @@ export const Auth = () => {
             </div>
           )}
           {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
-          {!isValidPhone && <p style={{ color: "red" }}>Invalid phone number!</p>}
+          {!isValidPhone && (
+            <p style={{ color: "red" }}>Invalid phone number!</p>
+          )}
           <span
             onClick={() => {
               setIsSignup((prev) => !prev);
