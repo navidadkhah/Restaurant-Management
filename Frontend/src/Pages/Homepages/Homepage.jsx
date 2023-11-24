@@ -16,7 +16,6 @@ export const Homepage = () => {
         </div>
         <ul className="navbar-ul">
           <i><a href="#">Home</a></i>
-          <i><a href="#">About</a></i>
           <i><a href="#">Admin</a></i>
           <i><a href="#">Login</a></i>
           <i className='search'><a href="#"><IoSearchSharp/></a></i>
