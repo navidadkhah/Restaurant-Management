@@ -5,7 +5,9 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import UserSerializer, LoginUserSerializer
 from rest_framework_simplejwt.tokens import RefreshToken
+from drf_yasg.utils import swagger_auto_schema
 
+@swagger_auto_schema(method='POST', request_body=UserSerializer)
 @api_view(["POST"])
 def signupView(request):
     serializer = UserSerializer(data=request.data)
@@ -24,6 +26,7 @@ def signupView(request):
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 
+@swagger_auto_schema(method='POST', request_body=LoginUserSerializer)
 @api_view(["POST"])
 def loginView(request):
     serializer = LoginUserSerializer(data=request.data)
@@ -52,8 +55,7 @@ def loginView(request):
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 
-    
-
+@swagger_auto_schema(method='GET')
 @api_view(["GET"])
 def allusers(request):
     users = UserModel.objects.all()
