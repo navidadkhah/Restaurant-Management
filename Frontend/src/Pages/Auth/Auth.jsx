@@ -48,6 +48,8 @@ export const Auth = () => {
         } else {
           setIsMatch(true);
         }
+      } else {
+        setisFill(false);
       }
       console.log(isFill);
       console.log(isFill);
@@ -59,7 +61,7 @@ export const Auth = () => {
           await signup_API(data);
           setLoginError(null);
         } catch (error) {
-          setLoginError(error);
+          setLoginError(error.response.data);
         }
       }
     } else {
@@ -179,13 +181,16 @@ export const Auth = () => {
               <p style={{ color: "red" }}>Passwords does not match!</p>
             </div>
           )}
-          {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
           {!isValidPhone && (
             <p style={{ color: "red" }}>Invalid phone number!</p>
           )}
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           <span
             onClick={() => {
+              setIsMatch(true);
+              setIsValidPhone(true);
+              setisFill(true);
+              setLoginError(null);
               setIsSignup((prev) => !prev);
               resetForm();
             }}
