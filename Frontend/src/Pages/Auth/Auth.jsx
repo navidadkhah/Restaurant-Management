@@ -9,6 +9,7 @@ export const Auth = () => {
   const [isMatch, setIsMatch] = useState(true);
   const [isFill, setisFill] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
+  const [loginError, setLoginError] = useState();
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -22,7 +23,7 @@ export const Auth = () => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignup) {
       let flag = true;
@@ -54,14 +55,23 @@ export const Auth = () => {
       if (isFill && isMatch && isValidPhone) {
         delete data.confirmPassword;
         console.log(data);
-        signup_API(data);
+        try {
+          await signup_API(data);
+          setLoginError(null);
+        } catch (error) {
+          setLoginError(error);
+        }
       }
     } else {
       const loginData = { email: data.email, password: data.password };
-      login_API(loginData);
+      try {
+        await login_API(loginData);
+        setLoginError(null);
+      } catch (error) {
+        setLoginError(error.response.data);
+      }
     }
-}; 
-
+  };
 
   const resetForm = () => {
     setData({
@@ -173,6 +183,7 @@ export const Auth = () => {
           {!isValidPhone && (
             <p style={{ color: "red" }}>Invalid phone number!</p>
           )}
+          {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           <span
             onClick={() => {
               setIsSignup((prev) => !prev);
