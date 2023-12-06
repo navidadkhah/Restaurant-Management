@@ -51,7 +51,7 @@ def loginView(request):
         detail["phoneNumber"] = user.phoneNumber
         detail["email"] = user.email
         detail["address"] = user.address
-        return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_201_CREATED)
+        return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_200_OK)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 

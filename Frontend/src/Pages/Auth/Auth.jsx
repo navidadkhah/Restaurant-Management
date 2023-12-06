@@ -97,7 +97,9 @@ export const Auth = () => {
       try {
         await login_API(loginData);
         setLoginError(null);
+        notify("successfylly logged in", "success")
       } catch (error) {
+        notify(error.response.data, "error")
         setLoginError(error.response.data);
       }
     }
