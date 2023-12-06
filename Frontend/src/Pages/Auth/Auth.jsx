@@ -8,11 +8,6 @@ import "./Auth.css";
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
   const confirmRef = useRef();
-  const [isMatch, setIsMatch] = useState(true);
-  const [isFill, setisFill] = useState(true);
-  const [isValidPhone, setIsValidPhone] = useState(true);
-  const [isValidEmail, setIsValidEmail] = useState(true);
-  const [loginError, setLoginError] = useState();
   const [data, setData] = useState({
     firstName: "",
     lastName: "",
@@ -37,46 +32,37 @@ export const Auth = () => {
      
       for (let key in data) {
         if (data[key] === "") {
-          setisFill(false);
           flag_is_fill = false;
           break;
         }
       }
 
       if (flag_is_fill) {
-        setisFill(true);
         let phone_regex = /^\d{11}$/;
         let regex_email = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
         if (!phone_regex.test(data.phoneNumber)) {
-          setIsValidPhone(false);
           flag_is_valid_phone = false;
           notify('Invalid phone number!', "error")
         } else {
-          setIsValidPhone(true);
           flag_is_valid_phone = true;
         }
 
 
         if (!regex_email.test(data.email)) {
-          setIsValidEmail(false);
           flag_is_email_valid = false;
           notify('Invalid Email Format!', "error")
         } else {
-          setIsValidEmail(true);
           flag_is_email_valid = true;
         }
    
         if (data.password !== confirmRef.current.value) {
-          setIsMatch(false);
           flag_is_pass_valid = false;
           notify('Passwords does not match!', "error")
         } else {
-          setIsMatch(true);
           flag_is_pass_valid = true;
         }
       } 
       else{
-        setisFill(false); 
         notify('Please fill all fields!', "error")
       }
   
@@ -84,23 +70,19 @@ export const Auth = () => {
         delete data.confirmPassword;
         console.log(data);
         try {
-           await signup_API(data);
-          setLoginError(null);
-          notify("User created successfylly", "success")
+          const res = await signup_API(data);
+          notify(res.data, "success")
         } catch (error) {
           notify(error.response.data, "error")
-          setLoginError(error.response.data);
         }
       }
     } else {
       const loginData = { email: data.email, password: data.password };
       try {
-        await login_API(loginData);
-        setLoginError(null);
-        notify("successfylly logged in", "success")
+        const res = await login_API(loginData);
+        notify("successfylly logged in!", "success")
       } catch (error) {
         notify(error.response.data, "error")
-        setLoginError(error.response.data);
       }
     }
   };
@@ -151,7 +133,7 @@ export const Auth = () => {
         />
         <div className="Wbname">
           <h1>Restaurant</h1>
-          <h6>Your faverute Restaurant app</h6>
+          <h6>Your favorite Restaurant app</h6>
         </div>
       </div>
       {/* right side */}
@@ -236,10 +218,6 @@ export const Auth = () => {
          
           <span
             onClick={() => {
-              setIsMatch(true);
-              setIsValidPhone(true);
-              setisFill(true);
-              setLoginError(null);
               setIsSignup((prev) => !prev);
               resetForm();
             }}
@@ -248,6 +226,7 @@ export const Auth = () => {
             {isSignup
               ? "Already have an account? Login."
               : "Don't have an account. Sign up."}
+          
           </span>
           <button
             className="button"
@@ -259,7 +238,7 @@ export const Auth = () => {
           </button>
         </form>
       </div>
-      <ToastContainer />
+       <ToastContainer />
     </div>
     
   );
