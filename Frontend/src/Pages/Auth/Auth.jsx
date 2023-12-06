@@ -80,6 +80,7 @@ export const Auth = () => {
       const loginData = { email: data.email, password: data.password };
       try {
         const res = await login_API(loginData);
+        localStorage.setItem("Token", JSON.stringify(res.data.token))
         notify("successfylly logged in!", "success")
       } catch (error) {
         notify(error.response.data, "error")
