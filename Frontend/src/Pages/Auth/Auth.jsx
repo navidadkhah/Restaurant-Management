@@ -2,6 +2,8 @@ import React, { useRef } from "react";
 import { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
 import { login_API, signup_API } from "../../api/AuthController";
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.min.css';
 import "./Auth.css";
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
@@ -49,10 +51,21 @@ export const Auth = () => {
         if (!phone_regex.test(data.phoneNumber)) {
           setIsValidPhone(false);
           flag_is_valid_phone = false;
+          toast.error('🦄 Wow so easy!', {
+            position: "top-center",
+            autoClose: 6000,
+            hideProgressBar: false,
+            closeOnClick: true,
+            pauseOnHover: false,
+            draggable: false,
+            progress: undefined,
+            theme: "light",
+          });
         } else {
           setIsValidPhone(true);
           flag_is_valid_phone = true;
         }
+
 
         if (!regex_email.test(data.email)) {
           setIsValidEmail(false);
@@ -72,7 +85,8 @@ export const Auth = () => {
         }
       }
       else{
-        setisFill(false);
+        setisFill(false); 
+        notify('Please fill all fields!')
       }
   
       if (flag_is_fill & flag_is_valid_phone & flag_is_pass_valid & flag_is_email_valid) {
@@ -95,6 +109,19 @@ export const Auth = () => {
       }
     }
   };
+
+  const notify = (msg) => {
+    toast.error(msg, {
+      position: "top-center",
+      autoClose: 4000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: false,
+      progress: undefined,
+      theme: "light",
+    });
+  }
 
   const resetForm = () => {
     setData({
@@ -231,6 +258,8 @@ export const Auth = () => {
           </button>
         </form>
       </div>
+      <ToastContainer />
     </div>
+    
   );
 };
