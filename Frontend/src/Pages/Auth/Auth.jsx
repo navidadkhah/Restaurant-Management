@@ -50,7 +50,7 @@ export const Auth = () => {
         if (!phone_regex.test(data.phoneNumber)) {
           setIsValidPhone(false);
           flag_is_valid_phone = false;
-          notify('Invalid phone number!')
+          notify('Invalid phone number!', "error")
         } else {
           setIsValidPhone(true);
           flag_is_valid_phone = true;
@@ -60,7 +60,7 @@ export const Auth = () => {
         if (!regex_email.test(data.email)) {
           setIsValidEmail(false);
           flag_is_email_valid = false;
-          notify('Invalid Email Format!')
+          notify('Invalid Email Format!', "error")
         } else {
           setIsValidEmail(true);
           flag_is_email_valid = true;
@@ -69,7 +69,7 @@ export const Auth = () => {
         if (data.password !== confirmRef.current.value) {
           setIsMatch(false);
           flag_is_pass_valid = false;
-          notify('Passwords does not match!')
+          notify('Passwords does not match!', "error")
         } else {
           setIsMatch(true);
           flag_is_pass_valid = true;
@@ -77,17 +77,19 @@ export const Auth = () => {
       }
       else{
         setisFill(false); 
-        notify('Please fill all fields!')
+        notify('Please fill all fields!', "error")
       }
   
       if (flag_is_fill & flag_is_valid_phone & flag_is_pass_valid & flag_is_email_valid) {
         delete data.confirmPassword;
         console.log(data);
         try {
-          await signup_API(data);
+           await signup_API(data);
           setLoginError(null);
+          notify("User created successfylly", "success")
         } catch (error) {
-          setLoginError(error);
+          notify(error.response.data, "error")
+          setLoginError(error.response.data);
         }
       }
     } else {
@@ -101,17 +103,31 @@ export const Auth = () => {
     }
   };
 
-  const notify = (msg) => {
-    toast.error(msg, {
-      position: "top-left",
-      autoClose: 3000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: false,
-      progress: undefined,
-      theme: "light",
+  const notify = (msg, type) => {
+    if (type==="error"){
+      toast.error(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
     });
+    }
+    else if (type === "success"){
+      toast.success(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   }
 
   const resetForm = () => {
