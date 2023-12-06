@@ -74,7 +74,7 @@ export const Auth = () => {
           setIsMatch(true);
           flag_is_pass_valid = true;
         }
-      }
+      } 
       else{
         setisFill(false); 
         notify('Please fill all fields!', "error")
@@ -88,8 +88,7 @@ export const Auth = () => {
           setLoginError(null);
           notify("User created successfylly", "success")
         } catch (error) {
-          notify(error.response.data, "error")
-          setLoginError(error.response.data);
+          setLoginError(error);
         }
       }
     } else {
@@ -230,10 +229,23 @@ export const Auth = () => {
                 value={data.confirmPassword}
               />
             )}
-          </div>        
+          </div>
+          {!isMatch && (
+            <div>
+              <p style={{ color: "red" }}>Passwords does not match!</p>
+            </div>
+          )}
+          {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
+          {!isValidPhone && (
+            <p style={{ color: "red" }}>Invalid phone number!</p>
+          )}
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           <span
             onClick={() => {
+              setIsMatch(true);
+              setIsValidPhone(true);
+              setisFill(true);
+              setLoginError(null);
               setIsSignup((prev) => !prev);
               resetForm();
             }}
