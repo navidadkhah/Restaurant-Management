@@ -45,22 +45,12 @@ export const Auth = () => {
 
       if (flag_is_fill) {
         setisFill(true);
-        
         let phone_regex = /^\d{11}$/;
-        let regex_email = /^\w + @(\w +\.) +[\w -]{ 2, 4 } $/
+        let regex_email = /^[a-zA-Z0-9]+@(?:[a-zA-Z0-9]+\.)+[A-Za-z]+$/
         if (!phone_regex.test(data.phoneNumber)) {
           setIsValidPhone(false);
           flag_is_valid_phone = false;
-          toast.error('🦄 Wow so easy!', {
-            position: "top-center",
-            autoClose: 6000,
-            hideProgressBar: false,
-            closeOnClick: true,
-            pauseOnHover: false,
-            draggable: false,
-            progress: undefined,
-            theme: "light",
-          });
+          notify('Invalid phone number!')
         } else {
           setIsValidPhone(true);
           flag_is_valid_phone = true;
@@ -70,6 +60,7 @@ export const Auth = () => {
         if (!regex_email.test(data.email)) {
           setIsValidEmail(false);
           flag_is_email_valid = false;
+          notify('Invalid Email Format!')
         } else {
           setIsValidEmail(true);
           flag_is_email_valid = true;
@@ -78,7 +69,7 @@ export const Auth = () => {
         if (data.password !== confirmRef.current.value) {
           setIsMatch(false);
           flag_is_pass_valid = false;
-
+          notify('Passwords does not match!')
         } else {
           setIsMatch(true);
           flag_is_pass_valid = true;
@@ -112,8 +103,8 @@ export const Auth = () => {
 
   const notify = (msg) => {
     toast.error(msg, {
-      position: "top-center",
-      autoClose: 4000,
+      position: "top-left",
+      autoClose: 3000,
       hideProgressBar: false,
       closeOnClick: true,
       pauseOnHover: false,
@@ -223,19 +214,7 @@ export const Auth = () => {
                 value={data.confirmPassword}
               />
             )}
-          </div>
-          {!isMatch && (
-            <div>
-              <p style={{ color: "red" }}>Passwords does not match!</p>
-            </div>
-          )}
-          {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
-          {!isValidPhone && (
-            <p style={{ color: "red" }}>Invalid phone number!</p>
-          )}
-          {!isValidEmail && (
-            <p style={{ color: "red" }}>Invalid Email Format!</p>
-          )}
+          </div>        
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           <span
             onClick={() => {
