@@ -9,6 +9,7 @@ export const Auth = () => {
   const [isMatch, setIsMatch] = useState(true);
   const [isFill, setisFill] = useState(true);
   const [isValidPhone, setIsValidPhone] = useState(true);
+  const [isValidEmail, setIsValidEmail] = useState(true);
   const [loginError, setLoginError] = useState();
   const [data, setData] = useState({
     firstName: "",
@@ -19,6 +20,7 @@ export const Auth = () => {
     password: "",
   });
 
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
@@ -26,33 +28,54 @@ export const Auth = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     if (isSignup) {
-      let flag = true;
-
+      let flag_is_fill = true;
+      let flag_is_valid_phone = true
+      let flag_is_pass_valid = true
+      let flag_is_email_valid = true
+     
       for (let key in data) {
         if (data[key] === "") {
           setisFill(false);
-          flag = false;
+          flag_is_fill = false;
           break;
         }
       }
-      if (flag) {
+
+      if (flag_is_fill) {
         setisFill(true);
-        let regex = /^\d{11}$/;
-        if (!regex.test(data.phoneNumber)) {
+        
+        let phone_regex = /^\d{11}$/;
+        let regex_email = /^\w + @(\w +\.) +[\w -]{ 2, 4 } $/
+        if (!phone_regex.test(data.phoneNumber)) {
           setIsValidPhone(false);
+          flag_is_valid_phone = false;
         } else {
           setIsValidPhone(true);
+          flag_is_valid_phone = true;
         }
+
+        if (!regex_email.test(data.email)) {
+          setIsValidEmail(false);
+          flag_is_email_valid = false;
+        } else {
+          setIsValidEmail(true);
+          flag_is_email_valid = true;
+        }
+   
         if (data.password !== confirmRef.current.value) {
           setIsMatch(false);
+          flag_is_pass_valid = false;
+
         } else {
           setIsMatch(true);
+          flag_is_pass_valid = true;
         }
       }
-      console.log(isFill);
-      console.log(isFill);
-      console.log(isValidPhone);
-      if (isFill && isMatch && isValidPhone) {
+      else{
+        setisFill(false);
+      }
+  
+      if (flag_is_fill & flag_is_valid_phone & flag_is_pass_valid & flag_is_email_valid) {
         delete data.confirmPassword;
         console.log(data);
         try {
@@ -182,6 +205,9 @@ export const Auth = () => {
           {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
           {!isValidPhone && (
             <p style={{ color: "red" }}>Invalid phone number!</p>
+          )}
+          {!isValidEmail && (
+            <p style={{ color: "red" }}>Invalid Email Format!</p>
           )}
           {loginError && <p style={{ color: "red" }}>{loginError}</p>}
           <span
