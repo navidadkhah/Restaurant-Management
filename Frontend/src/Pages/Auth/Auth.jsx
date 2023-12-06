@@ -88,7 +88,8 @@ export const Auth = () => {
           setLoginError(null);
           notify("User created successfylly", "success")
         } catch (error) {
-          setLoginError(error);
+          notify(error.response.data, "error")
+          setLoginError(error.response.data);
         }
       }
     } else {
@@ -230,16 +231,7 @@ export const Auth = () => {
               />
             )}
           </div>
-          {!isMatch && (
-            <div>
-              <p style={{ color: "red" }}>Passwords does not match!</p>
-            </div>
-          )}
-          {!isFill && <p style={{ color: "red" }}>Please fill all fields!</p>}
-          {!isValidPhone && (
-            <p style={{ color: "red" }}>Invalid phone number!</p>
-          )}
-          {loginError && <p style={{ color: "red" }}>{loginError}</p>}
+         
           <span
             onClick={() => {
               setIsMatch(true);
