@@ -1,0 +1,35 @@
+.admin-dash {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-block {
+    width: 300px;
+    height: 150px;
+    border-radius: 5px;
+    box-shadow: 7px 7px 10px rgb(128, 122, 122);
+    background-color: #e65c78;
+    margin: 80px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-block span {
+    margin: 30px auto 0 auto;
+    font-weight: 500;
+    font-size: 25px;
+    color: black;
+}
+
+.admin-block span:last-child {
+    margin: 20px auto 0 auto;
+    font-weight: 500;
+    font-size: larger;
+    font-size: 25px;
+    text-decoration: underline;
+}
+
+.admin-lists {
+    display: flex;
+    flex-direction: column;
+}
