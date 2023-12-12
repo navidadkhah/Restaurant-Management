@@ -4,21 +4,27 @@
 }
 
 .admin-block {
-    width: 300px;
+    width: 400px;
     height: 150px;
     border-radius: 5px;
     box-shadow: 7px 7px 10px rgb(128, 122, 122);
-    background-color: #e65c78;
+    background-color: rgb(200, 191, 231);
     margin: 80px auto;
     display: flex;
     flex-direction: column;
 }
 
-.admin-block span {
-    margin: 30px auto 0 auto;
+.admin-block span:first-child {
+    padding: 20px 0;
+    width: 400px;
+    /* box-shadow: 0px 0px 20px black; */
+    z-index: 2;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(182, 171, 224);
     font-weight: 500;
     font-size: 25px;
-    color: black;
+    color: white;
 }
 
 .admin-block span:last-child {
@@ -26,10 +32,19 @@
     font-weight: 500;
     font-size: larger;
     font-size: 25px;
-    text-decoration: underline;
+    color: white;
 }
 
 .admin-lists {
     display: flex;
     flex-direction: column;
+}
+
+.admin-list-buttons button {
+    background-color: rgb(107, 202, 196);
+    width: 60px;
+    height: 40px;
+    border: none;
+    color: aliceblue;
+    cursor: pointer;
 }

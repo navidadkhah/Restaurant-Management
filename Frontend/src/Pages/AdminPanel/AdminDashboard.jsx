@@ -1,11 +1,12 @@
 import React from "react";
 import "./AdminDashboard.css";
+import { Table } from "../Components/Table/Table";
 
 export const AdminDashboard = () => {
   return (
     <div className="admin-dash">
       <div className="admin-block">
-        <span>Current Restaurants:</span>
+        <span>Current Restaurants</span>
         <span>20</span>
       </div>
       <div className="admin-lists">
@@ -13,12 +14,7 @@ export const AdminDashboard = () => {
           <button>add</button>
           {/* <button></button> */}
         </div>
-        <ul>
-          <i></i>
-          <i></i>
-          <i></i>
-          <i></i>
-        </ul>
+        <Table></Table>
       </div>
     </div>
   );
