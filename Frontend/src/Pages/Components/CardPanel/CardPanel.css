@@ -1,0 +1,29 @@
+.com-admin-block {
+    width: 400px;
+    height: 160px;
+    border-radius: 5px;
+    box-shadow: 7px 7px 10px rgb(128, 122, 122);
+    background-color: rgb(200, 191, 231);
+    margin: 60px auto;
+    display: flex;
+    flex-direction: column;
+}
+
+.com-admin-block span:first-child {
+    padding: 20px 0;
+    width: 400px;
+    display: flex;
+    justify-content: center;
+    background-color: rgb(182, 171, 224);
+    font-weight: 500;
+    font-size: 25px;
+    color: white;
+}
+
+.com-admin-block span:last-child {
+    margin: 20px auto 0 auto;
+    font-weight: 500;
+    font-size: larger;
+    font-size: 25px;
+    color: white;
+}
