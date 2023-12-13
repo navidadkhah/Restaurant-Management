@@ -6,6 +6,7 @@ import { CardPanel } from "../Components/CardPanel/CardPanel";
 export const AdminDashboard = () => {
   return (
     <div className="admin-dash">
+      <span className="admin-dash-title">Website Admin Panel</span>
       <CardPanel title="Current Restaurants" number="20" />
       <div className="admin-lists">
         <div className="admin-list-button">

@@ -1,9 +1,9 @@
 import React from "react";
 import './Table.css'
 
-export const Table = () => {
+export const Table = (props) => {
   return (
-    <div>
+  
       <table id="customers">
         <tr>
           <th>Name</th>
@@ -30,8 +30,32 @@ export const Table = () => {
           <td>Roland Mendel</td>
           <td>Austria</td>
         </tr>
-       
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>{" "}
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>{" "}
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>{" "}
+        <tr>
+          <td>Ernst Handel</td>
+          <td>Roland Mendel</td>
+          <td>Austria</td>
+        </tr>
       </table>
-    </div>
+
   );
 };

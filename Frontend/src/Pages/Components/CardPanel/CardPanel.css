@@ -4,7 +4,7 @@
     border-radius: 5px;
     box-shadow: 7px 7px 10px rgb(128, 122, 122);
     background-color: rgb(200, 191, 231);
-    margin: 60px auto;
+    margin: 40px auto;
     display: flex;
     flex-direction: column;
 }
