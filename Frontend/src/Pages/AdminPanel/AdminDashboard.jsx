@@ -1,7 +1,8 @@
 import React from "react";
-import "./AdminDashboard.css";
 import { Table } from "../Components/Table/Table";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
+import "./AdminDashboard.css";
+
 
 export const AdminDashboard = () => {
   return (
