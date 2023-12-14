@@ -3,6 +3,7 @@
     border-collapse: collapse;
     width: 100%;
     overflow: scroll;
+    margin: 0 0 20px 0;
 }
 
 #customers td,

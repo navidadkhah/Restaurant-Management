@@ -7,20 +7,22 @@
     margin: 40px auto;
     display: flex;
     flex-direction: column;
+    align-items: center;
 }
 
-.com-admin-block span:first-child {
-    padding: 20px 0;
+.com-admin-block-title {
     width: 400px;
+    height: 40px;
+    background-color: rgb(182, 171, 224);
+    padding: 20px 0;
     display: flex;
     justify-content: center;
-    background-color: rgb(182, 171, 224);
     font-weight: 500;
     font-size: 25px;
     color: white;
 }
 
-.com-admin-block span:last-child {
+.com-admin-block-number {
     margin: 20px auto 0 auto;
     font-weight: 500;
     font-size: larger;
