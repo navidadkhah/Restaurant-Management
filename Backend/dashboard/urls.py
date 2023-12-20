@@ -4,8 +4,8 @@ from django.conf import settings
 from django.conf.urls.static import static
 
 urlpatterns = [
-    path('l/', view=views.lView),
-    path('lres/', view=views.allres),
+    path('createFood/', view=views.CreateFoodView),
+    path('allMenu/', view=views.allMenuView),
 ]
 
 if settings.DEBUG:
