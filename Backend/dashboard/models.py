@@ -7,8 +7,8 @@ class RestaurantAdminMenuModel(models.Model):
     foodName = models.CharField(max_length=50)
     foodPrice = models.IntegerField()
     foodDescription = models.CharField(max_length=100)
-    footType = models.EmailField(max_length=50)
-    footImage = models.ImageField( blank=False,upload_to='images/')
+    foodType = models.EmailField(max_length=50)
+    foodImage = models.ImageField( blank=False,upload_to='images/')
 
     def __str__(self):
         return self.foodName
