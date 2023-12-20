@@ -26,7 +26,7 @@ SECRET_KEY = '1lj#!g01v538y=)8jw&$_ft759ne6ypj*i1*#ahg*03s643bgu'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['*']
 
 
 # Application definition
@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'rest_framework.authtoken',
     'rest_framework_simplejwt',
     'authenticate',
+    'dashboard',
     "drf_yasg",
     'corsheaders'
 ]
@@ -183,3 +184,9 @@ USE_TZ = True
 STATIC_URL = '/static/'
 
 CORS_ORIGIN_ALLOW_ALL = True
+
+
+
+MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
+MEDIA_URL = '/media/'
+
