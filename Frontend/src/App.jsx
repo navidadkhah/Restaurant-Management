@@ -2,8 +2,10 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Auth } from "./Pages/Auth/Auth";
 import { Homepage } from "./Pages/Homepages/Homepage";
+import { AdminDashboard } from "./Pages/AdminPanel/AdminDashboard";
 import { AdminLogin } from "./Pages/AdminPanel/AdminLogin";
 import { RestaurantAdminLogin } from "./Pages/RestaurantAdminPanel/RestaurantAdminLogin";
+
 
 function App() {
   return (
@@ -14,6 +16,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Auth />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
+          <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
           <Route path="/web-admin" element={<AdminLogin />}></Route>
           <Route path="/restaurant-admin" element={<RestaurantAdminLogin />}></Route>
         </Routes>
