@@ -2,7 +2,7 @@ import { BrowserRouter, Route, Routes } from "react-router-dom";
 import "./App.css";
 import { Auth } from "./Pages/Auth/Auth";
 import { Homepage } from "./Pages/Homepages/Homepage";
-import { AdminDashboard } from "./Pages/AdminPanel/AdminDashboard";
+import {AdminDashboard} from "./Pages/AdminPanel/AdminDashboard"
 import { AdminLogin } from "./Pages/AdminPanel/AdminLogin";
 import { RestaurantAdminLogin } from "./Pages/RestaurantAdminPanel/RestaurantAdminLogin";
 
