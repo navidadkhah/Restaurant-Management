@@ -12,16 +12,12 @@ class RestaurantAdminMenuModel(models.Model):
 
     def __str__(self):
         return self.foodName
-    
-# class RestaurantAdminProfileModel(models.Model):
-#     id = models.AutoField(primary_key=True)
-#     firstName = models.CharField(max_length=50)
-#     lastName = models.CharField(max_length=50)
-#     phoneNumber = models.CharField(max_length=11)
-#     email = models.EmailField(max_length=50)
-#     address = models.CharField(max_length=200)
-#     password = models.CharField(max_length=200)
+    # in this section we can update the uncritical restaurant info
+class RestaurantAdminProfileModel(models.Model):
+    id = models.AutoField(primary_key=True)
+    restaurantDescription = models.CharField(max_length=100)
+    restaurantImage = models.ImageField( blank=False,upload_to='images/')
 
-#     def __str__(self):
-#         return self.firstName+ " " + self.lastName
+    def __str__(self):
+        return self.firstName+ " " + self.lastName
     
