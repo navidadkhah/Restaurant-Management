@@ -9,7 +9,7 @@ class RestaurantAdminMenuModelSerializer(serializers.ModelSerializer):
 class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
    class Meta:
       # data base model should be changed to site admin once it is defiend
-      model = RestaurantAdminProfileModel
+      model = siteAdminModel
       fields = ('restaurantDescription', 'restaurantImage')
 
 class RestaurantAdminSerializer(serializers.ModelSerializer):

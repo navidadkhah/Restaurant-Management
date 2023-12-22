@@ -4,7 +4,7 @@ from django.db import models
 
 class RestaurantAdminMenuModel(models.Model):
     id = models.AutoField(primary_key=True)
-    restaurantName = models.CharField(max_length=50)
+    # restaurantName = models.CharField(max_length=50)
     foodName = models.CharField(max_length=50)
     foodPrice = models.IntegerField()
     foodDescription = models.CharField(max_length=200)
@@ -20,7 +20,7 @@ class RestaurantAdminProfileModel(models.Model):
     restaurantDescription = models.CharField(max_length=200)
     restaurantImage = models.ImageField( blank=False,upload_to='restaurantImages/')
 
-# deffing site admin
+# defining site admin
 class siteAdminModel(models.Model):
     id = models.AutoField(primary_key=True)
     restaurantName = models.CharField(max_length=50)
@@ -31,7 +31,7 @@ class siteAdminModel(models.Model):
     def __str__(self):
         return self.restaurantName
 
-# deffing restaurant admin by site admin
+# defining restaurant admin by site admin
 class RestaurantAdminModel(models.Model):
     id =  models.AutoField(primary_key=True)
     restaurantUsername = models.CharField(max_length = 50)
