@@ -62,6 +62,12 @@ def CreateSiteAdmin(request):
         return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
     return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
 
+@swagger_auto_schema(method='GET')
+@api_view(["GET"])
+def GetCreateSiteAdmin(request):
+    users = siteAdminModel.objects.all()
+    serializer = siteAdminModelSerializer(users, many=True)
+    return Response(serializer.data)
 
 # restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminSerializer)
@@ -75,3 +81,10 @@ def CreateRestaurantAdmin(request):
             return Response("This Username already exist!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("Profile successfully created", status=status.HTTP_201_CREATED)
     return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
+
+@swagger_auto_schema(method='GET')
+@api_view(["GET"])
+def GetRestaurantAdmin(request):
+    users = RestaurantAdminModel.objects.all()
+    serializer = RestaurantAdminSerializer(users, many=True)
+    return Response(serializer.data)
