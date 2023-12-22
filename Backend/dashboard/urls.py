@@ -6,6 +6,7 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('createFood/', view=views.CreateFoodView),
     path('allMenu/', view=views.allMenuView),
+    path('updateRestaurant/<int:pk>/', view=views.updateResInfoView)
 ]
 
 if settings.DEBUG:
