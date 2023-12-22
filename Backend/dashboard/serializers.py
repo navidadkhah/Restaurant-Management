@@ -10,4 +10,4 @@ class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
    class Meta:
       # data base model should be changed to site admin once it is defiend
       model = RestaurantAdminProfileModel
-      fields = ['restaurantDescription', 'restaurantImage']
+      fields = ('restaurantDescription', 'restaurantImage')
