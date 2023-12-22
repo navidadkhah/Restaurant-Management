@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from dashboard.models import RestaurantAdminMenuModel,RestaurantAdminProfileModel
+from dashboard.models import RestaurantAdminMenuModel,RestaurantAdminProfileModel,RestaurantAdminModel , siteAdminModel
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer
+from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminSerializer,siteAdminModelSerializer
 from drf_yasg.utils import swagger_auto_schema
 
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminMenuModelSerializer)
@@ -48,3 +48,30 @@ def updateResInfoView(request , pk):
         return Response(serializer.data)
     
     return Response(serializer.errors, status=400)
+
+# site admin
+@swagger_auto_schema(method='POST', request_body=siteAdminModelSerializer)
+@api_view(["POST"])
+def CreateSiteAdmin(request):
+    serializer = siteAdminModelSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+           siteAdminModelSerializer.objects.get(restaurantName=request.data["restaurantName"])
+        except siteAdminModel.DoesNotExist:
+            return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
+        return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
+    return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
+
+
+# restaurant admin
+@swagger_auto_schema(method='POST', request_body=RestaurantAdminSerializer)
+@api_view(["POST"])
+def CreateRestaurantAdmin(request):
+    serializer = RestaurantAdminSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+           RestaurantAdminSerializer.objects.get(restaurantUsername=request.data["restaurantUsername"])
+        except RestaurantAdminModel.DoesNotExist:
+            return Response("This Username already exist!", status=status.HTTP_401_UNAUTHORIZED)
+        return Response("Profile successfully created", status=status.HTTP_201_CREATED)
+    return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
