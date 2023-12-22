@@ -4,10 +4,11 @@ from django.db import models
 
 class RestaurantAdminMenuModel(models.Model):
     id = models.AutoField(primary_key=True)
+    restaurantName = models.CharField(max_length=50)
     foodName = models.CharField(max_length=50)
     foodPrice = models.IntegerField()
     foodDescription = models.CharField(max_length=200)
-    foodType = models.EmailField(max_length=50)
+    foodType = models.CharField(max_length=50)
     foodImage = models.ImageField( blank=False,upload_to='foodImages/')
 
     def __str__(self):
@@ -24,7 +25,7 @@ class siteAdminModel(models.Model):
     id = models.AutoField(primary_key=True)
     restaurantName = models.CharField(max_length=50)
     restaurantDescription = models.CharField(max_length=200)
-    restaurantType = models.EmailField(max_length=50)
+    restaurantType = models.CharField(max_length=50)
     restaurantImage = models.ImageField( blank=False,upload_to='restaurantImages/')
 
     def __str__(self):
