@@ -15,7 +15,7 @@ class RestaurantAdminMenuModel(models.Model):
         return self.foodName
     
 # in this section we can update the uncritical restaurant info
-class RestaurantAdminProfileModel(models.Model):
+class RestaurantUpdateInfoModel(models.Model):
     id = models.AutoField(primary_key=True)
     restaurantDescription = models.CharField(max_length=200)
     restaurantImage = models.ImageField( blank=False,upload_to='restaurantImages/')
