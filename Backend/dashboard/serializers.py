@@ -1,12 +1,12 @@
 from rest_framework import serializers
-from .models import RestaurantAdminMenuModel,RestaurantAdminProfileModel,RestaurantAdminModel,siteAdminModel
+from .models import RestaurantAdminMenuModel,RestaurantUpdateInfoModel,RestaurantAdminModel,siteAdminModel
 
 class RestaurantAdminMenuModelSerializer(serializers.ModelSerializer):
    class Meta:
       model = RestaurantAdminMenuModel
       fields = '__all__'
 
-class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
+class RestaurantUpdateInfoModelSerializer(serializers.ModelSerializer):
    class Meta:
       # data base model should be changed to site admin once it is defiend
       model = siteAdminModel
