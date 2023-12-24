@@ -1,9 +1,9 @@
 from django.shortcuts import render
-from dashboard.models import RestaurantAdminMenuModel,RestaurantAdminProfileModel,RestaurantAdminModel , siteAdminModel
+from dashboard.models import RestaurantAdminMenuModel,RestaurantUpdateInfoModel,RestaurantAdminModel , siteAdminModel
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminSerializer,siteAdminModelSerializer
+from .serializers import RestaurantAdminMenuModelSerializer,RestaurantUpdateInfoModelSerializer,RestaurantAdminSerializer,siteAdminModelSerializer
 from drf_yasg.utils import swagger_auto_schema
 
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminMenuModelSerializer)
@@ -31,8 +31,8 @@ def allMenuView(request):
 @api_view(["PATCH"])
 def updateResInfoView(request , pk):
     try:
-        user = RestaurantAdminProfileModel.objects.get(pk=pk)
-    except RestaurantAdminProfileModel.DoesNotExist:
+        user = RestaurantUpdateInfoModel.objects.get(pk=pk)
+    except RestaurantUpdateInfoModel.DoesNotExist:
         return Response({"error": "User not found"}, status=404)
 
     data_to_update = {}
@@ -41,7 +41,7 @@ def updateResInfoView(request , pk):
     if 'restaurantImage' in request.data:
         data_to_update['restaurantImage'] = request.data['restaurantImage']
 
-    serializer = RestaurantAdminProfileModelSerializer(user, data=data_to_update, partial=True)
+    serializer = RestaurantUpdateInfoModelSerializer(user, data=data_to_update, partial=True)
     
     if serializer.is_valid():
         serializer.save()
