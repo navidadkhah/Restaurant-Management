@@ -6,6 +6,11 @@ from django.conf.urls.static import static
 urlpatterns = [
     path('createFood/', view=views.CreateFoodView),
     path('allMenu/', view=views.allMenuView),
+    path('updateRestaurant/<int:pk>/', view=views.updateResInfoView),
+    path('CreateRestaurantAdmin/', view=views.CreateRestaurantAdmin),
+    path('CreateSiteAdmin/',view=views.CreateSiteAdmin),
+    path('GetCreateSiteAdmin/',view=views.GetCreateSiteAdmin),
+    path('GetRestaurantAdmin/',view=views.GetRestaurantAdmin)
 ]
 
 if settings.DEBUG:
