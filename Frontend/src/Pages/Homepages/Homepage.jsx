@@ -1,11 +1,19 @@
-import { React, useEffect } from "react";
+import { React, useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Cards } from "../Components/Cards/Cards";
 import "./Homepage.css";
 import { Navbar } from "../Components/Navbar/Navbar";
+import { getRestauran_API } from "../../api/RestaurantController";
 
 export const Homepage = () => {
-  useEffect(() => {}, []);
+  const [restaurants, setRestaurants] = useState([]);
+  useEffect(() => {
+    getRestauran_API().then((res) => {
+      setRestaurants(res.data);
+      console.log(res.data);
+    });
+    console.log(restaurants);
+  }, []);
   const loginRoute = () => {
     <Navigate to={"/Auth"} />;
   };
@@ -13,21 +21,14 @@ export const Homepage = () => {
     <div className="home">
       <Navbar />
       <div className="home-content">
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
-        <Cards></Cards>
+        {restaurants.length > 0 &&
+          restaurants.map((res) => (
+            <Cards
+              logo={res.restaurantImage}
+              name={res.restaurantName}
+              type={res.restaurantType}
+            />
+          ))}
       </div>
     </div>
   );

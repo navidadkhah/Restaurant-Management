@@ -1,11 +1,10 @@
-import React, { useRef } from "react";
-import { useState } from "react";
+import React, { useRef, useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
-import { login_API, signup_API } from "../../api/AuthController";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
+import { login_API, signup_API } from "../../api/AuthController";
 import "./Auth.css";
-import { json } from "react-router-dom";
+import { Navigate } from "react-router-dom";
 export const Auth = () => {
   const [isSignup, setIsSignup] = useState(true);
   const confirmRef = useRef();
@@ -86,6 +85,7 @@ export const Auth = () => {
         localStorage.setItem("Token", JSON.stringify(res.data.token));
         localStorage.setItem("User", JSON.stringify(res.data.detail));
         notify("successfylly logged in!", "success");
+        <Navigate to="/home" />;
       } catch (error) {
         notify(error.response.data, "error");
       }
