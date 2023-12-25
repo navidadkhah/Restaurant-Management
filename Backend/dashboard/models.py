@@ -2,7 +2,7 @@ from django.db import models
 
 # Create your models here.
 
-class RestaurantAdminMenuModel(models.Model):
+class RestaurantMenuModel(models.Model):
     id = models.AutoField(primary_key=True)
     # restaurantName = models.CharField(max_length=50)
     foodName = models.CharField(max_length=50)
@@ -13,12 +13,6 @@ class RestaurantAdminMenuModel(models.Model):
 
     def __str__(self):
         return self.foodName
-    
-# in this section we can update the uncritical restaurant info
-class RestaurantAdminProfileModel(models.Model):
-    id = models.AutoField(primary_key=True)
-    restaurantDescription = models.CharField(max_length=200)
-    restaurantImage = models.ImageField( blank=False,upload_to='restaurantImages/')
 
 # defining restaurant info including username and password for it's admin
 class siteAdminModel(models.Model):
