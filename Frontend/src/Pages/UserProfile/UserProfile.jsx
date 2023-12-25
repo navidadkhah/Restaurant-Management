@@ -24,11 +24,11 @@ export const UserProfile = () => {
     <div>
       <Navbar />
       <div className="profile">
-        <div className="profile-container">
+        <div className="profile-container prof-name">
           <span>First Name:</span>
           <span>{info.firstName}</span>
         </div>
-        <div className="profile-container">
+        <div className="profile-container prof-name">
           <span>Last Name:</span>
           <span>{info.lastName}</span>
         </div>

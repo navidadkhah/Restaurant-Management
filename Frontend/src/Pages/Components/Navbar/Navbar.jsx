@@ -32,16 +32,13 @@ export const Navbar = () => {
       </div>
       <ul className="navbar-ul">
         <i>
-          <p>Home</p>
+          <a href="/home">Home</a>
         </i>
         {user && (
           <i>
-            
               <a href="/profile">Profile</a>
-            
           </i>
         )}
-
         <i>
           {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
         </i>

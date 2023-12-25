@@ -33,6 +33,10 @@
     padding: 10px 0 5px;
 }
 
+.prof-name {
+    text-transform: capitalize;
+}
+
 .profile-container:hover {
     scale: 1.2;
     background-color: rgb(110, 181, 240);
