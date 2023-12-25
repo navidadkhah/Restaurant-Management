@@ -12,8 +12,6 @@ export const Homepage = () => {
       setRestaurants(res.data);
       console.log(res.data);
     });
-    console.log(restaurants);
-    console.log("ssssssssssssssssssssssssss");
   }, []);
   const loginRoute = () => {
     <Navigate to={"/Auth"} />;

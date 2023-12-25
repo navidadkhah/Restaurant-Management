@@ -1,24 +1,34 @@
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import "../Cards/Cards.css";
-import Logo from "../../../images/logo.png";
-import { Bottun } from "../Bottun/Bottun";
-import { Rate } from "../Rate/Rate";
-// import logo1 from "../../../backendImagesFolder/media/restaurantImages/portrait-modern-man.jpg";
+import "../../..";
 
 
 export const Cards = (props) => {
 
-  // const imagePath = require("../../../../../Backend/media/restaurantImages/portrait-modern-man.jpg");
+  // const [logoPath, setLogoPath] = useState("");
+  const [image, setImage] = useState();
 
   useEffect(() => {
-    console.log(props.logo
-    );
-  }, []);
+    // const result = props.logo.replace("media", "backendImage");
+    // console.log(result)
+    // setImage("../../.." + result);
+
+    const fetchImage = async () => {
+      try {
+        const imageSrc = props.logo.replace("media", "backendImage");
+        const imageModule = await import("../../.." + imageSrc);
+        setImage(require(imageModule.default));
+        console.log(image)
+      } catch (err) {
+        console.error("Error during loading module: " + err);
+      }
+    };
+
+    fetchImage();
+  }, [props.logo]);
   return (
     <div className="card">
-      <div className="card-image">
-        <img src={Logo} alt="img" />
-      </div>
+      <div className="card-image">{image && <img src={image} alt="img" />}</div>
       <div className="aa">
         <div className="card-title">
           <p>{props.name} </p>
