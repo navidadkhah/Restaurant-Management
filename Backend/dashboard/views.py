@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminSerializer,siteAdminModelSerializer
 from drf_yasg.utils import swagger_auto_schema
 
+# create food by restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminMenuModelSerializer)
 @api_view(["POST"])
 def CreateFoodView(request):
@@ -14,10 +15,12 @@ def CreateFoodView(request):
         try:
            RestaurantAdminMenuModel.objects.get(foodName=request.data["foodName"])
         except RestaurantAdminMenuModel.DoesNotExist:
-            return Response("This food name is already exists!", status=status.HTTP_401_UNAUTHORIZED)
-        return Response("Food successfully created", status=status.HTTP_201_CREATED)
+           serializer.save()
+           return Response("Food successfully created", status=status.HTTP_201_CREATED)
+        return Response("This food name is already exists!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
+# get all restaurant's menu 
 @swagger_auto_schema(method='GET')
 @api_view(["GET"])
 def allMenuView(request):
@@ -49,7 +52,7 @@ def updateResInfoView(request , pk):
     
     return Response(serializer.errors, status=400)
 
-# site admin
+# create resturant by site admin
 @swagger_auto_schema(method='POST', request_body=siteAdminModelSerializer)
 @api_view(["POST"])
 def CreateSiteAdmin(request):
@@ -71,7 +74,7 @@ def GetCreateSiteAdmin(request):
     serializer = siteAdminModelSerializer(users, many=True)
     return Response(serializer.data)
 
-# restaurant admin
+# create username and password for restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminSerializer)
 @api_view(["POST"])
 def CreateRestaurantAdmin(request):
@@ -80,8 +83,8 @@ def CreateRestaurantAdmin(request):
         try:
            RestaurantAdminSerializer.objects.get(restaurantUsername=request.data["restaurantUsername"])
         except RestaurantAdminModel.DoesNotExist:
-            return Response("This Username already exist!", status=status.HTTP_401_UNAUTHORIZED)
-        return Response("Profile successfully created", status=status.HTTP_201_CREATED)
+             return Response("Profile successfully created", status=status.HTTP_201_CREATED)
+        return Response("This Username already exist!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
 
 @swagger_auto_schema(method='GET')
