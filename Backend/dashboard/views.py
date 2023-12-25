@@ -3,7 +3,7 @@ from dashboard.models import RestaurantAdminMenuModel,RestaurantAdminProfileMode
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminSerializer,siteAdminModelSerializer
+from .serializers import RestaurantAdminMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer
 from drf_yasg.utils import swagger_auto_schema
 
 # create food by restaurant admin
@@ -75,13 +75,13 @@ def GetCreateSiteAdmin(request):
     return Response(serializer.data)
 
 # create username and password for restaurant admin
-@swagger_auto_schema(method='POST', request_body=RestaurantAdminSerializer)
+@swagger_auto_schema(method='POST', request_body=RestaurantAdminLoginSerializer)
 @api_view(["POST"])
 def CreateRestaurantAdmin(request):
-    serializer = RestaurantAdminSerializer(data=request.data)
+    serializer = RestaurantAdminLoginSerializer(data=request.data)
     if serializer.is_valid():
         try:
-           RestaurantAdminSerializer.objects.get(restaurantUsername=request.data["restaurantUsername"])
+           RestaurantAdminLoginSerializer.objects.get(restaurantUsername=request.data["restaurantUsername"])
         except RestaurantAdminModel.DoesNotExist:
              return Response("Profile successfully created", status=status.HTTP_201_CREATED)
         return Response("This Username already exist!", status=status.HTTP_401_UNAUTHORIZED)
@@ -91,5 +91,5 @@ def CreateRestaurantAdmin(request):
 @api_view(["GET"])
 def GetRestaurantAdmin(request):
     users = RestaurantAdminModel.objects.all()
-    serializer = RestaurantAdminSerializer(users, many=True)
+    serializer = RestaurantAdminLoginSerializer(users, many=True)
     return Response(serializer.data)
