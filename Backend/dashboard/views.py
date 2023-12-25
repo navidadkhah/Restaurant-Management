@@ -67,8 +67,8 @@ def CreateRestaurant(request):
                siteAdminModel.objects.get(restaurantUsername=request.data["restaurantUsername"])
             except siteAdminModel.DoesNotExist:
                serializer.save()  
-               print(serializer.instance.restaurantImage)
-               #copyImages("restaurantImages", siteAdminModel.objects.get(restaurantUsername=request.data["restaurantU"]))
+            #    print(serializer.instance.restaurantImage)
+               copyImages(serializer.instance.restaurantImage)
                return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
             return Response("This username already exist!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
@@ -84,12 +84,17 @@ def GetAllRestaurants(request):
 
 
 
-def copyImages(modelName, fileName) :
-    source_path = settings.MEDIA_ROOT +f'/{modelName}' +f'/{fileName}'
-    dest_path = settings.MEDIA_ROOT +f'../Frontend/src/backendImages/{modelName}' +f'/{fileName}'
-    try:
-        shutil.copy(source_path,dest_path)
-    except Exception:
-        print(Exception, "vayyyyyyyyyy")
+def copyImages(fileName) :
+    fileName=str(fileName).replace('/','\\')
+    base_address = str(settings.MEDIA_ROOT).replace('Backend\media','Frontend\src\\backendImage')
+    print(base_address)
+    source_path = settings.MEDIA_ROOT +f'\{fileName}'
+    dest_path = base_address +f'\{fileName}'
+    print(settings.MEDIA_ROOT)
+    print(source_path)
+    print(dest_path)
+    shutil.copy(source_path,dest_path)
+    # \Frontend\src\\backendImages' +f'\{fileName}
+   
        
 
