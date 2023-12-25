@@ -56,11 +56,13 @@ def CreateSiteAdmin(request):
     serializer = siteAdminModelSerializer(data=request.data)
     if serializer.is_valid():
         try:
-           siteAdminModelSerializer.objects.get(restaurantName=request.data["restaurantName"])
+           siteAdminModel.objects.get(restaurantName=request.data["restaurantName"])
         except siteAdminModel.DoesNotExist:
-            return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
-        return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
+            serializer.save()  
+            return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
+        return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
+
 
 @swagger_auto_schema(method='GET')
 @api_view(["GET"])

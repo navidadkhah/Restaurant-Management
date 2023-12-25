@@ -26,7 +26,7 @@ class siteAdminModel(models.Model):
     restaurantName = models.CharField(max_length=50)
     restaurantDescription = models.CharField(max_length=200)
     restaurantType = models.CharField(max_length=50)
-    restaurantImage = models.ImageField( blank=False,upload_to='restaurantImages/')
+    restaurantImage = models.FileField(upload_to='restaurantImages/')
 
     def __str__(self):
         return self.restaurantName

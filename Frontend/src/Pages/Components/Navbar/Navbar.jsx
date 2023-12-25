@@ -1,11 +1,21 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
-import "./Navbar.css"
+import "./Navbar.css";
+
 export const Navbar = () => {
   const [isChecked, setIsChecked] = useState(true);
-
+  const [user, setUser] = useState();
+  useEffect(() => {
+    setUser(JSON.parse(localStorage.getItem("User")));
+  }, []);
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
+  };
+
+  const handleLogout = () => {
+    localStorage.removeItem("Token");
+    localStorage.removeItem("User");
+    setUser(null);
   };
   return (
     <div className="navbar">
@@ -14,13 +24,13 @@ export const Navbar = () => {
       </div>
       <ul className="navbar-ul">
         <i>
-          <a href="#">Home</a>
+          <p>Home</p>
         </i>
         <i>
-          <a href="/">Login</a>
+          <p>Profile</p>
         </i>
         <i>
-          <a href="/">Login</a>
+          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
         </i>
         <i className="search"></i>
       </ul>

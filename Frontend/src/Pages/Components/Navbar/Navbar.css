@@ -6,6 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
+  flex-direction: row;
   border-radius: 0 0 10px 10px;
   width: 100%;
   box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, 0.2);
@@ -13,6 +14,8 @@
 }
 
 .navbar-ul {
+  display: flex;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   padding: 0 30px;
@@ -27,13 +30,14 @@
   height: 100px;
   margin-left: 20px;
   cursor: pointer;
+  flex-direction: row;
 }
 
 .navbar-ul i {
   padding: 20px;
 }
 
-.navbar-ul i a {
+.navbar-ul i p {
   text-decoration: none;
   font-weight: 400;
   font-style: italic;
@@ -41,9 +45,14 @@
   transition: 0.05s ease-in-out;
 }
 
-.navbar-ul i a:hover {
+.navbar-ul i p:hover {
   font-weight: 500;
   font-size: medium;
   color: rgb(183, 0, 0);
   text-shadow: 1px 1px 5px red;
+  cursor: pointer;
+}
+
+.checkbox {
+  overflow: hidden;
 }
