@@ -3,15 +3,21 @@ import "../Cards/Cards.css";
 import Logo from "../../../images/logo.png";
 import { Bottun } from "../Bottun/Bottun";
 import { Rate } from "../Rate/Rate";
-import logo1 from "../../../../../Backend/media/restaurantImages/portrait-modern-man.jpg"
+// import logo1 from "../../../backendImagesFolder/media/restaurantImages/portrait-modern-man.jpg";
+
+
 export const Cards = (props) => {
+
+  // const imagePath = require("../../../../../Backend/media/restaurantImages/portrait-modern-man.jpg");
+
   useEffect(() => {
-    console.log(`../../../../../Backend${props.logo}`);
+    console.log(props.logo
+    );
   }, []);
   return (
     <div className="card">
       <div className="card-image">
-        <img src={logo1} alt="image" />
+        <img src={Logo} alt="img" />
       </div>
       <div className="aa">
         <div className="card-title">

@@ -53,14 +53,21 @@ def updateResInfoView(request , pk):
 @swagger_auto_schema(method='POST', request_body=siteAdminModelSerializer)
 @api_view(["POST"])
 def CreateSiteAdmin(request):
+    print( request.data)
     serializer = siteAdminModelSerializer(data=request.data)
     if serializer.is_valid():
+        print(serializer.data)
         try:
-           siteAdminModelSerializer.objects.get(restaurantName=request.data["restaurantName"])
+           siteAdminModel.objects.get(restaurantName=serializer.data["restaurantName"])
         except siteAdminModel.DoesNotExist:
             return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
     return Response("Some fields are missing", status=status.HTTP_400_BAD_REQUEST)
+
+# from rest_framework import generics
+# class CreateSiteAdmin(generics.CreateAPIView) :
+#     queryset = siteAdminModel.objects.all()
+#     serializer_class = siteAdminModelSerializer
 
 @swagger_auto_schema(method='GET')
 @api_view(["GET"])

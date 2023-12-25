@@ -17,6 +17,8 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
       restaurantType: restaurantType,
       restaurantImage: restaurantPhoto,
     };
+
+    // console.log(restaurantData.restaurantImage)
     try {
       await addRestaurant_API(restaurantData);
       console.log("success");

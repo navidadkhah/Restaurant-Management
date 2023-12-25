@@ -13,6 +13,7 @@ export const Homepage = () => {
       console.log(res.data);
     });
     console.log(restaurants);
+    console.log("ssssssssssssssssssssssssss");
   }, []);
   const loginRoute = () => {
     <Navigate to={"/Auth"} />;
