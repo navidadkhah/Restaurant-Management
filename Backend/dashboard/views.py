@@ -5,6 +5,8 @@ from rest_framework.decorators import api_view
 from rest_framework.response import Response
 from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer
 from drf_yasg.utils import swagger_auto_schema
+from django.conf import settings
+import shutil
 
 # create food by restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantMenuModelSerializer)
@@ -65,6 +67,8 @@ def CreateRestaurant(request):
                siteAdminModel.objects.get(restaurantUsername=request.data["restaurantUsername"])
             except siteAdminModel.DoesNotExist:
                serializer.save()  
+               print(serializer.instance.restaurantImage)
+               #copyImages("restaurantImages", siteAdminModel.objects.get(restaurantUsername=request.data["restaurantU"]))
                return Response("Restaurant profile successfully created", status=status.HTTP_201_CREATED)
             return Response("This username already exist!", status=status.HTTP_401_UNAUTHORIZED)
         return Response("This Restaurant already exist!", status=status.HTTP_401_UNAUTHORIZED)
@@ -77,4 +81,15 @@ def GetAllRestaurants(request):
     users = siteAdminModel.objects.all()
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
+
+
+
+def copyImages(modelName, fileName) :
+    source_path = settings.MEDIA_ROOT +f'/{modelName}' +f'/{fileName}'
+    dest_path = settings.MEDIA_ROOT +f'../Frontend/src/backendImages/{modelName}' +f'/{fileName}'
+    try:
+        shutil.copy(source_path,dest_path)
+    except Exception:
+        print(Exception, "vayyyyyyyyyy")
+       
 
