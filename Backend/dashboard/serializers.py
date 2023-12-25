@@ -1,9 +1,10 @@
 from rest_framework import serializers
-from .models import RestaurantAdminMenuModel,RestaurantAdminProfileModel,siteAdminModel
+from .models import RestaurantMenuModel,siteAdminModel
 
-class RestaurantAdminMenuModelSerializer(serializers.ModelSerializer):
+# showing restaurant menu
+class RestaurantMenuModelSerializer(serializers.ModelSerializer):
    class Meta:
-      model = RestaurantAdminMenuModel
+      model = RestaurantMenuModel
       fields = '__all__'
 
 class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
@@ -12,6 +13,8 @@ class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
       model = siteAdminModel
       fields = ('restaurantDescription', 'restaurantImage')
 
+
+# this section is used for site admin and restaurant
 
 # showing all restaurants info's in homepage
 class RestaurantAdminGetMenuSerializer(serializers.ModelSerializer):
