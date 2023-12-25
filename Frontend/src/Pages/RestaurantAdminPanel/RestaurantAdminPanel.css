@@ -1,0 +1,6 @@
+.res-panel {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    margin: 100px 0;
+}
