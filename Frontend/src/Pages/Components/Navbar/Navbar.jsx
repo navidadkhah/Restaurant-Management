@@ -1,5 +1,7 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
+import { Link, Navigate } from "react-router-dom";
+import { UserProfile } from "../../UserProfile/UserProfile";
 import "./Navbar.css";
 
 export const Navbar = () => {
@@ -12,6 +14,10 @@ export const Navbar = () => {
     setIsChecked(!isChecked);
   };
 
+    const profileHandle = () => {
+      <Navigate to={UserProfile} />;
+    };
+
   const handleLogout = () => {
     localStorage.removeItem("Token");
     localStorage.removeItem("User");
@@ -20,15 +26,22 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-img">
+        <a href="/home" >
         <img src={Logo} alt="logo" />
+        </a>
       </div>
       <ul className="navbar-ul">
         <i>
           <p>Home</p>
         </i>
-        <i>
-          <p>Profile</p>
-        </i>
+        {user && (
+          <i>
+            
+              <a href="/profile">Profile</a>
+            
+          </i>
+        )}
+
         <i>
           {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
         </i>

@@ -6,6 +6,7 @@ import { AdminDashboard } from "./Pages/AdminPanel/AdminDashboard";
 import { AdminLogin } from "./Pages/AdminPanel/AdminLogin";
 import { RestaurantAdminPanel } from "./Pages/RestaurantAdminPanel/RestaurantAdminPanel";
 import { RestaurantAdminLogin } from "./Pages/RestaurantAdminPanel/RestaurantAdminLogin";
+import { UserProfile } from "./Pages/UserProfile/UserProfile";
 import { useEffect, useState } from "react";
 
 function App() {
@@ -23,7 +24,14 @@ function App() {
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
           <Route path="/web-admin" element={<AdminLogin />}></Route>
-          <Route path="/restaurant-admin-panel" element={<RestaurantAdminPanel />}></Route>
+          <Route
+            path="/restaurant-admin-panel"
+            element={<RestaurantAdminPanel />}
+          ></Route>
+          <Route
+            path="/profile"
+            element={<UserProfile />}
+          ></Route>
           <Route
             path="/restaurant-admin"
             element={<RestaurantAdminLogin />}
