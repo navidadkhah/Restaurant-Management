@@ -1,5 +1,4 @@
 from django.db import models
-
 # Create your models here.
 
 class RestaurantMenuModel(models.Model):
@@ -20,7 +19,7 @@ class siteAdminModel(models.Model):
     restaurantName = models.CharField(max_length=50)
     restaurantDescription = models.CharField(max_length=200)
     restaurantType = models.CharField(max_length=50)
-    restaurantImage = models.FileField(upload_to='restaurantImages/')
+    restaurantImage = models.FileField(upload_to='restaurantImage/')
     restaurantLocation = models.CharField(max_length = 50)
     restaurantUsername = models.CharField(max_length = 50)
     restaurantPassword = models.CharField(max_length = 50)
