@@ -12,7 +12,6 @@ export const CardPanel = (props) => {
         <span className="com-admin-block-number">
           <ScrollTrigger
             onEnter={() => setCounterOn(true)}
-            onExit={() => setCounterOn(false)}
           >
             {counterOn && (
               <CountUp start={0} end={props.number} duration={3} delay={0} />

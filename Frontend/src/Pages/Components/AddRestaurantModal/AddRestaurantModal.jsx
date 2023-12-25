@@ -7,6 +7,9 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantDesc, setRestaurantDesc] = useState("");
   const [restaurantType, setRestaurantType] = useState("");
+  const [restaurantLocation, setRestaurantLocation] = useState("");
+  const [restaurantUsername, setRestaurantUsername] = useState("");
+  const [restaurantPassword, setRestaurantPassword] = useState("");
   const [restaurantPhoto, setRestaurantPhoto] = useState();
 
   const handleSubmit = async (e) => {
@@ -15,6 +18,9 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
       restaurantName: restaurantName,
       restaurantDescription: restaurantDesc,
       restaurantType: restaurantType,
+      restaurantLocation:restaurantLocation,
+      restaurantUsername:restaurantUsername,
+      restaurantPassword:restaurantPassword,
       restaurantImage: restaurantPhoto,
     };
 
@@ -29,11 +35,19 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
     onRequestClose();
   };
 
+   const bg = {
+     overlay: {
+       background: "rgb(0,0,0,0.6)",
+
+     },
+   };
+
   return (
     <Modal
       className="container"
       isOpen={isOpen}
       onRequestClose={onRequestClose}
+      style={bg}
     >
       <h2>Add Restaurant</h2>
       <form>
@@ -43,19 +57,9 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <input
               type="text"
               name="name"
+              className="modal-input"
               placeholder="Restaurant Name"
               onChange={(e) => setRestaurantName(e.target.value)}
-            />
-          </label>
-        </div>
-        <br />
-        <div className="inputs">
-          <b>Description</b>
-          <label>
-            <textarea
-              name="description"
-              placeholder="Description"
-              onChange={(e) => setRestaurantDesc(e.target.value)}
             />
           </label>
         </div>
@@ -67,11 +71,60 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               type="text"
               placeholder="Type"
               name="type"
+              className="modal-input"
               onChange={(e) => setRestaurantType(e.target.value)}
             />
           </label>
         </div>
+        <div className="inputs">
+          <b>Location</b>
+          <label>
+            <input
+              type="text"
+              placeholder="Location"
+              className="modal-input"
+              name="type"
+              onChange={(e) => setRestaurantLocation(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Admin username</b>
+          <label>
+            <input
+              type="text"
+              placeholder="username"
+              className="modal-input"
+              name="type"
+              onChange={(e) => setRestaurantUsername(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Admin password</b>
+          <label>
+            <input
+              type="text"
+              placeholder="password"
+              className="modal-input"
+              name="type"
+              onChange={(e) => setRestaurantPassword(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Description</b>
+          <label>
+            <textarea
+              name="description"
+              placeholder="Description"
+              className="modal-input"
+              onChange={(e) => setRestaurantDesc(e.target.value)}
+            />
+          </label>
+        </div>
         <br />
+
         <div className="inputs">
           <b>Restaurant Photo</b>
           <label>
@@ -79,6 +132,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               type="file"
               accept="image/*"
               name="photo"
+              className="modal-input"
               onChange={(e) => setRestaurantPhoto(e.target.files[0])}
             />
           </label>

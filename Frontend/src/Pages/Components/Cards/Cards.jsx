@@ -28,7 +28,7 @@ export const Cards = (props) => {
             <p>{props.type} </p>
           </div>
           <div className="cart-restaurant-rate">
-            <Rate rate={3}></Rate>
+            {/* <Rate rate={3}></Rate> */}
           </div>
         </div>
       </div>

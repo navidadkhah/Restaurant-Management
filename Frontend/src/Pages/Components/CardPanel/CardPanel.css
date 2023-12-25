@@ -2,8 +2,8 @@
     width: 400px;
     height: 160px;
     border-radius: 5px;
-    box-shadow: 7px 7px 10px rgb(128, 122, 122);
-    background-color: rgb(200, 191, 231);
+    box-shadow: 7px 7px 10px rgb(15, 50, 91);
+    background-color: rgb(139, 131, 169);
     margin: 40px auto;
     display: flex;
     flex-direction: column;
@@ -13,7 +13,7 @@
 .com-admin-block-title {
     width: 400px;
     height: 40px;
-    background-color: rgb(182, 171, 224);
+    background-color: rgb(36, 21, 86);
     padding: 20px 0;
     display: flex;
     justify-content: center;
