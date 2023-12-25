@@ -7,6 +7,9 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
   const [restaurantName, setRestaurantName] = useState("");
   const [restaurantDesc, setRestaurantDesc] = useState("");
   const [restaurantType, setRestaurantType] = useState("");
+  const [restaurantLocation, setRestaurantLocation] = useState("");
+  const [restaurantUsername, setRestaurantUsername] = useState("");
+  const [restaurantPassword, setRestaurantPassword] = useState("");
   const [restaurantPhoto, setRestaurantPhoto] = useState();
 
   const handleSubmit = async (e) => {
@@ -15,6 +18,9 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
       restaurantName: restaurantName,
       restaurantDescription: restaurantDesc,
       restaurantType: restaurantType,
+      restaurantLocation:restaurantLocation,
+      restaurantUsername:restaurantUsername,
+      restaurantPassword:restaurantPassword,
       restaurantImage: restaurantPhoto,
     };
 
@@ -29,11 +35,19 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
     onRequestClose();
   };
 
+   const bg = {
+     overlay: {
+       background: "rgb(0,0,0,0.6)",
+
+     },
+   };
+
   return (
     <Modal
       className="container"
       isOpen={isOpen}
       onRequestClose={onRequestClose}
+      style={bg}
     >
       <h2>Add Restaurant</h2>
       <form>
@@ -50,17 +64,6 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
         </div>
         <br />
         <div className="inputs">
-          <b>Description</b>
-          <label>
-            <textarea
-              name="description"
-              placeholder="Description"
-              onChange={(e) => setRestaurantDesc(e.target.value)}
-            />
-          </label>
-        </div>
-        <br />
-        <div className="inputs">
           <b>Type</b>
           <label>
             <input
@@ -71,7 +74,51 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             />
           </label>
         </div>
+        <div className="inputs">
+          <b>Location</b>
+          <label>
+            <input
+              type="text"
+              placeholder="Location"
+              name="type"
+              onChange={(e) => setRestaurantLocation(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Admin username</b>
+          <label>
+            <input
+              type="text"
+              placeholder="username"
+              name="type"
+              onChange={(e) => setRestaurantUsername(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Admin password</b>
+          <label>
+            <input
+              type="text"
+              placeholder="password"
+              name="type"
+              onChange={(e) => setRestaurantPassword(e.target.value)}
+            />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Description</b>
+          <label>
+            <textarea
+              name="description"
+              placeholder="Description"
+              onChange={(e) => setRestaurantDesc(e.target.value)}
+            />
+          </label>
+        </div>
         <br />
+
         <div className="inputs">
           <b>Restaurant Photo</b>
           <label>

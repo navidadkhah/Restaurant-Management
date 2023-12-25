@@ -9,10 +9,16 @@ export const AdminDashboard = () => {
 
   const openAddModal = () => {
     setAddModalOpen(true);
+     document.querySelectorAll(".admin-dash").forEach(function (el) {
+     document.body.style.overflow = "hidden";
+     });
   };
 
   const closeAddModal = () => {
     setAddModalOpen(false);
+        document.querySelectorAll(".admin-dash").forEach(function (el) {
+          document.body.style.overflow = "unset";
+        });
   };
 
   return (

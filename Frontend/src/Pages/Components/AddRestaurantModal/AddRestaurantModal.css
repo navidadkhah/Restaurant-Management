@@ -1,13 +1,15 @@
 .ReactModal__Overlay {
-    position: fixed;
-    background-color: rgba(0, 0, 0, 0.3);
+    overflow-y: scroll;
+    padding: 350px 0 50px 0;
     display: flex;
     justify-content: center;
     align-items: center;
-    align-self: center;
-  }
-  
-  .ReactModal__Content {
+    background-color: rgb(0, 0, 0, 1);
+    color: #0056b3;
+    backdrop-filter: blur(10px);
+}
+
+.ReactModal__Content {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -16,58 +18,63 @@
     padding: 20px;
     max-width: 400px;
     width: 100%;
-    background-color: rgba(242, 242, 242, 0.805);
+    background-color: rgb(184, 209, 225);
     border-color: #0000;
     border-radius: 8px;
     outline: none;
-  }
-  
-  form {
+}
+
+form {
     display: flex;
     justify-content: center;
     align-items: center;
     flex-direction: column;
-  }
-  
-  label {
+}
+
+label {
     margin-bottom: 10px;
     font-weight: bold;
-  }
-  
-  input,
-  textarea,
-  button {
+}
+
+input,
+textarea,
+button {
     margin-bottom: 15px;
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
+    /* border: 1px solid #ccc; */
+    border-radius: 6px;
     font-size: 14px;
-  }
-  
-  button {
+    outline: none;
+    border: 1px solid #0056b3;
+    background-color: rgb(235, 236, 237);
+}
+
+button {
     cursor: pointer;
     background-color: #007bff;
-    color: #fff;
+    color: rgb(41, 39, 39);
+    font-weight: 500;
     border: none;
     border-radius: 4px;
-    padding: 10px;
+    padding: 10px 15px;
     font-size: 16px;
-  }
+    transition: 0.1s ease;
+}
 
-  .inputs {
+.inputs {
     display: flex;
     flex-direction: column;
     align-items: start;
     gap: 5px;
-  }
+}
 
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  @media (max-width: 500px) {
+button:hover {
+    background-color: #257bd7;
+    color: rgb(0, 0, 0);
+}
+
+@media (max-width: 500px) {
     .ReactModal__Content {
-      max-width: 100%;
+        max-width: 100%;
     }
-  }
-  
+}
