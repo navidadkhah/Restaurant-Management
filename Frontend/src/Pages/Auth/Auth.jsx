@@ -136,7 +136,7 @@ export const Auth = () => {
           style={{ color: "var(--blue)", width: "4rem", height: "4rem" }}
         />
         <div className="Wbname">
-          <h1>Restaurant</h1>
+          <h1>Tameshk</h1>
           <h6>Your favorite Restaurant app</h6>
         </div>
       </div>

@@ -57,6 +57,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <input
               type="text"
               name="name"
+              className="modal-input"
               placeholder="Restaurant Name"
               onChange={(e) => setRestaurantName(e.target.value)}
             />
@@ -70,6 +71,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               type="text"
               placeholder="Type"
               name="type"
+              className="modal-input"
               onChange={(e) => setRestaurantType(e.target.value)}
             />
           </label>
@@ -80,6 +82,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <input
               type="text"
               placeholder="Location"
+              className="modal-input"
               name="type"
               onChange={(e) => setRestaurantLocation(e.target.value)}
             />
@@ -91,6 +94,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <input
               type="text"
               placeholder="username"
+              className="modal-input"
               name="type"
               onChange={(e) => setRestaurantUsername(e.target.value)}
             />
@@ -102,6 +106,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <input
               type="text"
               placeholder="password"
+              className="modal-input"
               name="type"
               onChange={(e) => setRestaurantPassword(e.target.value)}
             />
@@ -113,6 +118,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
             <textarea
               name="description"
               placeholder="Description"
+              className="modal-input"
               onChange={(e) => setRestaurantDesc(e.target.value)}
             />
           </label>
@@ -126,6 +132,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               type="file"
               accept="image/*"
               name="photo"
+              className="modal-input"
               onChange={(e) => setRestaurantPhoto(e.target.files[0])}
             />
           </label>

@@ -36,12 +36,11 @@ label {
     font-weight: bold;
 }
 
-input,
+.modal-input,
 textarea,
 button {
     margin-bottom: 15px;
     padding: 10px;
-    /* border: 1px solid #ccc; */
     border-radius: 6px;
     font-size: 14px;
     outline: none;
