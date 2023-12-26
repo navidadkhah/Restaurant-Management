@@ -42,11 +42,8 @@ export const Homepage = () => {
   };
   return (
     <div className="home">
-<<<<<<< HEAD
       <Navbar restaurants={restaurants} setRestaurants={setRestaurants} />
-=======
-      <Navbar setRestaurants={setRestaurants} restaurants={restaurants} />
->>>>>>> 3299d8e0016820fbf476828161a6ee7c07056871
+
       <div className="home-content">
         {restaurants.length > 0 ? (
           restaurants.map((res) => (

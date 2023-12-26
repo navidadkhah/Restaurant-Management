@@ -14,16 +14,6 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
 
-  const handleSearch = (e) => {
-
-    setRestaurants(
-      restaurants.filter((restaurants) =>{
-       setSearch( restaurants.restaurantName === e.target.value)
-      }
-        // console.log(restaurants.restaurantName)
-      )
-    );
-  };
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -51,8 +41,6 @@ restaurants.filter((res) =>{
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home">
-          <img src={Logo} alt="logo" />
         <a href="/home">
           <img src={Logo} alt="logo" />
         </a>
