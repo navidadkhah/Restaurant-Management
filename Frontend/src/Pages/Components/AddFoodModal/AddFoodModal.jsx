@@ -1,27 +1,21 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import "./AddRestaurantModal.css";
+import "./AddFoodModal.css";
 import { addRestaurant_API } from "../../../api/RestaurantController";
 
-const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
-  const [restaurantName, setRestaurantName] = useState("");
-  const [restaurantDesc, setRestaurantDesc] = useState("");
-  const [restaurantType, setRestaurantType] = useState("");
-  const [restaurantLocation, setRestaurantLocation] = useState("");
-  const [restaurantUsername, setRestaurantUsername] = useState("");
-  const [restaurantPassword, setRestaurantPassword] = useState("");
-  const [restaurantPhoto, setRestaurantPhoto] = useState();
+const AddFoodModal = ({ isOpen, onRequestClose }) => {
+  const [foodName, setFoodName] = useState("");
+  const [foodDesc, setFoodDesc] = useState("");
+  const [foodPrice, setFoodPrice] = useState("");
+  const [foodPhoto, setFoodPhoto] = useState();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     const restaurantData = {
-      restaurantName: restaurantName,
-      restaurantDescription: restaurantDesc,
-      restaurantType: restaurantType,
-      restaurantLocation:restaurantLocation,
-      restaurantUsername:restaurantUsername,
-      restaurantPassword:restaurantPassword,
-      restaurantImage: restaurantPhoto,
+      foodName: foodName,
+      foodDescription: foodDesc,
+      foodImage: foodPhoto,
+      foodPrice: foodPrice,
     };
 
     console.log(restaurantData);
@@ -37,12 +31,11 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
     onRequestClose();
   };
 
-   const bg = {
-     overlay: {
-       background: "rgb(0,0,0,0.6)",
-
-     },
-   };
+  const bg = {
+    overlay: {
+      background: "rgb(0,0,0,0.6)",
+    },
+  };
 
   return (
     <Modal
@@ -51,72 +44,31 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
       onRequestClose={onRequestClose}
       style={bg}
     >
-      <h2>Add Restaurant</h2>
+      <h2>Add Food</h2>
       <form>
         <div className="inputs">
-          <b>Restaurant Name</b>
+          <b>Food Name</b>
           <label>
             <input
               type="text"
               name="name"
               className="modal-input"
-              placeholder="Restaurant Name"
-              onChange={(e) => setRestaurantName(e.target.value)}
+              placeholder="Food Name"
+              onChange={(e) => setFoodName(e.target.value)}
             />
           </label>
         </div>
         <br />
 
         <div className="inputs">
-          <b>Location</b>
+          <b>Price</b>
           <label>
             <input
-              type="text"
-              placeholder="Location"
+              type="number"
+              placeholder="Price"
               className="modal-input"
               name="type"
-              onChange={(e) => setRestaurantLocation(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="inputs">
-          <b>Type</b>
-          <label>
-            <select
-              name="type"
-              className="modal-input commo-box"
-              id=""
-              onChange={(e) => setRestaurantType(e.target.value)}
-            >
-              <option value="default"></option>
-              <option value="Fast-Food">fast-food</option>
-              <option value="Persian">persian</option>
-              <option value="Italian">Italian</option>
-              <option value="Coffee-Shop">Coffee-shop</option>
-            </select>
-          </label>
-        </div>
-        <div className="inputs">
-          <b>Admin username</b>
-          <label>
-            <input
-              type="text"
-              placeholder="username"
-              className="modal-input"
-              name="type"
-              onChange={(e) => setRestaurantUsername(e.target.value)}
-            />
-          </label>
-        </div>
-        <div className="inputs">
-          <b>Admin password</b>
-          <label>
-            <input
-              type="password"
-              placeholder="password"
-              className="modal-input"
-              name="type"
-              onChange={(e) => setRestaurantPassword(e.target.value)}
+              onChange={(e) => setFoodPrice(e.target.value)}
             />
           </label>
         </div>
@@ -127,21 +79,21 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               name="description"
               placeholder="Description"
               className="modal-input"
-              onChange={(e) => setRestaurantDesc(e.target.value)}
+              onChange={(e) => setFoodDesc(e.target.value)}
             />
           </label>
         </div>
         <br />
 
         <div className="inputs">
-          <b>Restaurant Photo</b>
+          <b>Food Photo</b>
           <label>
             <input
               type="file"
               accept="image/*"
               name="photo"
               className="modal-input"
-              onChange={(e) => setRestaurantPhoto(e.target.files[0])}
+              onChange={(e) => setFoodPhoto(e.target.files[0])}
             />
           </label>
         </div>
@@ -152,4 +104,4 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
   );
 };
 
-export default AddRestaurantModal;
+export default AddFoodModal;

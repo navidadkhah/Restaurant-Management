@@ -3,6 +3,7 @@ import { Table } from "../Components/Table/Table";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
 import "./RestaurantAdminPanel.css";
 import AddRestaurantModal from "../Components/AddRestaurantModal/AddRestaurantModal";
+import AddFoodModal from "../Components/AddFoodModal/AddFoodModal";
 
 export const RestaurantAdminPanel = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
@@ -32,10 +33,7 @@ export const RestaurantAdminPanel = () => {
         <Table />
       </div>
 
-      <AddRestaurantModal
-        isOpen={isAddModalOpen}
-        onRequestClose={closeAddModal}
-      />
+      <AddFoodModal isOpen={isAddModalOpen} onRequestClose={closeAddModal} />
     </div>
   );
 };
