@@ -5,6 +5,8 @@ import "./Homepage.css";
 import { Navbar } from "../Components/Navbar/Navbar";
 import { getRestauran_API } from "../../api/RestaurantController";
 import Loader from "react-js-loader";
+import { ToastContainer, toast } from "react-toastify";
+
 
 export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
@@ -13,7 +15,27 @@ export const Homepage = () => {
     getRestauran_API().then((res) => {
       setRestaurants(res.data);
     });
+    if(!localStorage.getItem('previoslyVisited')){
+      notify("Welcome to Tameshk application", "info");
+      localStorage.setItem("previoslyVisited", 'true');
+    }
   }, []);
+
+   const notify = (msg, type) => {
+     if (type === "info") {
+       toast.info(msg, {
+         position: "top-left",
+         autoClose: 3000,
+         hideProgressBar: true,
+         closeOnClick: true,
+         pauseOnHover: false,
+         draggable: false,
+         progress: undefined,
+         theme: "light",
+       });
+     } 
+   };
+
 
   const loginRoute = () => {
     <Navigate to={"/"} />;
@@ -32,7 +54,7 @@ export const Homepage = () => {
           ))
         ) : (
           <Loader
-          className="loader-image"
+            className="loader-image"
             type="bubble-spin"
             bgColor={"#000000"}
             color={"#000000"}
@@ -41,6 +63,7 @@ export const Homepage = () => {
           />
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };
