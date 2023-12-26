@@ -32,9 +32,10 @@ export const RestaurantAdminLogin = () => {
           setRestaurantData(res.data.detail);
           localStorage.setItem("res_admin", JSON.stringify(res.data.detail));
         });
-        navigate("/restaurant-admin-panel");
         notify("successfylly logged in!", "success");
+        // navigate("/restaurant-admin-panel");
       } catch (error) {
+        console.log(error.response.data)
         notify(error.response.data, "error");
       }
     }

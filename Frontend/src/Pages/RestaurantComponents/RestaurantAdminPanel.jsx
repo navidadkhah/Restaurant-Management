@@ -12,13 +12,11 @@ export const RestaurantAdminPanel = () => {
 
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("res_admin"));
-    setRestaurantData(item);
+    setRestaurantData(item.restaurantName);
     try {
-      console.log(restaurantData.restaurantName);
       getRestaurantMenu_API({
-        restaurantName: restaurantData.restaurantName,
+        restaurantName: item.restaurantName,
       }).then((res) => setRestaurantMenu(res.data));
-      console.log("test");
       console.log(restaurantMenu);
     } catch (error) {
       console.error(error);

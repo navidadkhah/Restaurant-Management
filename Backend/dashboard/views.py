@@ -30,7 +30,9 @@ def CreateFoodView(request):
 def allMenuView(request, resName):
     print("dfdfdf",resName)
     menus = RestaurantMenuModel.objects.get(restaurantName=resName)
+    print("injammmmmmmmmmmmmm")
     serializer = RestaurantMenuModelSerializer(menus, many=True)
+    return Response(serializer.data, status=status.HTTP_200_OK)
 
 
 

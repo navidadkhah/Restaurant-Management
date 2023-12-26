@@ -3,6 +3,7 @@ import { IoLogoSlack } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { login_API, signup_API } from "../../api/AuthController";
+import {Homepage} from '../Homepages/Homepage'
 import "./Auth.css";
 import { Navigate } from "react-router-dom";
 export const Auth = ({ setUser }) => {
@@ -86,7 +87,7 @@ export const Auth = ({ setUser }) => {
         localStorage.setItem("User", JSON.stringify(res.data.detail));
         setUser(res.data.detail);
         notify("successfylly logged in!", "success");
-        <Navigate to="/" />;
+        <Navigate to={Homepage} />;
       } catch (error) {
         notify(error.response.data, "error");
       }

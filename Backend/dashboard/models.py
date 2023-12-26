@@ -3,7 +3,8 @@ from django.db import models
 
 class RestaurantMenuModel(models.Model):
     id = models.AutoField(primary_key=True)
-    restaurantName = models.CharField(max_length=50)
+    restaurantName = models.ForeignKey(
+        "siteAdminModel", on_delete=models.CASCADE)
     foodName = models.CharField(max_length=50)
     foodPrice = models.IntegerField()
     foodDescription = models.CharField(max_length=200)
