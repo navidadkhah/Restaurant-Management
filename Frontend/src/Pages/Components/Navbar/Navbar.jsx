@@ -6,17 +6,28 @@ import "./Navbar.css";
 
 export const Navbar = () => {
   const [isChecked, setIsChecked] = useState(true);
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState();
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
+
+  useEffect(() => {
+    
+  }, [search]);
+
+  const handleSearch = (e) => {
+    setSearch(e.target.value);
+    console.log(e.target.value);
+  };
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-    const profileHandle = () => {
-      <Navigate to={UserProfile} />;
-    };
+  const profileHandle = () => {
+    <Navigate to={UserProfile} />;
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
@@ -26,8 +37,8 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home" >
-        <img src={Logo} alt="logo" />
+        <a href="/home">
+          <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
@@ -36,7 +47,7 @@ export const Navbar = () => {
         </i>
         {user && (
           <i>
-              <a href="/profile">Profile</a>
+            <a href="/profile">Profile</a>
           </i>
         )}
         <i>
@@ -67,6 +78,7 @@ export const Navbar = () => {
             placeholder="search"
             type="text"
             style={{ width: isChecked ? "0" : "170px" }}
+            onChange={(e) => handleSearch(e)}
           />
         </div>
       </div>
