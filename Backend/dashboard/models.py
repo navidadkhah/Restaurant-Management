@@ -36,4 +36,3 @@ class siteAdminModel(SingletonModel):
 
     def __str__(self):
         return self.restaurantName
-

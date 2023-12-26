@@ -1,9 +1,11 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
+import {
+  addFood_API
+} from "../../../api/RestaurantController";
 import "./AddFoodModal.css";
-import { addRestaurant_API } from "../../../api/RestaurantController";
 
-const AddFoodModal = ({ isOpen, onRequestClose }) => {
+const AddFoodModal = ({ isOpen, onRequestClose, restaurantName }) => {
   const [foodName, setFoodName] = useState("");
   const [foodDesc, setFoodDesc] = useState("");
   const [foodPrice, setFoodPrice] = useState("");
@@ -11,23 +13,21 @@ const AddFoodModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const restaurantData = {
+    const foodData = {
+      restaurantName: restaurantName,
       foodName: foodName,
       foodDescription: foodDesc,
       foodImage: foodPhoto,
       foodPrice: foodPrice,
     };
 
-    console.log(restaurantData);
-
     // console.log(restaurantData.restaurantImage)
     try {
-      await addRestaurant_API(restaurantData);
+      await addFood_API(foodData);
       console.log("success");
     } catch (error) {
       console.error(error);
     }
-    console.log("Submitted data:", restaurantData);
     onRequestClose();
   };
 

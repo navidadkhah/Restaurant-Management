@@ -32,29 +32,6 @@
     }
 }
 
-
-/* .card::after>.aa {
-    transition: .2s ease-in;
-}
- */
-
-
-/* .card:hover>.card-image {
-    height: 400px;
-} */
-
-
-/* .card:hover {
-    margin: 50px 20px 40px 20px;
-    width: 260px;
-    height: 310px;
- 
-    background: linear-gradient(98.63deg, #bfe0e8 30%, #7fcfe1 70%);
-    border: 2px solid red;
-    box-shadow: 10px 10px 20px rgb(96, 154, 159);
-    position: relative;
-} */
-
 .card .card-title p {
     margin: auto;
     padding: 5px 0;
@@ -73,10 +50,11 @@
 }
 
 .card .cart-food-type {
-    width: 30%;
+    /* width: 30%; */
     height: 30px;
     border: 1px solid black;
     margin: 10px 10px;
+    padding: 0 20px;
     border-radius: 20px;
     background-color: #CCCCFF;
 }
