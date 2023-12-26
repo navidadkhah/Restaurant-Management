@@ -7,7 +7,8 @@ urlpatterns = [
     path('createFood/', view=views.CreateFoodView),
     path('allMenu/', view=views.allMenuView),
     path('CreateSiteAdmin/',view=views.CreateRestaurant),
-    path('GetCreateSiteAdmin/',view=views.GetAllRestaurants)
+    path('GetCreateSiteAdmin/',view=views.GetAllRestaurants),
+    path('RestaurantAdminLogin/',view=views.RestaurantAdminLogin)
 ]
 
 if settings.DEBUG:
