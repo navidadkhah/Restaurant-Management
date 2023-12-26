@@ -1,12 +1,12 @@
 import React, { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { restaurantAdminLogin_API } from "../../api/RestaurantController";
 import "./RestaurantAdminLogin.css";
-import { Navigate } from "react-router-dom";
-import { RestaurantAdminPanel } from "../RestaurantComponents/RestaurantAdminPanel";
 export const RestaurantAdminLogin = () => {
+  const navigate = useNavigate();
   const [restaurantData, setRestaurantData] = useState();
   const [data, setData] = useState({
     restaurantUsername: "",
@@ -28,16 +28,14 @@ export const RestaurantAdminLogin = () => {
         restaurantPassword: data.restaurantPassword,
       };
       try {
-        restaurantAdminLogin_API(loginData).then((res) =>
-          setRestaurantData(res.data.detail)
-        );
-        localStorage.setItem("res_admin", JSON.stringify(restaurantData));
+        const res = restaurantAdminLogin_API(loginData).then((res) => {
+          setRestaurantData(res.data.detail);
+          localStorage.setItem("res_admin", JSON.stringify(res.data.detail));
+        });
+        navigate("/restaurant-admin-panel");
         notify("successfylly logged in!", "success");
-        <Navigate
-          to={<RestaurantAdminPanel restaurantData={restaurantData} />}
-        />;
       } catch (error) {
-        notify(error.response, "error");
+        notify(error.response.data, "error");
       }
     }
   };
