@@ -41,22 +41,21 @@ restaurants.filter((res) =>{
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home">
+        <a href="/">
           <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
         <i>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </i>
         {user && (
           <i>
             <a href="/profile">Profile</a>
-            <a href="/profile">Profile</a>
           </i>
         )}
         <i>
-          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
+          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/auth">Login</a>}
         </i>
         <i className="search"></i>
       </ul>
