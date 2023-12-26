@@ -83,10 +83,10 @@ def GetAllRestaurants(request):
     return Response(serializer.data)
 
 
-
 def copyImages(fileName) :
     fileName=str(fileName).replace('/','\\')
-    base_address = str(settings.MEDIA_ROOT).replace('Backend\media','Frontend\src\\backendImage')
+    print(fileName)
+    base_address = str(settings.MEDIA_ROOT).replace('Backend\media','Frontend\public\\assets\\backendImage')
     print(base_address)
     source_path = settings.MEDIA_ROOT +f'\{fileName}'
     dest_path = base_address +f'\{fileName}'

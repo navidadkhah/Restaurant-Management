@@ -4,31 +4,15 @@ import "../../..";
 
 
 export const Cards = (props) => {
-
-  // const [logoPath, setLogoPath] = useState("");
-  const [image, setImage] = useState();
+  const [img, setImg] = useState();
 
   useEffect(() => {
-    // const result = props.logo.replace("media", "backendImage");
-    // console.log(result)
-    // setImage("../../.." + result);
-
-    const fetchImage = async () => {
-      try {
-        const imageSrc = props.logo.replace("media", "backendImage");
-        const imageModule = await import("../../.." + imageSrc);
-        setImage(require(imageModule.default));
-        console.log(image)
-      } catch (err) {
-        console.error("Error during loading module: " + err);
-      }
-    };
-
-    fetchImage();
+    const result = props.logo.replace("/media/", "");
+    setImg(result);
   }, [props.logo]);
   return (
     <div className="card">
-      <div className="card-image">{image && <img src={image} alt="img" />}</div>
+      <div className="card-image">{ <img src={`/assets/backendImage/${img}`} alt="img" />}</div>
       <div className="aa">
         <div className="card-title">
           <p>{props.name} </p>
