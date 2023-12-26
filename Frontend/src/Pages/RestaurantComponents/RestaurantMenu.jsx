@@ -1,7 +1,7 @@
 import React from 'react'
 import { Navbar } from '../Components/Navbar/Navbar';
 import { Cards } from '../Components/Cards/Cards';
-import "./RestaurantAdminPanel.css";
+import "./RestaurantMenu.css";
 
 export const RestaurantAdminPanel = () => {
   return (
