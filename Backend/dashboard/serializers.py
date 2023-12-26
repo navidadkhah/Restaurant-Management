@@ -7,6 +7,11 @@ class RestaurantMenuModelSerializer(serializers.ModelSerializer):
       model = RestaurantMenuModel
       fields = '__all__'
 
+class RestaurantMenuAllSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = RestaurantMenuModel
+      fields = ('restaurantName')
+
 class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
    class Meta:
       # data base model should be changed to site admin once it is defiend

@@ -5,7 +5,7 @@ from django.conf.urls.static import static
 
 urlpatterns = [
     path('createFood/', view=views.CreateFoodView),
-    path('allMenu/', view=views.allMenuView),
+    path('allMenu/<str:resName>', view=views.allMenuView),
     path('CreateSiteAdmin/',view=views.CreateRestaurant),
     path('GetCreateSiteAdmin/',view=views.GetAllRestaurants),
     path('restaurantAdminLoginView/',view=views.restaurantAdminLoginView),

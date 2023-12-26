@@ -3,7 +3,7 @@ from dashboard.models import RestaurantMenuModel, siteAdminModel
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer
+from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer,RestaurantMenuAllSerializer
 from drf_yasg.utils import swagger_auto_schema
 from django.conf import settings
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -26,10 +26,12 @@ def CreateFoodView(request):
 # get all restaurant's menu 
 @swagger_auto_schema(method='GET')
 @api_view(["GET"])
-def allMenuView(request):
-    users = RestaurantMenuModel.objects.all()
-    serializer = RestaurantMenuModelSerializer(users, many=True)
+def allMenuView(request, resName):
+    print("dfdfdf",resName)
+    menus = RestaurantMenuModel.objects.get(restaurantName=resName)
+    serializer = RestaurantMenuModelSerializer(menus, many=True)
     return Response(serializer.data)
+    
 
 
 # # updating restaurant uncritical info by res-admin
