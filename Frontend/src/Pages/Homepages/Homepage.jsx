@@ -3,12 +3,12 @@ import { Navigate } from "react-router-dom";
 import { Cards } from "../Components/Cards/Cards";
 import "./Homepage.css";
 import { Navbar } from "../Components/Navbar/Navbar";
-import { getRestauran_API } from "../../api/RestaurantController";
+import { getRestaurant_API } from "../../api/RestaurantController";
 
 export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
   useEffect(() => {
-    getRestauran_API().then((res) => {
+    getRestaurant_API().then((res) => {
       setRestaurants(res.data);
       console.log(res.data);
     });

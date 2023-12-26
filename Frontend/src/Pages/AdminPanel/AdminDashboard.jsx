@@ -3,14 +3,14 @@ import { Table } from "../Components/Table/Table";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
 import "./AdminDashboard.css";
 import AddRestaurantModal from "../Components/AddRestaurantModal/AddRestaurantModal";
-import { getRestauran_API } from "../../api/RestaurantController";
+import { getRestaurant_API } from "../../api/RestaurantController";
 
 export const AdminDashboard = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [restaurants, setRestaurants] = useState();
 
   useEffect(() => {
-    getRestauran_API().then((res) => {
+    getRestaurant_API().then((res) => {
       setRestaurants(res.data);
     });
   }, []);
