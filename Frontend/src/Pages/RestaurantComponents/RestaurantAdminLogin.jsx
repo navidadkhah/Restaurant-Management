@@ -2,12 +2,15 @@ import React, { useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
-import { login_API } from "../../api/AuthController";
+import { restaurantAdminLogin_API } from "../../api/RestaurantController";
 import "./RestaurantAdminLogin.css";
+import { Navigate } from "react-router-dom";
+import { RestaurantAdminPanel } from "../RestaurantComponents/RestaurantAdminPanel";
 export const RestaurantAdminLogin = () => {
+  const [restaurantData, setRestaurantData] = useState();
   const [data, setData] = useState({
-    username: "",
-    password: "",
+    restaurantUsername: "",
+    restaurantPassword: "",
   });
 
   const handleChange = (e) => {
@@ -16,16 +19,25 @@ export const RestaurantAdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    console.log(data);
     if (data.username === "" || data.password === "") {
       notify("please fill all fields!", "error");
     } else {
-      const loginData = { email: data.email, password: data.password };
+      const loginData = {
+        restaurantUsername: data.restaurantUsername,
+        restaurantPassword: data.restaurantPassword,
+      };
       try {
-        const res = await login_API(loginData);
-        localStorage.setItem("Token", JSON.stringify(res.data.token));
+        restaurantAdminLogin_API(loginData).then((res) =>
+          setRestaurantData(res.data.detail)
+        );
+        localStorage.setItem("res_admin", JSON.stringify(restaurantData));
         notify("successfylly logged in!", "success");
+        <Navigate
+          to={<RestaurantAdminPanel restaurantData={restaurantData} />}
+        />;
       } catch (error) {
-        notify(error.response.data, "error");
+        notify(error.response, "error");
       }
     }
   };
@@ -76,7 +88,7 @@ export const RestaurantAdminLogin = () => {
             <input
               type="text"
               className="infoInput"
-              name="text"
+              name="restaurantUsername"
               placeholder="Username"
               onChange={handleChange}
               value={data.email}
@@ -86,7 +98,7 @@ export const RestaurantAdminLogin = () => {
             <input
               type="password"
               className="infoInput"
-              name="password"
+              name="restaurantPassword"
               placeholder="Password"
               onChange={handleChange}
               value={data.password}

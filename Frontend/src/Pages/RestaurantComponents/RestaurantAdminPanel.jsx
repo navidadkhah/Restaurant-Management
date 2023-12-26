@@ -1,9 +1,8 @@
 import React, { useState } from "react";
-import { Table } from "../Components/Table/Table";
-import { CardPanel } from "../Components/CardPanel/CardPanel";
-import "./RestaurantAdminPanel.css";
-import AddRestaurantModal from "../Components/AddRestaurantModal/AddRestaurantModal";
 import AddFoodModal from "../Components/AddFoodModal/AddFoodModal";
+import { CardPanel } from "../Components/CardPanel/CardPanel";
+import { Table } from "../Components/Table/Table";
+import "./RestaurantAdminPanel.css";
 
 export const RestaurantAdminPanel = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
