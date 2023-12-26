@@ -82,7 +82,6 @@ def GetAllRestaurants(request):
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
 
-
 def copyImages(fileName) :
     fileName=str(fileName).replace('/','\\')
     print(fileName)

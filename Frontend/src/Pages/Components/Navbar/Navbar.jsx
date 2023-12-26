@@ -2,23 +2,27 @@ import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
 import { Link, Navigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
+
 import "./Navbar.css";
 
-export const Navbar = () => {
+export const Navbar = ({ setRestaurants, restaurants }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
 
-  useEffect(() => {
-    
-  }, [search]);
-
   const handleSearch = (e) => {
-    setSearch(e.target.value);
-    console.log(e.target.value);
+
+    setRestaurants(
+      restaurants.filter((restaurants) =>{
+       setSearch( restaurants.restaurantName === e.target.value)
+      }
+        // console.log(restaurants.restaurantName)
+      )
+    );
   };
 
   const handleCheckboxChange = () => {
