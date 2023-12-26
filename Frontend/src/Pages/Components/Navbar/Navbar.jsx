@@ -5,33 +5,51 @@ import { UserProfile } from "../../UserProfile/UserProfile";
 
 import "./Navbar.css";
 
-export const Navbar = ({ setRestaurants, restaurants }) => {
-  const [isChecked, setIsChecked] = useState(true);
-  const [search, setSearch] = useState("");
+export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
+
+  const [isChecked, setIsChecked] = useState(true);;
   const [user, setUser] = useState();
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
 
-
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
 
-  const profileHandle = () => {
-    <Navigate to={UserProfile} />;
+  const handleSearch = (e) => {
+    const searchValue = e.target.value;
+    if(searchValue ===''){
+      isSearch(0)
+    }else{
+      isSearch(1)
+    }
+    const filteredItems = restaurants.filter((rs) => {
+      if (
+        rs.restaurantType.toLowerCase().includes(e.target.value.toLowerCase())
+      ) {
+        setSearchRestaurants(rs);
+        console.log(rs)
+      }
+    });
+
+    //keep filtered items in another state
+
+    //     restaurants.filter(res =>{
+    //       if(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
+    //       setRestaurants(res)
+    //     }
+    //       // console.log(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
+    //       // setRestaurants(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
+    // )
+    // restaurants.filter((res) => {
+    //   if (res.restaurantName.startsWith(e.target.value)) {
+    //     setRestaurants(res);
+    //     console.log(res)
+    //   }
+    // });
   };
-
-  const handleSearch =(e) =>{
-console.log(e.target.value);
-restaurants.filter((res) =>{
-  if (res.restaurantName.startsWith(e.target.value)) {
-    setRestaurants(res)
-  }
-
-})
-  }
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
@@ -41,22 +59,25 @@ restaurants.filter((res) =>{
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home">
+        <a href="/">
           <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
         <i>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </i>
         {user && (
           <i>
             <a href="/profile">Profile</a>
-            <a href="/profile">Profile</a>
           </i>
         )}
         <i>
-          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
+          {user ? (
+            <p onClick={handleLogout}>Logout</p>
+          ) : (
+            <a href="/auth">Login</a>
+          )}
         </i>
         <i className="search"></i>
       </ul>
@@ -82,7 +103,6 @@ restaurants.filter((res) =>{
             className="search_input"
             placeholder="search"
             type="text"
-            onClick={(e) => handleSearch(e)}
             style={{ width: isChecked ? "0" : "170px" }}
             onChange={(e) => handleSearch(e)}
           />

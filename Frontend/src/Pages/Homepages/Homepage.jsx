@@ -7,46 +7,61 @@ import { getRestauran_API } from "../../api/RestaurantController";
 import Loader from "react-js-loader";
 import { ToastContainer, toast } from "react-toastify";
 
-
 export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
+  const [searchRestaurants, setSearchRestaurants] = useState();
+  const [isSearch, setIsSearch] = useState(0);
 
   useEffect(() => {
     getRestauran_API().then((res) => {
       setRestaurants(res.data);
     });
-    if(!localStorage.getItem('previoslyVisited')){
+    if (!localStorage.getItem("previoslyVisited")) {
       notify("Welcome to Tameshk application", "info");
-      localStorage.setItem("previoslyVisited", 'true');
+      localStorage.setItem("previoslyVisited", "true");
     }
   }, []);
 
-   const notify = (msg, type) => {
-     if (type === "info") {
-       toast.info(msg, {
-         position: "top-left",
-         autoClose: 3000,
-         hideProgressBar: true,
-         closeOnClick: true,
-         pauseOnHover: false,
-         draggable: false,
-         progress: undefined,
-         theme: "light",
-       });
-     } 
-   };
-
+  const notify = (msg, type) => {
+    if (type === "info") {
+      toast.info(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: true,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   const loginRoute = () => {
     <Navigate to={"/"} />;
   };
   return (
     <div className="home">
-      <Navbar restaurants={restaurants} setRestaurants={setRestaurants} />
+    
+
+      <Navbar
+        restaurants={restaurants}
+        setSearchRestaurants={setSearchRestaurants}
+        isSearch={isSearch}
+      />
 
       <div className="home-content">
-        {restaurants.length > 0 ? (
-          restaurants.map((res) => (
+        {restaurants.length > 0 ? 
+        isSearch.length>0
+        ? searchRestaurants.map((res) => (
+            <Cards
+              logo={res.restaurantImage}
+              name={res.restaurantName}
+              type={res.restaurantType}
+            />
+          ))
+        : 
+        (restaurants.map((res) => (
             <Cards
               logo={res.restaurantImage}
               name={res.restaurantName}
