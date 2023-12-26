@@ -1,19 +1,20 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
 
 import "./Navbar.css";
+import { Auth } from "../../Auth/Auth";
 
 export const Navbar = ({ setRestaurants, restaurants }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [search, setSearch] = useState("");
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
-
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -23,15 +24,18 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
     <Navigate to={UserProfile} />;
   };
 
-  const handleSearch =(e) =>{
-console.log(e.target.value);
-restaurants.filter((res) =>{
-  if (res.restaurantName.startsWith(e.target.value)) {
-    setRestaurants(res)
-  }
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+    restaurants.filter((res) => {
+      if (res.restaurantName.startsWith(e.target.value)) {
+        setRestaurants(res);
+      }
+    });
+  };
 
-})
-  }
+  const handleLogin = () => {
+    navigate("/")
+  };
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
@@ -52,11 +56,14 @@ restaurants.filter((res) =>{
         {user && (
           <i>
             <a href="/profile">Profile</a>
-            <a href="/profile">Profile</a>
           </i>
         )}
         <i>
-          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
+          {user ? (
+            <p onClick={handleLogout}>Logout</p>
+          ) : (
+            <p onClick={handleLogin}>Login</p>
+          )}
         </i>
         <i className="search"></i>
       </ul>
