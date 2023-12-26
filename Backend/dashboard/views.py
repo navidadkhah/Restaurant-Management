@@ -7,7 +7,6 @@ from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileMod
 from drf_yasg.utils import swagger_auto_schema
 from django.conf import settings
 import shutil
-from rest_framework_simplejwt.tokens import RefreshToken
 
 # create food by restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantMenuModelSerializer)
@@ -82,36 +81,6 @@ def GetAllRestaurants(request):
     users = siteAdminModel.objects.all()
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
-
-
-# Restaurant admin login
-@swagger_auto_schema(method='POST', request_body=RestaurantAdminLoginSerializer)
-@api_view(["POST"])
-def RestaurantAdminLogin(request):
-    serializer = RestaurantAdminLoginSerializer(data=request.data)
-    if serializer.is_valid():
-        try:
-         siteAdminModel.objects.get(
-            restaurantUsername=request.data["restaurantUsername"])
-        except siteAdminModel.DoesNotExist:
-            return Response(f"There is no {request.data['siteAdminModel']}", status=status.HTTP_400_BAD_REQUEST)
-        try:
-         siteAdminModel.objects.get(
-            email=request.data["restaurantUsername"], password=request.data["restaurantPassword"])
-        except siteAdminModel.DoesNotExist:
-            return Response("Password is incorrect", status=status.HTTP_400_BAD_REQUEST)
-         
-        user = siteAdminModel.objects.get(
-            restaurantUsername=request.data["restaurantUsername"])
-        refresh = RefreshToken.for_user(user)
-        detail = {}
-        detail["restaurantName"] = user.restaurantName
-        detail["restaurantDescription"] = user.restaurantDescription
-        detail["restaurantType"] = user.restaurantType
-        detail["restaurantLocation"] = user.restaurantLocation
-      
-        return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_200_OK)
-    return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 
 def copyImages(fileName) :
