@@ -4,7 +4,7 @@ import { Link, Navigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
 import "./Navbar.css";
 
-export const Navbar = () => {
+export const Navbar = ({ restaurants, setRestaurants }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [user, setUser] = useState();
   useEffect(() => {
@@ -14,9 +14,19 @@ export const Navbar = () => {
     setIsChecked(!isChecked);
   };
 
-    const profileHandle = () => {
-      <Navigate to={UserProfile} />;
-    };
+  const profileHandle = () => {
+    <Navigate to={UserProfile} />;
+  };
+
+  const handleSearch =(e) =>{
+console.log(e.target.value);
+restaurants.filter((res) =>{
+  if (res.restaurantName.startsWith(e.target.value)) {
+    setRestaurants(res)
+  }
+
+})
+  }
 
   const handleLogout = () => {
     localStorage.removeItem("Token");
@@ -26,8 +36,8 @@ export const Navbar = () => {
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home" >
-        <img src={Logo} alt="logo" />
+        <a href="/home">
+          <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
@@ -36,7 +46,7 @@ export const Navbar = () => {
         </i>
         {user && (
           <i>
-              <a href="/profile">Profile</a>
+            <a href="/profile">Profile</a>
           </i>
         )}
         <i>
@@ -66,6 +76,7 @@ export const Navbar = () => {
             className="search_input"
             placeholder="search"
             type="text"
+            onClick={(e) => handleSearch(e)}
             style={{ width: isChecked ? "0" : "170px" }}
           />
         </div>

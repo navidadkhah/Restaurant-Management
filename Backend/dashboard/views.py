@@ -6,6 +6,7 @@ from rest_framework.response import Response
 from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer
 from drf_yasg.utils import swagger_auto_schema
 from django.conf import settings
+from rest_framework_simplejwt.tokens import RefreshToken
 import shutil
 
 # create food by restaurant admin
@@ -82,6 +83,31 @@ def GetAllRestaurants(request):
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
 
+@swagger_auto_schema(method='POST', request_body=RestaurantAdminLoginSerializer)
+@api_view(["POST"])
+def restaurantAdminLoginView(request):
+    serializer = RestaurantAdminLoginSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+         siteAdminModel.objects.get(
+            restaurantName=request.data["restaurantUsername"])
+        except siteAdminModel.DoesNotExist:
+            return Response(f"There is no {request.data['restaurantUsername']}", status=status.HTTP_400_BAD_REQUEST)
+        try:
+         siteAdminModel.objects.get(
+            restaurantUsername=request.data["restaurantUsername"], restaurantPassword=request.data["restaurantPassword"])
+        except siteAdminModel.DoesNotExist:
+            return Response("Password is incorrect", status=status.HTTP_400_BAD_REQUEST)
+         
+        user = siteAdminModel.objects.get(restaurantUsername=serializer.data['restaurantUsername'])
+        refresh = RefreshToken.for_user(user)
+        detail = {}
+        detail["restaurantName"] = user.restaurantName
+        detail["restaurantDescription"] = user.restaurantDescription
+        detail["restaurantType"] = user.restaurantType
+        detail["restaurantLocation"] = user.restaurantLocation
+        return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_200_OK)
+    return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 def copyImages(fileName) :
     fileName=str(fileName).replace('/','\\')
