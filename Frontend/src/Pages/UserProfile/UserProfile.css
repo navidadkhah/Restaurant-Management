@@ -1,8 +1,8 @@
 .profile {
-    display: flex;
+    /* display: flex;
     justify-content: center;
-    flex-wrap: wrap;
-    margin: 140px 0;
+    flex-wrap: wrap; */
+    margin: 140px 0 0 0;
 }
 
 .profile-container {
@@ -41,4 +41,26 @@
     scale: 1.2;
     background-color: rgb(110, 181, 240);
     color: rgb(50, 46, 46);
+}
+
+.prof-infos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.span-info {
+    font-size: 20px;
+    font-weight: 1000;
+    margin: 0 130px;
+    /* display: flex; */
+}
+
+.span-info::after {
+    content: '';
+    border-bottom: 2px dotted rgb(0, 0, 0);
+    display: flex;
+    margin: 0 auto;
+    width: 80%;
+    height: 12px;
 }

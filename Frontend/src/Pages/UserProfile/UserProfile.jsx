@@ -24,26 +24,35 @@ export const UserProfile = () => {
     <div>
       <Navbar />
       <div className="profile">
-        <div className="profile-container prof-name">
-          <span>First Name:</span>
-          <span>{info.firstName}</span>
+        <span className="span-info">Informations</span>
+        <div className="prof-infos">
+          <div className="profile-container prof-name">
+            <span>First Name:</span>
+            <span>{info.firstName}</span>
+          </div>
+          <div className="profile-container prof-name">
+            <span>Last Name:</span>
+            <span>{info.lastName}</span>
+          </div>
+          <div className="profile-container">
+            <span>Email:</span>
+            <span>{info.email}</span>
+          </div>
+          <div className="profile-container">
+            <span>Phone Number:</span>
+            <span>{info.phoneNumber}</span>
+          </div>
+          <div className="profile-container">
+            <span>Address:</span>
+            <span>{info.address}</span>
+          </div>
         </div>
-        <div className="profile-container prof-name">
-          <span>Last Name:</span>
-          <span>{info.lastName}</span>
-        </div>
-        <div className="profile-container">
-          <span>Email:</span>
-          <span>{info.email}</span>
-        </div>
-        <div className="profile-container">
-          <span>Phone Number:</span>
-          <span>{info.phoneNumber}</span>
-        </div>
-        <div className="profile-container">
-          <span>Address:</span>
-          <span>{info.address}</span>
-        </div>
+      </div>
+      <div className="prof-orders">
+        <span className="span-info">Orders</span>
+      </div>
+      <div className="prof-reserve">
+        <span className="span-info">Reservations</span>
       </div>
     </div>
   );
