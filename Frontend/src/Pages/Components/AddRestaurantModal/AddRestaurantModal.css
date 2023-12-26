@@ -77,3 +77,16 @@ button:hover {
         max-width: 100%;
     }
 }
+
+.commo-box {
+    padding: 10px 50px;
+}
+
+option {
+    font-size: 15px;
+    cursor: pointer;
+}
+
+select {
+    cursor: pointer;
+}

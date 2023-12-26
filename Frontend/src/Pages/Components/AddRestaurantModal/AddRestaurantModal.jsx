@@ -24,6 +24,8 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
       restaurantImage: restaurantPhoto,
     };
 
+    console.log(restaurantData);
+
     // console.log(restaurantData.restaurantImage)
     try {
       await addRestaurant_API(restaurantData);
@@ -64,18 +66,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
           </label>
         </div>
         <br />
-        <div className="inputs">
-          <b>Type</b>
-          <label>
-            <input
-              type="text"
-              placeholder="Type"
-              name="type"
-              className="modal-input"
-              onChange={(e) => setRestaurantType(e.target.value)}
-            />
-          </label>
-        </div>
+
         <div className="inputs">
           <b>Location</b>
           <label>
@@ -86,6 +77,23 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
               name="type"
               onChange={(e) => setRestaurantLocation(e.target.value)}
             />
+          </label>
+        </div>
+        <div className="inputs">
+          <b>Type</b>
+          <label>
+            <select
+              name="type"
+              className="modal-input commo-box"
+              id=""
+              onChange={(e) => setRestaurantType(e.target.value)}
+            >
+              <option value="default"></option>
+              <option value="Fast-Food">fast-food</option>
+              <option value="Persian">persian</option>
+              <option value="Italian">Italian</option>
+              <option value="Coffee-Shop">Coffee-shop</option>
+            </select>
           </label>
         </div>
         <div className="inputs">
@@ -104,7 +112,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
           <b>Admin password</b>
           <label>
             <input
-              type="text"
+              type="password"
               placeholder="password"
               className="modal-input"
               name="type"
