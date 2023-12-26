@@ -2,14 +2,29 @@ import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
 import { Link, Navigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
+
 import "./Navbar.css";
 
-export const Navbar = ({ restaurants, setRestaurants }) => {
+export const Navbar = ({ setRestaurants, restaurants }) => {
   const [isChecked, setIsChecked] = useState(true);
+  const [search, setSearch] = useState("");
   const [user, setUser] = useState();
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
+
+  const handleSearch = (e) => {
+
+    setRestaurants(
+      restaurants.filter((restaurants) =>{
+       setSearch( restaurants.restaurantName === e.target.value)
+      }
+        // console.log(restaurants.restaurantName)
+      )
+    );
+  };
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -38,6 +53,8 @@ restaurants.filter((res) =>{
       <div className="navbar-img">
         <a href="/home">
           <img src={Logo} alt="logo" />
+        <a href="/home">
+          <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
@@ -46,6 +63,7 @@ restaurants.filter((res) =>{
         </i>
         {user && (
           <i>
+            <a href="/profile">Profile</a>
             <a href="/profile">Profile</a>
           </i>
         )}
@@ -78,6 +96,7 @@ restaurants.filter((res) =>{
             type="text"
             onClick={(e) => handleSearch(e)}
             style={{ width: isChecked ? "0" : "170px" }}
+            onChange={(e) => handleSearch(e)}
           />
         </div>
       </div>

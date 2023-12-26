@@ -1,19 +1,12 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { Table } from "../Components/Table/Table";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
-import "./AdminDashboard.css";
+import "./RestaurantAdminPanel.css";
 import AddRestaurantModal from "../Components/AddRestaurantModal/AddRestaurantModal";
-import { getRestauran_API } from "../../api/RestaurantController";
+import AddFoodModal from "../Components/AddFoodModal/AddFoodModal";
 
-export const AdminDashboard = () => {
+export const RestaurantAdminPanel = () => {
   const [isAddModalOpen, setAddModalOpen] = useState(false);
-  const [restaurants, setRestaurants] = useState();
-
-  useEffect(() => {
-    getRestauran_API().then((res) => {
-      setRestaurants(res.data);
-    });
-  }, []);
 
   const openAddModal = () => {
     setAddModalOpen(true);
@@ -31,19 +24,16 @@ export const AdminDashboard = () => {
 
   return (
     <div className="admin-dash">
-      <span className="admin-dash-title">Website Admin Panel</span>
-      <CardPanel title="Current Restaurants" number={restaurants?.length} />
+      <span className="admin-dash-title">Restaurant Admin Panel</span>
+      <CardPanel title="Current Food count" number="20" />
       <div className="admin-lists">
         <div className="admin-list-button">
           <button onClick={openAddModal}>Add</button>
         </div>
-        <Table restaurants={restaurants} />
+        <Table />
       </div>
 
-      <AddRestaurantModal
-        isOpen={isAddModalOpen}
-        onRequestClose={closeAddModal}
-      />
+      <AddFoodModal isOpen={isAddModalOpen} onRequestClose={closeAddModal} />
     </div>
   );
 };

@@ -5,7 +5,7 @@ import "react-toastify/dist/ReactToastify.min.css";
 import { login_API, signup_API } from "../../api/AuthController";
 import "./Auth.css";
 import { Navigate } from "react-router-dom";
-export const Auth = () => {
+export const Auth = ({ setUser }) => {
   const [isSignup, setIsSignup] = useState(true);
   const confirmRef = useRef();
   const [data, setData] = useState({
@@ -84,6 +84,7 @@ export const Auth = () => {
         const res = await login_API(loginData);
         localStorage.setItem("Token", JSON.stringify(res.data.token));
         localStorage.setItem("User", JSON.stringify(res.data.detail));
+        setUser(res.data.detail);
         notify("successfylly logged in!", "success");
         <Navigate to="/home" />;
       } catch (error) {
