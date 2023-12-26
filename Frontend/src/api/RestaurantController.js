@@ -25,9 +25,15 @@ export const getRestauran_API = async () => {
   return res;
 };
 
-export const restaurantAdminLogin_API = (formData) => {
-  const res = API_restaurant.post("/restaurantAdminLoginView/", formData, {
+export const restaurantAdminLogin_API = async(formData) => {
+  const res = await API_restaurant.post("/restaurantAdminLoginView/", formData, {
     headers: { "Content-Type": "application/json" },
   });
   return res;
 };
+
+export const getRestaurantMenu_API = async(formData) => {
+  const res = await API_restaurant.get("/allMenu/", formData, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return res;}
