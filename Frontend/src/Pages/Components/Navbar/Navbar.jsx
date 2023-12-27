@@ -6,9 +6,9 @@ import { UserProfile } from "../../UserProfile/UserProfile";
 import "./Navbar.css";
 import { Auth } from "../../Auth/Auth";
 
-export const Navbar = ({ setRestaurants, restaurants }) => {
-  const [isChecked, setIsChecked] = useState(true);
-  const [search, setSearch] = useState("");
+export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
+
+  const [isChecked, setIsChecked] = useState(true);;
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
@@ -20,9 +20,22 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
     setIsChecked(!isChecked);
   };
 
-  const profileHandle = () => {
-    <Navigate to={UserProfile} />;
-  };
+  const handleSearch = (e) => {
+    const searchValue = e.target.value;
+    if(searchValue ===''){
+      isSearch(0)
+    }else{
+      isSearch(1)
+    }
+    const filteredItems = restaurants.filter((rs) => {
+      if (
+        rs.restaurantType.toLowerCase().includes(e.target.value.toLowerCase())
+      ) {
+        setSearchRestaurants(rs);
+        console.log(rs)
+      }
+    });
+
 
   const handleSearch = (e) => {
     console.log(e.target.value);
@@ -35,6 +48,7 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
 
   const handleLogin = () => {
     navigate("/")
+
   };
 
   const handleLogout = () => {
@@ -45,13 +59,13 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/home">
+        <a href="/">
           <img src={Logo} alt="logo" />
         </a>
       </div>
       <ul className="navbar-ul">
         <i>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </i>
         {user && (
           <i>
@@ -63,6 +77,7 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
             <p onClick={handleLogout}>Logout</p>
           ) : (
             <p onClick={handleLogin}>Login</p>
+
           )}
         </i>
         <i className="search"></i>
@@ -89,7 +104,6 @@ export const Navbar = ({ setRestaurants, restaurants }) => {
             className="search_input"
             placeholder="search"
             type="text"
-            onClick={(e) => handleSearch(e)}
             style={{ width: isChecked ? "0" : "170px" }}
             onChange={(e) => handleSearch(e)}
           />

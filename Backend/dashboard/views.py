@@ -26,12 +26,12 @@ def CreateFoodView(request):
 # get all restaurant's menu 
 @swagger_auto_schema(method='GET')
 @api_view(["GET"])
-def allMenuView(request):
-    param = request.GET.get('restaurantName','')
-    queryset = RestaurantMenuModel.objects.filter(restaurantName=param)
-    serializer = RestaurantMenuAllSerializer(queryset, many=True)
-    return Response(serializer.data)
-    
+
+def allMenuView(request, resName):
+    print("dfdfdf",resName)
+    menus = RestaurantMenuModel.objects.get(restaurantName=resName)
+    serializer = RestaurantMenuModelSerializer(menus, many=True)
+
 
 
 # # updating restaurant uncritical info by res-admin

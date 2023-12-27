@@ -86,7 +86,7 @@ export const Auth = ({ setUser }) => {
         localStorage.setItem("User", JSON.stringify(res.data.detail));
         setUser(res.data.detail);
         notify("successfylly logged in!", "success");
-        <Navigate to="/home" />;
+        <Navigate to="/" />;
       } catch (error) {
         notify(error.response, "error");
       }
