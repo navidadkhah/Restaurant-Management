@@ -73,9 +73,9 @@ export const Auth = ({ setUser }) => {
         console.log(data);
         try {
           const res = await signup_API(data);
-          notify(res.data, "success");
+          notify(res.response.data, "success");
         } catch (error) {
-          notify(error.response.data, "error");
+          notify(error.response, "error");
         }
       }
     } else {
@@ -88,7 +88,7 @@ export const Auth = ({ setUser }) => {
         notify("successfylly logged in!", "success");
         <Navigate to="/" />;
       } catch (error) {
-        notify(error.response.data, "error");
+        notify(error.response, "error");
       }
     }
   };

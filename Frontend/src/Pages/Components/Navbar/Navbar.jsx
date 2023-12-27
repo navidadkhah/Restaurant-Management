@@ -1,14 +1,16 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
 
 import "./Navbar.css";
+import { Auth } from "../../Auth/Auth";
 
 export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
 
   const [isChecked, setIsChecked] = useState(true);;
   const [user, setUser] = useState();
+  const navigate = useNavigate();
 
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
@@ -34,21 +36,19 @@ export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
       }
     });
 
-    //keep filtered items in another state
 
-    //     restaurants.filter(res =>{
-    //       if(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
-    //       setRestaurants(res)
-    //     }
-    //       // console.log(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
-    //       // setRestaurants(res.restaurantType.toLowerCase().includes(e.target.value.toLowerCase()))
-    // )
-    // restaurants.filter((res) => {
-    //   if (res.restaurantName.startsWith(e.target.value)) {
-    //     setRestaurants(res);
-    //     console.log(res)
-    //   }
-    // });
+  const handleSearch = (e) => {
+    console.log(e.target.value);
+    restaurants.filter((res) => {
+      if (res.restaurantName.startsWith(e.target.value)) {
+        setRestaurants(res);
+      }
+    });
+  };
+
+  const handleLogin = () => {
+    navigate("/")
+
   };
 
   const handleLogout = () => {
@@ -76,7 +76,8 @@ export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
           {user ? (
             <p onClick={handleLogout}>Logout</p>
           ) : (
-            <a href="/auth">Login</a>
+            <p onClick={handleLogin}>Login</p>
+
           )}
         </i>
         <i className="search"></i>
