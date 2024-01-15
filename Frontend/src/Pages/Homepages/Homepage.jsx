@@ -1,19 +1,17 @@
-import { React, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Navigate } from "react-router-dom";
 import { Cards } from "../Components/Cards/Cards";
 import "./Homepage.css";
 import { Navbar } from "../Components/Navbar/Navbar";
-import { getRestauran_API } from "../../api/RestaurantController";
-import Loader from "react-js-loader";
-import { ToastContainer, toast } from "react-toastify";
+import { getRestaurant_API } from "../../api/RestaurantController";
 
 export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
-  const [searchRestaurants, setSearchRestaurants] = useState();
-  const [isSearch, setIsSearch] = useState(0);
+  const [search, setSearch] = useState("");
+
 
   useEffect(() => {
-    getRestauran_API().then((res) => {
+    getRestaurant_API().then((res) => {
       setRestaurants(res.data);
     });
     if (!localStorage.getItem("previoslyVisited")) {
@@ -22,46 +20,21 @@ export const Homepage = () => {
     }
   }, []);
 
-  const notify = (msg, type) => {
-    if (type === "info") {
-      toast.info(msg, {
-        position: "top-left",
-        autoClose: 3000,
-        hideProgressBar: true,
-        closeOnClick: true,
-        pauseOnHover: false,
-        draggable: false,
-        progress: undefined,
-        theme: "light",
-      });
-    }
-  };
 
   const loginRoute = () => {
     <Navigate to={"/"} />;
   };
+
+  const filteredRestaurants = restaurants.filter((res) =>
+    res.restaurantName.toLowerCase().includes(search.toLowerCase())
+  );
+
   return (
     <div className="home">
-    
-
-      <Navbar
-        restaurants={restaurants}
-        setSearchRestaurants={setSearchRestaurants}
-        isSearch={isSearch}
-      />
-
+      <Navbar setSearch={setSearch} />
       <div className="home-content">
-        {restaurants.length > 0 ? 
-        isSearch.length>0
-        ? searchRestaurants.map((res) => (
-            <Cards
-              logo={res.restaurantImage}
-              name={res.restaurantName}
-              type={res.restaurantType}
-            />
-          ))
-        : 
-        (restaurants.map((res) => (
+        {filteredRestaurants.length > 0 ? (
+          filteredRestaurants.map((res) => (
             <Cards
               logo={res.restaurantImage}
               name={res.restaurantName}
@@ -69,14 +42,7 @@ export const Homepage = () => {
             />
           ))
         ) : (
-          <Loader
-            className="loader-image"
-            type="bubble-spin"
-            bgColor={"#000000"}
-            color={"#000000"}
-            title={"Loading..."}
-            size={100}
-          />
+          <p>No matching restaurants found.</p>
         )}
       </div>
       <ToastContainer />

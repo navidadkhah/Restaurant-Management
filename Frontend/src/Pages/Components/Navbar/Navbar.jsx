@@ -8,7 +8,9 @@ import { Auth } from "../../Auth/Auth";
 
 export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
 
-  const [isChecked, setIsChecked] = useState(true);;
+
+export const Navbar = ({ setSearch }) => {
+  const [isChecked, setIsChecked] = useState(true);
   const [user, setUser] = useState();
   const navigate = useNavigate();
 
@@ -20,35 +22,8 @@ export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
     setIsChecked(!isChecked);
   };
 
-  const handleSearch = (e) => {
-    const searchValue = e.target.value;
-    if(searchValue ===''){
-      isSearch(0)
-    }else{
-      isSearch(1)
-    }
-    const filteredItems = restaurants.filter((rs) => {
-      if (
-        rs.restaurantType.toLowerCase().includes(e.target.value.toLowerCase())
-      ) {
-        setSearchRestaurants(rs);
-        console.log(rs)
-      }
-    });
-
-
-  const handleSearch = (e) => {
-    console.log(e.target.value);
-    restaurants.filter((res) => {
-      if (res.restaurantName.startsWith(e.target.value)) {
-        setRestaurants(res);
-      }
-    });
-  };
-
-  const handleLogin = () => {
-    navigate("/")
-
+  const profileHandle = () => {
+    <Navigate to={UserProfile} />;
   };
 
   const handleLogout = () => {
@@ -56,10 +31,14 @@ export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
     localStorage.removeItem("User");
     setUser(null);
   };
+
+  const handleSearchChange = (e) => {
+    setSearch(e.target.value);
+  };
   return (
     <div className="navbar">
       <div className="navbar-img">
-        <a href="/">
+        <a href="/home">
           <img src={Logo} alt="logo" />
         </a>
       </div>
@@ -104,6 +83,7 @@ export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
             className="search_input"
             placeholder="search"
             type="text"
+            onChange={(e) => handleSearchChange(e)}
             style={{ width: isChecked ? "0" : "170px" }}
             onChange={(e) => handleSearch(e)}
           />
