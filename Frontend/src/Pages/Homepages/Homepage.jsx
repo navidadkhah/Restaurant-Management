@@ -9,15 +9,20 @@ export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [search, setSearch] = useState("");
 
+
   useEffect(() => {
     getRestaurant_API().then((res) => {
       setRestaurants(res.data);
-      console.log(res.data);
     });
+    if (!localStorage.getItem("previoslyVisited")) {
+      notify("Welcome to Tameshk application", "info");
+      localStorage.setItem("previoslyVisited", "true");
+    }
   }, []);
 
+
   const loginRoute = () => {
-    <Navigate to={"/Auth"} />;
+    <Navigate to={"/"} />;
   };
 
   const filteredRestaurants = restaurants.filter((res) =>
@@ -40,6 +45,7 @@ export const Homepage = () => {
           <p>No matching restaurants found.</p>
         )}
       </div>
+      <ToastContainer />
     </div>
   );
 };

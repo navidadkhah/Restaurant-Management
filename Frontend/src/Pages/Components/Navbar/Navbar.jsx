@@ -1,15 +1,23 @@
 import { useEffect, useState } from "react";
 import Logo from "../../../images/logo.png";
-import { Link, Navigate } from "react-router-dom";
+import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
+
 import "./Navbar.css";
+import { Auth } from "../../Auth/Auth";
+
+export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
+
 
 export const Navbar = ({ setSearch }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [user, setUser] = useState();
+  const navigate = useNavigate();
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
+
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
   };
@@ -36,7 +44,7 @@ export const Navbar = ({ setSearch }) => {
       </div>
       <ul className="navbar-ul">
         <i>
-          <a href="/home">Home</a>
+          <a href="/">Home</a>
         </i>
         {user && (
           <i>
@@ -44,7 +52,12 @@ export const Navbar = ({ setSearch }) => {
           </i>
         )}
         <i>
-          {user ? <p onClick={handleLogout}>Logout</p> : <a href="/">Login</a>}
+          {user ? (
+            <p onClick={handleLogout}>Logout</p>
+          ) : (
+            <p onClick={handleLogin}>Login</p>
+
+          )}
         </i>
         <i className="search"></i>
       </ul>
@@ -72,6 +85,7 @@ export const Navbar = ({ setSearch }) => {
             type="text"
             onChange={(e) => handleSearchChange(e)}
             style={{ width: isChecked ? "0" : "170px" }}
+            onChange={(e) => handleSearch(e)}
           />
         </div>
       </div>

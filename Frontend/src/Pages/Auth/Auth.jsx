@@ -73,9 +73,9 @@ export const Auth = ({ setUser }) => {
         console.log(data);
         try {
           const res = await signup_API(data);
-          notify(res.data, "success");
+          notify(res.response.data, "success");
         } catch (error) {
-          notify(error.response.data, "error");
+          notify(error.response, "error");
         }
       }
     } else {
@@ -86,9 +86,9 @@ export const Auth = ({ setUser }) => {
         localStorage.setItem("User", JSON.stringify(res.data.detail));
         setUser(res.data.detail);
         notify("successfylly logged in!", "success");
-        <Navigate to="/home" />;
+        <Navigate to="/" />;
       } catch (error) {
-        notify(error.response.data, "error");
+        notify(error.response, "error");
       }
     }
   };
