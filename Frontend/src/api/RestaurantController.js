@@ -5,7 +5,7 @@ const API_restaurant = axios.create({
 });
 
 export const addFood_API = async (formData) => {
-  const res = await API_restaurant.post(createFood, formData, {
+  const res = await API_restaurant.post("/createFood", formData, {
     headers: { "Content-Type": "multipart/form-data" },
   });
   return res;
