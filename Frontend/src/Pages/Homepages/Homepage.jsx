@@ -4,11 +4,36 @@ import { Cards } from "../Components/Cards/Cards";
 import "./Homepage.css";
 import { Navbar } from "../Components/Navbar/Navbar";
 import { getRestaurant_API } from "../../api/RestaurantController";
+import { ToastContainer, toast } from "react-toastify";
 
 export const Homepage = () => {
   const [restaurants, setRestaurants] = useState([]);
   const [search, setSearch] = useState("");
-
+  const notify = (msg, type) => {
+    if (type === "error") {
+      toast.error(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (type === "success") {
+      toast.success(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   useEffect(() => {
     getRestaurant_API().then((res) => {
@@ -19,7 +44,6 @@ export const Homepage = () => {
       localStorage.setItem("previoslyVisited", "true");
     }
   }, []);
-
 
   const loginRoute = () => {
     <Navigate to={"/"} />;
