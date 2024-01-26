@@ -9,6 +9,10 @@ import { RestaurantAdminLogin } from "./Pages/RestaurantComponents/RestaurantAdm
 import { UserProfile } from "./Pages/UserProfile/UserProfile";
 import { useEffect, useState } from "react";
 import { ToastContainer} from "react-toastify";
+import { WebPrivateRoute } from "./utils/WebPrivateRoute.jsx";
+import { RestaurantPrivateRoute } from "./utils/RestaurantPrivateRoute.jsx";
+import { ProfilePrivateRoute } from "./utils/ProfilePrivateRoute.jsx";
+import { OrderBag } from "./Pages/orderBag/OrderBag.jsx";
 
 
 function App() {
@@ -25,20 +29,26 @@ function App() {
         <Routes>
           <Route path="/" element={user ? <Homepage /> : <Auth />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
-
-          <Route path="/admin-dashboard" element={<AdminDashboard />}></Route>
           <Route path="/web-admin" element={<AdminLogin />}></Route>
-          <Route
-            path="/restaurant-admin-panel"
-            element={<RestaurantAdminPanel />}
-          ></Route>
-          <Route path="/profile" element={<UserProfile />}></Route>
           <Route
             path="/restaurant-admin"
             element={<RestaurantAdminLogin />}
           ></Route>
-        
-           
+          <Route element={<OrderBag />} path="/Shopping-cart" exact /> 
+                   
+          <Route element={<WebPrivateRoute />}>
+            <Route element={<AdminDashboard />} path="/admin-dashboard" exact />
+          </Route>
+          <Route element={<RestaurantPrivateRoute />}>
+            <Route
+              element={<RestaurantAdminPanel />}
+              path="/restaurant-admin-panel"
+              exact
+            />
+          </Route>
+          <Route element={<ProfilePrivateRoute />}>
+            <Route element={<UserProfile />} path="/profile" exact />
+          </Route>
         </Routes>
       </BrowserRouter>
       <ToastContainer />

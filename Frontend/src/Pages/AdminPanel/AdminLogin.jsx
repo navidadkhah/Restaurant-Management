@@ -4,29 +4,35 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { login_API } from "../../api/AuthController";
 import "./AdminLogin.css";
+import { Navigate, useNavigate } from "react-router-dom";
 export const AdminLogin = () => {
   const [data, setData] = useState({
     username: "",
     password: "",
   });
 
+  
+  const navigate = useNavigate();
+
   const handleChange = (e) => {
     setData({ ...data, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = async (e) => {
+  const handleSubmit =(e) => {
     e.preventDefault();
     if (data.username === "" || data.password === "") {
       notify("please fill all fields!", "error");
     } else {
-      const loginData = { email: data.email, password: data.password };
-      try {
-        const res = await login_API(loginData);
-        localStorage.setItem("Token", JSON.stringify(res.data.token));
-        notify("successfylly logged in!", "success");
-      } catch (error) {
-        notify(error.response.data, "error");
-      }
+      const loginData = { username: data.username, password: data.password };
+       if(loginData.username === "admin@gmail.com" && loginData.password === "admin"){
+         localStorage.setItem("web-Token", "admin-token-01020103039348reCsdncjdlcvbvbsdvhsfvsf asfvfd");
+         notify("successfylly logged in!", "success");
+         navigate("/admin-dashboard");
+       }
+       else{
+        console.log(loginData)
+        notify("Email or Password is wrong!", "error");
+       }
     }
   };
 
@@ -64,7 +70,7 @@ export const AdminLogin = () => {
           style={{ color: "var(--blue)", width: "4rem", height: "4rem" }}
         />
         <div className="Wbname">
-          <h1>Restaurant</h1>
+          <h1>Tameshk</h1>
           <h6>Your favorite Restaurant app</h6>
         </div>
       </div>
@@ -76,7 +82,7 @@ export const AdminLogin = () => {
             <input
               type="text"
               className="infoInput"
-              name="text"
+              name="username"
               placeholder="Username"
               onChange={handleChange}
               value={data.email}

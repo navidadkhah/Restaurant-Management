@@ -1,0 +1,51 @@
+.shop-card-content {
+    margin-top: 180px;
+}
+
+.shop-card-card {
+    width: 360px;
+    /* height: 380px; */
+    border-radius: 30px;
+    background-color: rgb(161, 190, 186);
+    box-shadow: 5px 4px 10px rgb(105, 112, 114);
+    margin: 0 auto 50px;
+}
+
+h3 {
+    padding: 12px 30px 0;
+}
+
+.shop-card-line {
+    width: 100%;
+    height: 2px;
+    background-color: rgb(0, 0, 0);
+}
+
+.shop-card-orders {
+    display: flex;
+    flex-direction: column;
+    margin: 20px 20px;
+}
+
+.shop-card-line-all-price {
+    width: 80%;
+    height: 2px;
+    margin: auto;
+    background-color: rgb(0, 0, 0);
+}
+
+.all-prices {
+    padding: 0 20px;
+}
+
+.button-order-shopping-card {
+    margin: 5px 120px 15px;
+    background-color: rgb(194, 68, 69);
+    color: white;
+    transition: 0.1s ease-in;
+}
+
+.button-order-shopping-card:hover {
+    background-color: rgb(219, 39, 39);
+    color: white;
+}

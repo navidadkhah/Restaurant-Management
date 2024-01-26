@@ -4,9 +4,10 @@ import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { login_API, signup_API } from "../../api/AuthController";
 import "./Auth.css";
-import { Navigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 export const Auth = ({ setUser }) => {
-  const [isSignup, setIsSignup] = useState(true);
+  const navigate = useNavigate()
+  const [isSignup, setIsSignup] = useState(false);
   const confirmRef = useRef();
   const [data, setData] = useState({
     firstName: "",
@@ -73,9 +74,13 @@ export const Auth = ({ setUser }) => {
         console.log(data);
         try {
           const res = await signup_API(data);
-          notify(res.response.data, "success");
+          console.log("dd");
+          notify("successfylly signup!", "success");
+          setIsSignup(false);
         } catch (error) {
-          notify(error.response, "error");
+          if (error.response !== "undefined") {
+            notify(error.response.data, "error");
+          }
         }
       }
     } else {
@@ -94,16 +99,14 @@ export const Auth = ({ setUser }) => {
          const loginData = { email: data.email, password: data.password };
          try {
            const res = await login_API(loginData);
-           localStorage.setItem("Token", JSON.stringify(res.data.token));
+           localStorage.setItem("user-Token", JSON.stringify(res.data.token));
            localStorage.setItem("User", JSON.stringify(res.data.detail));
-           setUser(res.data.detail);
            notify("successfylly logged in!", "success");
-           <Navigate to="/home" />;
-           console.log(res.data.detail);
-
+           navigate('/home');
          } catch (error) {
-           notify(error.response, "error");
-           console.log(error.response)
+          if (error.response!=="undefined"){
+            notify(error.response.data, "error");
+          } 
          }
        }
     }
