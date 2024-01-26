@@ -190,3 +190,17 @@ CORS_ORIGIN_ALLOW_ALL = True
 MEDIA_ROOT =  os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'
+EMAIL_USE_TLS = True
+EMAIL_PORT = 587
+EMAIL_HOST_USER = 'tameshapplication@gmail.com'
+EMAIL_HOST_PASSWORD = 'TameshkApp01'
+
+
+
+# subject = 'Restaurant reservation from Tameshk'
+# message = f'Hi {user.username}, your reservation is confirmed'
+# email_from = settings.EMAIL_HOST_USER
+# recipient_list = [user.email, ]
+# send_mail( subject, message, email_from, recipient_list )
