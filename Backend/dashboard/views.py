@@ -24,13 +24,19 @@ def CreateFoodView(request):
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 # get all restaurant's menu 
-@swagger_auto_schema(method='GET')
-@api_view(["GET"])
-
-def allMenuView(request, resName):
-    print("dfdfdf",resName)
-    menus = RestaurantMenuModel.objects.get(restaurantName=resName)
-    serializer = RestaurantMenuModelSerializer(menus, many=True)
+@swagger_auto_schema(method='POST', request_body=RestaurantMenuAllSerializer)
+@api_view(["POST"])
+def allMenuView(request):
+    serializer = RestaurantMenuAllSerializer(data=request.data)
+    if serializer.is_valid():
+        try:
+         RestaurantMenuModel.objects.get(
+            restaurantName=request.data["restaurantName"])
+        except siteAdminModel.DoesNotExist:
+            return Response(f"There is no {request.data['restaurantUsername']}", status=status.HTTP_400_BAD_REQUEST)
+        detail =  RestaurantMenuModel.objects.get(
+            restaurantName=request.data["restaurantName"])
+        return Response({"detail":detail}, status=status.HTTP_200_OK)
 
 
 
@@ -111,6 +117,7 @@ def restaurantAdminLoginView(request):
         return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_200_OK)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
+# This function use for copy image in front
 def copyImages(fileName) :
     fileName=str(fileName).replace('/','\\')
     print(fileName)
