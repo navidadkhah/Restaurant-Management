@@ -7,7 +7,7 @@ import "./Auth.css";
 import { useNavigate } from "react-router-dom";
 export const Auth = ({ setUser }) => {
   const navigate = useNavigate()
-  const [isSignup, setIsSignup] = useState(true);
+  const [isSignup, setIsSignup] = useState(false);
   const confirmRef = useRef();
   const [data, setData] = useState({
     firstName: "",
@@ -74,10 +74,13 @@ export const Auth = ({ setUser }) => {
         console.log(data);
         try {
           const res = await signup_API(data);
-          notify(res.response.data, "success");
+          console.log("dd");
+          notify("successfylly signup!", "success");
           setIsSignup(false);
         } catch (error) {
-          notify(error.response, "error");
+          if (error.response !== "undefined") {
+            notify(error.response.data, "error");
+          }
         }
       }
     } else {
@@ -101,11 +104,9 @@ export const Auth = ({ setUser }) => {
            notify("successfylly logged in!", "success");
            navigate('/home');
          } catch (error) {
-          console.log(error);
           if (error.response!=="undefined"){
             notify(error.response.data, "error");
           } 
-
          }
        }
     }

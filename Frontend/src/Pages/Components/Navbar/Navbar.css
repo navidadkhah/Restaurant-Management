@@ -39,17 +39,16 @@
 
 .navbar-ul i p {
     text-decoration: none;
-    font-weight: 500;
+    font-weight: 600;
     font-style: italic;
-    color: rgb(178, 141, 141);
+    color: rgb(240, 24, 24);
     transition: 0.05s ease-in-out;
 }
 
 .navbar-ul i p:hover {
-    font-weight: 500;
+    font-weight: 700;
     font-size: medium;
     color: rgb(183, 0, 0);
-    text-shadow: 1px 1px 5px red;
     cursor: pointer;
 }
 
@@ -60,6 +59,28 @@
 
 .checkbox {
     overflow: hidden;
+}
+
+.shopping-card {
+    margin-top: 30px;
+    width: 20px;
+    inline-size: 30px;
+    position: relative;
+}
+
+.shopping-card::before {
+    content: attr(shop-item);
+    position: absolute;
+    top: -1rem;
+    right: -1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: aliceblue;
+    background-color: rgb(218, 163, 24);
 }
 
 @media only screen and (max-width: 500px) {

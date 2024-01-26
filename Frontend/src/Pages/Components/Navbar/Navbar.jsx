@@ -2,9 +2,10 @@ import { useEffect, useState } from "react";
 import Logo from "../../../images/OIG2.jpg";
 import { Link, Navigate, useNavigate } from "react-router-dom";
 import { UserProfile } from "../../UserProfile/UserProfile";
-
+import { OrderBag } from "../../orderBag/OrderBag";
 import "./Navbar.css";
 import { Auth } from "../../Auth/Auth";
+import { FaShoppingCart } from "react-icons/fa";
 
 export const Navbar = ({ setSearch }) => {
   const [isChecked, setIsChecked] = useState(true);
@@ -27,8 +28,7 @@ export const Navbar = ({ setSearch }) => {
     localStorage.removeItem("user-Token");
     localStorage.removeItem("User");
     setUser(null);
-    <Navigate to='/home' />;
-
+    navigate('/home')
   };
 
   const handleLogin = () => {
@@ -55,6 +55,7 @@ export const Navbar = ({ setSearch }) => {
               <a href="/profile">Profile</a>
             </i>
           )}
+
           <i>
             {user ? (
               <p onClick={handleLogout}>Logout</p>
@@ -62,6 +63,13 @@ export const Navbar = ({ setSearch }) => {
               <a href="/">Login</a>
             )}
           </i>
+         
+            <i>
+              <a href="/Shopping-cart" className="shopping-card" shop-item={3}>
+                <FaShoppingCart />
+              </a>
+            </i>
+        
           <i className="search"></i>
         </ul>
         <div className="container">
