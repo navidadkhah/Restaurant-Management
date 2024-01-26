@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'rest_framework_simplejwt',
     'authenticate',
     'dashboard',
+    'orders',
     "drf_yasg",
     'corsheaders'
 ]
