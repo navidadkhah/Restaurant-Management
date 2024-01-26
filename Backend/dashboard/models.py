@@ -5,10 +5,10 @@ from django.db import models
 
 class RestaurantMenuModel(models.Model):
     id = models.AutoField(primary_key=True)
+    restaurantName = models.CharField(max_lenght=50)
     foodName = models.CharField(max_length=50)
     foodPrice = models.IntegerField()
     foodDescription = models.CharField(max_length=200)
-    foodType = models.CharField(max_length=50)
     foodImage = models.ImageField(blank=False, upload_to='foodImages/')
 
 
