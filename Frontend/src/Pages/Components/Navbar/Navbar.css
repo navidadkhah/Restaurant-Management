@@ -1,7 +1,7 @@
 .navbar {
     position: fixed;
     top: 0px;
-    background-color: rgb(167, 167, 175);
+    background: linear-gradient( rgb(27, 196, 237, 1), rgba(151, 201, 213, 1));
     padding: 0px;
     display: flex;
     align-items: center;
@@ -9,7 +9,7 @@
     flex-direction: row;
     border-radius: 0 0 10px 10px;
     width: 100%;
-    box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, 0.2);
+    box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, 0.3);
     z-index: 3;
 }
 
@@ -18,30 +18,30 @@
     flex-direction: row;
     justify-content: center;
     align-items: center;
-    padding: 0 30px;
+    padding: 0;
     margin: auto 0;
 }
 
 .navbar-img img {
     display: flex;
     justify-content: space-between;
-    border-radius: 100px;
-    width: 100px;
-    height: 100px;
-    margin-left: 20px;
+    border-radius: 20px;
+    width: 120px;
+    height: 120px;
+    margin-left: 30px;
     cursor: pointer;
     flex-direction: row;
 }
 
 .navbar-ul i {
-    padding: 20px;
+    padding: 0px 12px;
 }
 
 .navbar-ul i p {
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 500;
     font-style: italic;
-    color: black;
+    color: rgb(178, 141, 141);
     transition: 0.05s ease-in-out;
 }
 
@@ -53,8 +53,28 @@
     cursor: pointer;
 }
 
+.nav-cont {
+    display: flex;
+    justify-content: left;
+}
+
 .checkbox {
     overflow: hidden;
 }
 
-.search_input {}
+@media only screen and (max-width: 500px) {
+    .navbar-img img {
+        margin-right: 60px;
+        width: 80px;
+        height: 80px;
+        padding-top: 5px;
+    }
+    .nav-cont {
+        display: flex;
+        justify-content: left;
+        padding: 5px 0;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+}

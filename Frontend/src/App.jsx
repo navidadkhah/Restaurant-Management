@@ -8,9 +8,12 @@ import { RestaurantAdminPanel } from "./Pages/RestaurantComponents/RestaurantAdm
 import { RestaurantAdminLogin } from "./Pages/RestaurantComponents/RestaurantAdminLogin";
 import { UserProfile } from "./Pages/UserProfile/UserProfile";
 import { useEffect, useState } from "react";
+import { ToastContainer} from "react-toastify";
+
 
 function App() {
   const [user, setUser] = useState();
+  
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
@@ -34,8 +37,11 @@ function App() {
             path="/restaurant-admin"
             element={<RestaurantAdminLogin />}
           ></Route>
+        
+           
         </Routes>
       </BrowserRouter>
+      <ToastContainer />
     </div>
   );
 }
