@@ -6,9 +6,6 @@ import { UserProfile } from "../../UserProfile/UserProfile";
 import "./Navbar.css";
 import { Auth } from "../../Auth/Auth";
 
-export const Navbar = ({ restaurants, isSearch, setSearchRestaurants }) => {
-
-
 export const Navbar = ({ setSearch }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [user, setUser] = useState();
@@ -30,6 +27,10 @@ export const Navbar = ({ setSearch }) => {
     localStorage.removeItem("Token");
     localStorage.removeItem("User");
     setUser(null);
+  };
+
+  const handleLogin = () => {
+    <Navigate to={"/"} />;
   };
 
   const handleSearchChange = (e) => {
@@ -56,7 +57,6 @@ export const Navbar = ({ setSearch }) => {
             <p onClick={handleLogout}>Logout</p>
           ) : (
             <p onClick={handleLogin}>Login</p>
-
           )}
         </i>
         <i className="search"></i>
@@ -85,7 +85,6 @@ export const Navbar = ({ setSearch }) => {
             type="text"
             onChange={(e) => handleSearchChange(e)}
             style={{ width: isChecked ? "0" : "170px" }}
-            onChange={(e) => handleSearch(e)}
           />
         </div>
       </div>
