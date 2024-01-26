@@ -94,7 +94,7 @@ export const Auth = ({ setUser }) => {
          const loginData = { email: data.email, password: data.password };
          try {
            const res = await login_API(loginData);
-           localStorage.setItem("Token", JSON.stringify(res.data.token));
+           localStorage.setItem("user-Token", JSON.stringify(res.data.token));
            localStorage.setItem("User", JSON.stringify(res.data.detail));
            setUser(res.data.detail);
            notify("successfylly logged in!", "success");
