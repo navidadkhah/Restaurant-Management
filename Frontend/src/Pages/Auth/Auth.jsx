@@ -79,17 +79,33 @@ export const Auth = ({ setUser }) => {
         }
       }
     } else {
-      const loginData = { email: data.email, password: data.password };
-      try {
-        const res = await login_API(loginData);
-        localStorage.setItem("Token", JSON.stringify(res.data.token));
-        localStorage.setItem("User", JSON.stringify(res.data.detail));
-        setUser(res.data.detail);
-        notify("successfylly logged in!", "success");
-        <Navigate to="/" />;
-      } catch (error) {
-        notify(error.response, "error");
-      }
+       let flag_is_fill = true;
+         if (data['email'] === "") {
+           flag_is_fill = false;
+         }
+           if (data["password"] === "") {
+             flag_is_fill = false;
+           }
+       
+       if (!flag_is_fill) {
+        notify("Please fill all fields!", "error");
+       }
+       if(flag_is_fill){
+         const loginData = { email: data.email, password: data.password };
+         try {
+           const res = await login_API(loginData);
+           localStorage.setItem("Token", JSON.stringify(res.data.token));
+           localStorage.setItem("User", JSON.stringify(res.data.detail));
+           setUser(res.data.detail);
+           notify("successfylly logged in!", "success");
+           <Navigate to="/home" />;
+           console.log(res.data.detail);
+
+         } catch (error) {
+           notify(error.response, "error");
+           console.log(error.response)
+         }
+       }
     }
   };
 

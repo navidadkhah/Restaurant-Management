@@ -66,7 +66,7 @@ export const Homepage = () => {
             />
           ))
         ) : (
-          <p>No matching restaurants found.</p>
+          <p className="no-search">No matching restaurants found</p>
         )}
       </div>
       <ToastContainer />

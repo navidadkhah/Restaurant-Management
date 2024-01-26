@@ -42,17 +42,16 @@
 
 .navbar-ul i a {
     text-decoration: none;
-    font-weight: 400;
+    font-weight: 600;
     font-style: italic;
-    color: black;
-    transition: 0.05s ease-in-out;
+    color: rgb(240, 24, 24);
+    transition: 0.1s ease-in-out;
 }
 
 .navbar-ul i a:hover {
-    font-weight: 500;
-    font-size: medium;
+    font-weight: 700;
+    font-size: 16px;
     color: rgb(183, 0, 0);
-    text-shadow: 1px 1px 5px red;
 }
 
 .home-content {
@@ -74,15 +73,16 @@
 .mainbox {
     box-sizing: border-box;
     position: relative;
-    width: 230px;
+    width: 200px;
     height: 50px;
     display: flex;
     flex-direction: row-reverse;
     align-items: center;
     justify-content: center;
     border-radius: 160px;
-    background-color: rgb(131, 131, 134);
+    background-color: rgb(199, 66, 66);
     transition: all 0.3s ease;
+    margin-right: 30px;
 }
 
 .checkbox:focus {
@@ -91,7 +91,7 @@
 }
 
 .checkbox:checked {
-    right: 10px;
+    right: 25px;
 }
 
 .checkbox:checked~.mainbox {
@@ -109,7 +109,7 @@
 
 .checkbox {
     box-sizing: border-box;
-    width: 30px;
+    width: 50px;
     height: 30px;
     position: absolute;
     right: 17px;
@@ -141,6 +141,7 @@
 .iconContainer {
     box-sizing: border-box;
     padding-top: 5px;
+    padding-right: 10px;
     width: fit-content;
     transition: all 0.3s ease;
 }
@@ -153,4 +154,11 @@
 
 .loader-image {
     margin-top: 500px;
+}
+
+.no-search {
+    font-weight: 500;
+    font-size: 26px;
+    margin: 200px 0;
+    font-style: italic;
 }
