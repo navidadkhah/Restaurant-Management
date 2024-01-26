@@ -44,6 +44,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('auth/api/', include('authenticate.urls')),
     path('dash/api/', include('dashboard.urls')),
+    path('order/api/', include('orders.urls')),
     path('', schema_view.with_ui('swagger', cache_timeout=0),
          name='schema-swagger-ui'),
     path('redoc/', schema_view.with_ui('redoc',
