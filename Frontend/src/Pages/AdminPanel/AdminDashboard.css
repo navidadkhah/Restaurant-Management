@@ -34,3 +34,13 @@
     background-color: rgb(60, 160, 150);
     border-radius: 15px;
 }
+
+.admin-list-button button:nth-child(2) {
+    background-color: rgb(255, 0, 0);
+    width: 80px;
+    margin-left: 10px;
+}
+
+.admin-list-button button:nth-child(2):hover {
+    background-color: rgb(156, 18, 18);
+}

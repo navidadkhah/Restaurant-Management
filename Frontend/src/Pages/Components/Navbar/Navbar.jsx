@@ -24,9 +24,11 @@ export const Navbar = ({ setSearch }) => {
   };
 
   const handleLogout = () => {
-    localStorage.removeItem("Token");
+    localStorage.removeItem("user-Token");
     localStorage.removeItem("User");
     setUser(null);
+    <Navigate to='/home' />;
+
   };
 
   const handleLogin = () => {

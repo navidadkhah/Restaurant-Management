@@ -4,8 +4,11 @@ import { CardPanel } from "../Components/CardPanel/CardPanel";
 import "./AdminDashboard.css";
 import AddRestaurantModal from "../Components/AddRestaurantModal/AddRestaurantModal";
 import { getRestaurant_API } from "../../api/RestaurantController";
+import { useNavigate } from "react-router-dom";
+
 
 export const AdminDashboard = () => {
+  const navigate = useNavigate()
   const [isAddModalOpen, setAddModalOpen] = useState(false);
   const [restaurants, setRestaurants] = useState();
 
@@ -29,6 +32,11 @@ export const AdminDashboard = () => {
     });
   };
 
+    const logouthandler = () => {
+     localStorage.removeItem('web-Token')
+     navigate('/home');
+    };
+
   return (
     <div className="admin-dash">
       <span className="admin-dash-title">Website Admin Panel</span>
@@ -36,6 +44,9 @@ export const AdminDashboard = () => {
       <div className="admin-lists">
         <div className="admin-list-button">
           <button onClick={openAddModal}>Add</button>
+          <button onClick={logouthandler} className="admin-list-button-logout">
+            LogOut
+          </button>
         </div>
         <Table restaurants={restaurants} />
       </div>
