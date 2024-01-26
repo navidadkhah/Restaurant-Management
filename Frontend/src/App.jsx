@@ -29,7 +29,6 @@ function App() {
           <Route path="/" element={user ? <Homepage /> : <Auth />}></Route>
           <Route path="/home" element={<Homepage />}></Route>
           <Route path="/web-admin" element={<AdminLogin />}></Route>
-          {/* <Route path="/profile" element={<UserProfile />}></Route> */}
           <Route
             path="/restaurant-admin"
             element={<RestaurantAdminLogin />}
