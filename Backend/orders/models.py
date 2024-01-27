@@ -18,6 +18,7 @@ class Reservations(models.Model):
     restaurantName = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add = True)
     place = models.CharField(max_length=50) # its value should be either outside or inside
-    
+    occasion =  models.CharField(max_length=50) # its value could be birthday,anniversary and ...
+
 
     
