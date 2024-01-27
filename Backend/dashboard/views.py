@@ -114,6 +114,7 @@ def restaurantAdminLoginView(request):
         detail["restaurantDescription"] = user.restaurantDescription
         detail["restaurantType"] = user.restaurantType
         detail["restaurantLocation"] = user.restaurantLocation
+        detail["restaurantRate"] = user.restaurantRate
         return Response({"detail":detail, "token": str(refresh.access_token)}, status=status.HTTP_200_OK)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
