@@ -1,10 +1,8 @@
 .res-card {
-    margin: 50px 20px 40px 20px;
+    margin: 10px 20px 40px 20px;
     width: 250px;
     height: 300px;
-    /* background-color: rgba(106, 106, 125, 0.4); */
     background: linear-gradient(88.63deg, #ffffff 0%, #E6E6FA 90%);
-    /* background-color: linear-gradient(98.63deg, #209dbc 30%, #5330be 70%); */
     border-radius: 50px 10px;
     box-shadow: 10px 10px 20px rgb(96, 154, 159);
     position: relative;

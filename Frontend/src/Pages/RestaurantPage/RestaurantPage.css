@@ -11,3 +11,43 @@
     align-items: center;
     gap: 10px;
 }
+
+
+/* .aa {
+    color: black;
+} */
+
+.restaurant-details {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    font-size: 20px;
+}
+
+.restaurant-details-class {
+    display: flex;
+    align-items: center;
+    background-color: rgb(84, 82, 131);
+    border-radius: 50px;
+    margin: 10px 0 0;
+}
+
+.restaurant-details-class:nth-child(1) p {
+    text-transform: capitalize;
+}
+
+.restaurant-details-class p {
+    padding: 0 10px;
+    color: azure;
+}
+
+.restaurant-details-class p:nth-child(1) {
+    color: rgb(255, 66, 67);
+    font-weight: 800;
+}
+
+.restaurant-details-class p:nth-child(2) {
+    /* text-decoration: underline; */
+    /* color: black; */
+    font-weight: 500;
+}
