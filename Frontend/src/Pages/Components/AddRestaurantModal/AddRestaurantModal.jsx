@@ -40,6 +40,8 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
         await addRestaurant_API(restaurantData);
         console.log("success");
         notify("Restaurant successfully added", "success");
+        window.location.reload();
+
       } catch (error) {
         console.error(error);
         notify(error.response.data, "error");
