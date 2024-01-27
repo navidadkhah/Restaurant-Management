@@ -10,13 +10,13 @@ class RestaurantMenuModelSerializer(serializers.ModelSerializer):
 class RestaurantMenuAllSerializer(serializers.ModelSerializer):
    class Meta:
       model = RestaurantMenuModel
-      fields = ('restaurantName')
+      fields = ('restaurantName',)
 
 class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
    class Meta:
       # data base model should be changed to site admin once it is defiend
       model = siteAdminModel
-      fields = ('restaurantDescription', 'restaurantImage')
+      fields = ('restaurantDescription', 'restaurantImage',)
 
 
 # this section is used for site admin and restaurant
@@ -25,13 +25,13 @@ class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
 class RestaurantAdminGetMenuSerializer(serializers.ModelSerializer):
    class Meta:
       model = siteAdminModel
-      fields = ('id','restaurantName','restaurantDescription','restaurantType','restaurantImage','restaurantLocation')
+      fields = ('id','restaurantName','restaurantDescription','restaurantType','restaurantImage','restaurantLocation',)
 
 # register restaurant admin
 class RestaurantAdminLoginSerializer(serializers.ModelSerializer):
    class Meta:
       model = siteAdminModel
-      fields = ('restaurantUsername','restaurantPassword')
+      fields = ('restaurantUsername','restaurantPassword',)
 
 # creating a new restaurant
 class siteAdminModelSerializer(serializers.ModelSerializer):

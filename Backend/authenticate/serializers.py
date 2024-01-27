@@ -10,7 +10,7 @@ class UserSerializer(serializers.ModelSerializer):
 class LoginUserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserModel
-        fields = ("email", "password")
+        fields = ("email", "password",)
 
 class MyTokenObtainPairSerializer(TokenObtainPairSerializer):
     @classmethod
