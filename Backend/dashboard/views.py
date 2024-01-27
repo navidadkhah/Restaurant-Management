@@ -116,6 +116,21 @@ def GetAllRestaurants(request):
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
 
+# returns all the restaurants in homepage
+@swagger_auto_schema(method='GET')
+@api_view(["GET"])
+def GetRestaurantDetail(request,restaurantName):
+   try:
+        menu_queryset = siteAdminModel.objects.filter(restaurantName=restaurantName)
+        # Check if there are any menus with the given restaurantName
+        if not menu_queryset.exists():
+            return Response("This restaurant doesn't exist", status=status.HTTP_404_NOT_FOUND)
+        # Serialize the queryset
+        serializer = RestaurantAdminGetMenuSerializer(menu_queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+   except RestaurantMenuModel.DoesNotExist:
+        return Response("This restaurant doesn't exist", status=status.HTTP_404_NOT_FOUND)
+
 # Delete a selected restaurant
 @swagger_auto_schema(method='DELETE')
 @api_view(["DELETE"])
