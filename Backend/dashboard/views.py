@@ -16,7 +16,7 @@ def CreateFoodView(request):
     serializer = RestaurantMenuModelSerializer(data=request.data)
     if serializer.is_valid():
         try:
-           RestaurantMenuModel.objects.get(foodName=request.data["foodName"])
+           RestaurantMenuModel.objects.get(restaurantName=request.data["restaurantName"], foodName=request.data["foodName"])
         except RestaurantMenuModel.DoesNotExist:
            serializer.save()
            copyImages(serializer.instance.foodImage)
@@ -48,6 +48,21 @@ def GetAllRestaurantsAAA(request):
     users = RestaurantMenuModel.objects.all()
     serializer = RestaurantMenuAllSerializer(users, many=True)
     return Response(serializer.data)
+
+
+# returns all the restaurants in homepage
+@swagger_auto_schema(method='DELETE')
+@api_view(["DELETE"])
+def DeleteFood(request,restaurantName,foodName):
+    try:
+        delFood = RestaurantMenuModel.objects.get(restaurantName=restaurantName, foodName=foodName)
+    except RestaurantMenuModel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    opertaion = delFood.delete()
+    if opertaion:
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
 
 
 # # updating restaurant uncritical info by res-admin
@@ -101,7 +116,7 @@ def GetAllRestaurants(request):
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
 
-# returns all the restaurants in homepage
+# Delete a selected restaurant
 @swagger_auto_schema(method='DELETE')
 @api_view(["DELETE"])
 def DeleteRestaurant(request,restaurantName):
@@ -115,7 +130,7 @@ def DeleteRestaurant(request,restaurantName):
     else:
         return Response(status=status.HTTP_403_FORBIDDEN)
 
-
+# This function use for authenticate the restaurant admin
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminLoginSerializer)
 @api_view(["POST"])
 def restaurantAdminLoginView(request):
