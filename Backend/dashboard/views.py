@@ -19,25 +19,35 @@ def CreateFoodView(request):
            RestaurantMenuModel.objects.get(foodName=request.data["foodName"])
         except RestaurantMenuModel.DoesNotExist:
            serializer.save()
+           copyImages(serializer.instance.foodImage)
            return Response("Food successfully created", status=status.HTTP_201_CREATED)
         return Response("This food name is already exists!", status=status.HTTP_401_UNAUTHORIZED)
     return Response("Some field is missing", status=status.HTTP_400_BAD_REQUEST)
 
 # get all restaurant's menu 
-@swagger_auto_schema(method='POST', request_body=RestaurantMenuAllSerializer)
-@api_view(["POST"])
-def allMenuView(request):
-    serializer = RestaurantMenuAllSerializer(data=request.data)
-    if serializer.is_valid():
-        try:
-         RestaurantMenuModel.objects.get(
-            restaurantName=request.data["restaurantName"])
-        except siteAdminModel.DoesNotExist:
-            return Response(f"There is no {request.data['restaurantUsername']}", status=status.HTTP_400_BAD_REQUEST)
-        detail =  RestaurantMenuModel.objects.get(
-            restaurantName=request.data["restaurantName"])
-        return Response({"detail":detail}, status=status.HTTP_200_OK)
+@swagger_auto_schema(method='GET')
+@api_view(["GET"])
+def allMenuView(request, restaurantName):
+     try:
+        menu_queryset = RestaurantMenuModel.objects.filter(restaurantName=restaurantName)
+        
+        # Check if there are any menus with the given restaurantName
+        if not menu_queryset.exists():
+            return Response("This restaurant doesn't exist", status=status.HTTP_404_NOT_FOUND)
 
+        # Serialize the queryset
+        serializer = RestaurantMenuAllSerializer(menu_queryset, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
+
+     except RestaurantMenuModel.DoesNotExist:
+        return Response("This restaurant doesn't exist", status=status.HTTP_404_NOT_FOUND)
+
+@swagger_auto_schema(method='GET')
+@api_view(["GET"])
+def GetAllRestaurantsAAA(request):
+    users = RestaurantMenuModel.objects.all()
+    serializer = RestaurantMenuAllSerializer(users, many=True)
+    return Response(serializer.data)
 
 
 # # updating restaurant uncritical info by res-admin
