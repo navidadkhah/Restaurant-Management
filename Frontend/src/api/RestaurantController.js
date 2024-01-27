@@ -31,4 +31,8 @@ export const restaurantAdminLogin_API = async(loginData) => {
     return res
 };
 
-export const getRestaurantMenu_API = async() => {};
+export const getRestaurantMenu_API = async(restaurantName) => {
+    let api = '/allMenu/' + restaurantName
+    const res = await API_restaurant.get(api);
+    return res;
+};
