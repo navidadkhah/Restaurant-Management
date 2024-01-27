@@ -5,6 +5,7 @@ from django.db import models
 class Orders(models.Model):
     id = models.AutoField(primary_key=True)
     userEmail = models.EmailField(max_length=50)
+    userPhone = models.CharField(max_length=11)
     restaurantName = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add = True)
     Price = models.IntegerField()
@@ -14,6 +15,7 @@ class Orders(models.Model):
 # this model creates reservation model in database for placing a reservation
 class Reservations(models.Model):
     id = models.AutoField(primary_key=True)
+    userPhone = models.CharField(max_length=11)
     userEmail = models.EmailField(max_length=50)
     restaurantName = models.CharField(max_length=50)
     date = models.DateTimeField(auto_now_add = True)
