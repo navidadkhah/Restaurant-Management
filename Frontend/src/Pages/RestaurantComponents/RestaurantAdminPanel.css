@@ -90,3 +90,14 @@
     font-weight: 600;
     font-size: 24px
 }
+
+.set-admin-panel {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
+}
+
+.set-admin-panel button {
+    margin: 0 20px;
+    color: white;
+}

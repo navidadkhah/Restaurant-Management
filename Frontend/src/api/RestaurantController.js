@@ -36,3 +36,15 @@ export const getRestaurantMenu_API = async(restaurantName) => {
     const res = await API_restaurant.get(api);
     return res;
 };
+
+export const deleteRestaurant_API = async(restaurantName) => {
+    let api = '/deleteRestaurant/' + restaurantName
+    const res = await API_restaurant.delete(api);
+    return res;
+};
+
+export const deleteFood_API = async(restaurantName, foodName) => {
+    let api = '/deleteRestaurant/' + restaurantName + "/" + foodName
+    const res = await API_restaurant.delete(api);
+    return res;
+};

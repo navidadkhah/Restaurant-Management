@@ -1,37 +1,47 @@
 #customers {
-  font-family: Arial, Helvetica, sans-serif;
-  border-collapse: collapse;
-  width: 100%;
-  overflow: scroll;
-  margin: 0 0 20px 0;
+    font-family: Arial, Helvetica, sans-serif;
+    border-collapse: collapse;
+    width: 100%;
+    overflow: scroll;
+    margin: 0 0 20px 0;
 }
 
 #customers td,
 #customers th {
-  padding: 8px;
+    padding: 8px;
 }
 
 #customers tr {
-  text-transform: capitalize;
+    text-transform: capitalize;
 }
 
 #customers tr:nth-child(even) {
-  background-color: rgb(200, 191, 231);
+    background-color: rgb(200, 191, 231);
 }
 
 #customers tr:nth-child(odd) {
-  background-color: rgb(169, 155, 224);
+    background-color: rgb(169, 155, 224);
 }
 
 #customers tr:hover {
-  background-color: rgb(119, 95, 227);
-  color: aliceblue;
+    background-color: rgb(119, 95, 227);
+    color: aliceblue;
 }
 
 #customers th {
-  padding-top: 12px;
-  padding-bottom: 12px;
-  text-align: left;
-  background-color: rgb(36, 21, 86);
-  color: white;
+    padding-top: 12px;
+    padding-bottom: 12px;
+    text-align: left;
+    background-color: rgb(36, 21, 86);
+    color: white;
+}
+
+.delete-td {
+    color: red;
+    cursor: pointer;
+    transition: 0.1s ease;
+}
+
+.delete-td:hover {
+    rotate: 10deg;
 }

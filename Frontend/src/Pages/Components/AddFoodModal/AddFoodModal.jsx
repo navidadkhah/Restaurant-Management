@@ -1,8 +1,7 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
-import {
-  addFood_API
-} from "../../../api/RestaurantController";
+import { ToastContainer, toast } from "react-toastify";
+import { addFood_API } from "../../../api/RestaurantController";
 import "./AddFoodModal.css";
 
 const AddFoodModal = ({ isOpen, onRequestClose, restaurantName }) => {
@@ -13,28 +12,63 @@ const AddFoodModal = ({ isOpen, onRequestClose, restaurantName }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const foodData = {
-      restaurantName: restaurantName,
-      foodName: foodName,
-      foodDescription: foodDesc,
-      foodImage: foodPhoto,
-      foodPrice: foodPrice,
-    };
+    const fileSizeInBytes = foodPhoto.size;
+    const fileSizeInKB = fileSizeInBytes / 1024;
+    if (fileSizeInKB > 500) {
+      notify("The image size is high", "error");
+    } else {
+      const foodData = {
+        restaurantName: restaurantName,
+        foodName: foodName,
+        foodDescription: foodDesc,
+        foodImage: foodPhoto,
+        foodPrice: foodPrice,
+      };
 
-    // console.log(restaurantData.restaurantImage)
-    try {
-      await addFood_API(foodData);
-      console.log("success");
-    } catch (error) {
-      console.error(error);
+      // console.log(restaurantData.restaurantImage)
+      try {
+        await addFood_API(foodData);
+        console.log("success");
+        notify("Restaurant successfully added", "success");
+      } catch (error) {
+        console.error(error);
+        notify(error.response.data, "error");
+
+      }
+      onRequestClose();
     }
-    onRequestClose();
   };
 
   const bg = {
     overlay: {
       background: "rgb(0,0,0,0.6)",
     },
+  };
+
+  const notify = (msg, type) => {
+    if (type === "error") {
+      toast.error(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (type === "success") {
+      toast.success(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }
   };
 
   return (
@@ -100,6 +134,7 @@ const AddFoodModal = ({ isOpen, onRequestClose, restaurantName }) => {
         <br />
         <button onClick={(e) => handleSubmit(e)}>Add Restaurant</button>
       </form>
+      <ToastContainer />
     </Modal>
   );
 };

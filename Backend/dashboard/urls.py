@@ -10,6 +10,8 @@ urlpatterns = [
     path('CreateSiteAdmin/',view=views.CreateRestaurant),
     path('GetCreateSiteAdmin/',view=views.GetAllRestaurants),
     path('restaurantAdminLoginView/',view=views.restaurantAdminLoginView),
+    path('deleteRestaurant/<slug:restaurantName>',view=views.DeleteRestaurant),
+    path('deleteRestaurant/<slug:restaurantName>/<slug:foodName>',view=views.DeleteFood),
     path('test/',view=views.GetAllRestaurantsAAA),
     
 
