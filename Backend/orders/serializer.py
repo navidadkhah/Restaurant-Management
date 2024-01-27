@@ -9,5 +9,5 @@ class OrdersSerializer(serializers.ModelSerializer):
 
 class ReservationsSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Reservations
-        fields = '__all__'
+      model = Reservations
+      fields = '__all__'
