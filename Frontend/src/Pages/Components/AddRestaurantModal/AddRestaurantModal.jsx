@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import Modal from "react-modal";
 import "./AddRestaurantModal.css";
+import { ToastContainer, toast } from "react-toastify";
+
 import { addRestaurant_API } from "../../../api/RestaurantController";
 
 const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
@@ -15,36 +17,69 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const restaurantData = {
-      restaurantName: restaurantName,
-      restaurantDescription: restaurantDesc,
-      restaurantType: restaurantType,
-      restaurantLocation: restaurantLocation,
-      restaurantUsername: restaurantUsername,
-      restaurantPassword: restaurantPassword,
-      restaurantImage: restaurantPhoto,
-      restaurantRate: restaurantRate,
-    };
+    const fileSizeInBytes = restaurantPhoto.size;
+    const fileSizeInKB = fileSizeInBytes / 1024;
+    if (fileSizeInKB > 500) {
+      notify("The image size is high", "error");
+    } else {
+      const restaurantData = {
+        restaurantName: restaurantName,
+        restaurantDescription: restaurantDesc,
+        restaurantType: restaurantType,
+        restaurantLocation: restaurantLocation,
+        restaurantUsername: restaurantUsername,
+        restaurantPassword: restaurantPassword,
+        restaurantImage: restaurantPhoto,
+        restaurantRate: restaurantRate,
+      };
 
-    console.log(restaurantData);
+      console.log(restaurantData);
 
-    // console.log(restaurantData.restaurantImage)
-    try {
-      await addRestaurant_API(restaurantData);
-      console.log("success");
-    } catch (error) {
-      console.error(error);
+      // console.log(restaurantData.restaurantImage)
+      try {
+        await addRestaurant_API(restaurantData);
+        console.log("success");
+        notify("Restaurant successfully added", "success");
+      } catch (error) {
+        console.error(error);
+        notify(error.response.data, "error");
+      }
+      console.log("Submitted data:", restaurantData);
+      onRequestClose();
     }
-    console.log("Submitted data:", restaurantData);
-    onRequestClose();
   };
 
-   const bg = {
-     overlay: {
-       background: "rgb(0,0,0,0.6)",
+  const bg = {
+    overlay: {
+      background: "rgb(0,0,0,0.6)",
+    },
+  };
 
-     },
-   };
+  const notify = (msg, type) => {
+    if (type === "error") {
+      toast.error(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    } else if (type === "success") {
+      toast.success(msg, {
+        position: "top-left",
+        autoClose: 3000,
+        hideProgressBar: false,
+        closeOnClick: true,
+        pauseOnHover: false,
+        draggable: false,
+        progress: undefined,
+        theme: "light",
+      });
+    }
+  };
 
   return (
     <Modal
@@ -150,6 +185,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
         <br />
         <button onClick={(e) => handleSubmit(e)}>Add Restaurant</button>
       </form>
+      <ToastContainer />
     </Modal>
   );
 };
