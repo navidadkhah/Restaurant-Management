@@ -1,0 +1,13 @@
+.restaurant-page-container {
+    display: flex;
+    flex-direction: column;
+}
+
+.food-cards {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+}

@@ -8,16 +8,16 @@ import { RestaurantAdminPanel } from "./Pages/RestaurantComponents/RestaurantAdm
 import { RestaurantAdminLogin } from "./Pages/RestaurantComponents/RestaurantAdminLogin";
 import { UserProfile } from "./Pages/UserProfile/UserProfile";
 import { useEffect, useState } from "react";
-import { ToastContainer} from "react-toastify";
+import { ToastContainer } from "react-toastify";
 import { WebPrivateRoute } from "./utils/WebPrivateRoute.jsx";
 import { RestaurantPrivateRoute } from "./utils/RestaurantPrivateRoute.jsx";
 import { ProfilePrivateRoute } from "./utils/ProfilePrivateRoute.jsx";
 import { OrderBag } from "./Pages/orderBag/OrderBag.jsx";
-
+import RestaurantPage from "./Pages/RestaurantPage/RestaurantPage";
 
 function App() {
   const [user, setUser] = useState();
-  
+
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
   }, []);
@@ -34,8 +34,8 @@ function App() {
             path="/restaurant-admin"
             element={<RestaurantAdminLogin />}
           ></Route>
-          <Route element={<OrderBag />} path="/Shopping-cart" exact /> 
-                   
+          <Route element={<OrderBag />} path="/Shopping-cart" exact />
+
           <Route element={<WebPrivateRoute />}>
             <Route element={<AdminDashboard />} path="/admin-dashboard" exact />
           </Route>
@@ -48,6 +48,7 @@ function App() {
           </Route>
           <Route element={<ProfilePrivateRoute />}>
             <Route element={<UserProfile />} path="/profile" exact />
+            <Route element={<RestaurantPage />} path="/restaurant/:name" />
           </Route>
         </Routes>
       </BrowserRouter>

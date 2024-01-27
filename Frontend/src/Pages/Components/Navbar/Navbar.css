@@ -1,5 +1,5 @@
 .navbar {
-    position: fixed;
+    position: sticky;
     top: 0px;
     background: linear-gradient( rgb(27, 196, 237, 1), rgba(151, 201, 213, 1));
     padding: 0px;
