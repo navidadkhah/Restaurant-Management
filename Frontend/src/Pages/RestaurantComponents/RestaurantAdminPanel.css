@@ -53,6 +53,10 @@
     box-shadow: 7px 7px 10px rgb(15, 50, 91);
 }
 
+.df {
+    color: #000;
+}
+
 .res-info-cell p {
     background-color: rgb(9, 18, 79);
     margin: 5px 0;

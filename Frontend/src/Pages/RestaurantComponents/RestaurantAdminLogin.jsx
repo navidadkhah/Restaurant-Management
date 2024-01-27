@@ -19,7 +19,6 @@ export const RestaurantAdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
     if (data.restaurantUsername === "" || data.restaurantPassword === "") {
       notify("please fill all fields!", "error");
     } else {
@@ -30,7 +29,6 @@ export const RestaurantAdminLogin = () => {
       try {
         const res = await restaurantAdminLogin_API(loginData);
         setRestaurantData(res.data.detail);
-        console.log(res.data.detail);
         localStorage.setItem("res_Token", JSON.stringify(res.data.detail));
         navigate("/restaurant-admin-panel");
         notify("successfylly logged in!", "success");

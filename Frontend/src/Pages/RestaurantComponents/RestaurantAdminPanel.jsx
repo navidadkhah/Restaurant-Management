@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
 import AddFoodModal from "../Components/AddFoodModal/AddFoodModal";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
-import { Table } from "../Components/Table/Table";
 import "./RestaurantAdminPanel.css";
 import { getRestaurantMenu_API } from "../../api/RestaurantController";
 import { useNavigate } from "react-router-dom";
@@ -29,19 +28,17 @@ export const RestaurantAdminPanel = () => {
       restaurantRate: item.restaurantRate,
     });
     setRestaurantData(item);
-    // try {
-    //   console.log(restaurantData.restaurantName);
-    //   getRestaurantMenu_API({
-    //     restaurantName: restaurantData.restaurantName,
-    //   }).then((res) => setRestaurantMenu(res.data));
-    //   console.log("test");
-    //   console.log(restaurantMenu);
-    // } catch (error) {
-    //   console.error(error);
-    // }
+    getRestaurantMenu_API(
+      JSON.parse(localStorage.getItem("res_Token")).restaurantName
+    ).then((res) => {
+      setRestaurantMenu(res.data);
+      console.log(res.data)
+    });
+    
   }, []);
 
   const openAddModal = () => {
+    console.log(restaurantMenu);
     setAddModalOpen(true);
     document.querySelectorAll(".admin-dash").forEach(function (el) {
       document.body.style.overflow = "hidden";
@@ -63,7 +60,7 @@ export const RestaurantAdminPanel = () => {
   return (
     <div className="admin-dash">
       <span className="admin-dash-title">Restaurant Admin Panel</span>
-      <CardPanel title="Current Food count" number="20" />
+      <CardPanel title="Current Food count" number={restaurantMenu?.length} />
       <div className="res-infos">
         <div className="res-info-cell">
           <p>restaurant name</p>
@@ -91,10 +88,26 @@ export const RestaurantAdminPanel = () => {
         <div className="admin-list-button">
           <button onClick={openAddModal}>Add</button>
           <button onClick={logouthandler} className="admin-list-button-logout">
-            LogOut
+            Logout
           </button>
         </div>
-        <Table />
+        {restaurantMenu && (
+          <table id="customers">
+            <tr>
+              <th>Name</th>
+              <th>price</th>
+              <th>Description</th>
+            </tr>
+
+            {restaurantMenu.map((menuItem, index) => (
+              <tr key={index}>
+                <td>{menuItem.foodName}</td>
+                <td> {menuItem.foodPrice}</td>
+                <td> {menuItem.foodDescription}</td>
+              </tr>
+            ))}
+          </table>
+        )}
       </div>
 
       <AddFoodModal
