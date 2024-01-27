@@ -63,6 +63,7 @@ export const Homepage = () => {
               logo={res.restaurantImage}
               name={res.restaurantName}
               type={res.restaurantType}
+              rate={res.restaurantRate}
             />
           ))
         ) : (

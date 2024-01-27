@@ -8,12 +8,14 @@ export const Table = (props) => {
           <th>Name</th>
           <th>Type</th>
           <th>Address</th>
+          <th>Rate</th>
         </tr>
         {props.restaurants.map((res) => (
           <tr>
             <td>{res.restaurantName}</td>
             <td>{res.restaurantType}</td>
             <td>{res.restaurantLocation}</td>
+            <td>{res.restaurantRate}</td>
           </tr>
         ))}
       </table>

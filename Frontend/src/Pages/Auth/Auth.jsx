@@ -246,6 +246,7 @@ export const Auth = ({ setUser }) => {
               resetForm();
             }}
             style={{ fontSize: "12px", cursor: "pointer" }}
+            className="islogin-tab"
           >
             {isSignup
               ? "Already have an account? Login."

@@ -69,3 +69,11 @@
     height: 2rem;
     align-self: flex-end;
 }
+
+.islogin-tab {
+    color: rgb(103, 114, 114);
+}
+
+.islogin-tab:hover {
+    color: rgb(0, 0, 0);
+}
