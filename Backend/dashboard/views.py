@@ -101,6 +101,21 @@ def GetAllRestaurants(request):
     serializer = RestaurantAdminGetMenuSerializer(users, many=True)
     return Response(serializer.data)
 
+# returns all the restaurants in homepage
+@swagger_auto_schema(method='DELETE')
+@api_view(["DELETE"])
+def DeleteRestaurant(request,restaurantName):
+    try:
+        delRes = siteAdminModel.objects.get(restaurantName=restaurantName)
+    except siteAdminModel.DoesNotExist:
+        return Response(status=status.HTTP_404_NOT_FOUND)
+    opertaion = delRes.delete()
+    if opertaion:
+        return Response(status=status.HTTP_200_OK)
+    else:
+        return Response(status=status.HTTP_403_FORBIDDEN)
+
+
 @swagger_auto_schema(method='POST', request_body=RestaurantAdminLoginSerializer)
 @api_view(["POST"])
 def restaurantAdminLoginView(request):
