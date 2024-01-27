@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { Rate } from "../Rate/Rate";
+
 import "../Cards/Cards.css";
 
 export const Cards = (props) => {
@@ -29,6 +31,7 @@ export const Cards = (props) => {
           <div className="cart-food-type">
             <p>{props.type} </p>
           </div>
+          <Rate rate={props.rate} />
         </div>
       </div>
     </div>
