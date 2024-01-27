@@ -10,7 +10,7 @@ class RestaurantMenuModelSerializer(serializers.ModelSerializer):
 class RestaurantMenuAllSerializer(serializers.ModelSerializer):
    class Meta:
       model = RestaurantMenuModel
-      fields = ('restaurantName',)
+      fields = '__all__'
 
 class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
    class Meta:
