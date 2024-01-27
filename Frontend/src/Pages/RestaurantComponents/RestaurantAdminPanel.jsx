@@ -3,6 +3,10 @@ import AddFoodModal from "../Components/AddFoodModal/AddFoodModal";
 import { CardPanel } from "../Components/CardPanel/CardPanel";
 import "./RestaurantAdminPanel.css";
 import { getRestaurantMenu_API } from "../../api/RestaurantController";
+import { MdDelete } from "react-icons/md";
+import { deleteFood_API } from "../../api/RestaurantController";
+
+
 import { useNavigate } from "react-router-dom";
 
 export const RestaurantAdminPanel = () => {
@@ -62,6 +66,16 @@ export const RestaurantAdminPanel = () => {
     navigate("/home");
   };
 
+   const handleS = (name) => {
+
+     deleteFood_API(info.restaurantName,name)
+       .then((res) => {
+         window.location.reload();
+       })
+       .catch((error) => {
+       });
+   };
+
   return (
     <div className="admin-dash">
       <span className="admin-dash-title">Restaurant Admin Panel</span>
@@ -96,22 +110,29 @@ export const RestaurantAdminPanel = () => {
             Logout
           </button>
         </div>
-        {restaurantMenu!=null ? (
+        {restaurantMenu != null ? (
           <table id="customers">
             <tr>
               <th>Name</th>
               <th>price</th>
               <th>Description</th>
+              <th>Delete</th>
             </tr>
             {restaurantMenu?.map((menuItem, index) => (
               <tr key={index}>
                 <td>{menuItem.foodName}</td>
                 <td>{menuItem.foodPrice}</td>
                 <td>{menuItem.foodDescription}</td>
+                <td
+                  onClick={(e) => handleS(menuItem.foodName)}
+                  className="delete-td"
+                >
+                  <MdDelete />
+                </td>
               </tr>
             ))}
           </table>
-        ):(
+        ) : (
           <p className="nothing-show">There is no food to show!</p>
         )}
       </div>
