@@ -83,3 +83,10 @@
     font-size: 18px;
     font-weight: 600;
 }
+
+.nothing-show {
+    display: flex;
+    margin: 10px auto;
+    font-weight: 600;
+    font-size: 24px
+}
