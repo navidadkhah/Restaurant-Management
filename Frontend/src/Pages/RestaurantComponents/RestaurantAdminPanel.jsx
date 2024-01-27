@@ -27,17 +27,17 @@ export const RestaurantAdminPanel = () => {
       restaurantLocation: item.restaurantLocation,
       restaurantRate: item.restaurantRate,
     });
-   try {
+
      setRestaurantData(item);
      getRestaurantMenu_API(
        JSON.parse(localStorage.getItem("res_Token")).restaurantName
      ).then((res) => {
        setRestaurantMenu(res.data);
        console.log(res.data);
-     });
-   } catch (error) {
-     console.log(error.response.data);
-   }
+     }).catch(error => {
+        console.log(error.response.data)
+      });
+   
 
     
   }, []);
@@ -103,16 +103,16 @@ export const RestaurantAdminPanel = () => {
               <th>price</th>
               <th>Description</th>
             </tr>
-            {restaurantMenu.map((menuItem, index) => (
+            {restaurantMenu?.map((menuItem, index) => (
               <tr key={index}>
                 <td>{menuItem.foodName}</td>
-                <td> {menuItem.foodPrice}</td>
-                <td> {menuItem.foodDescription}</td>
+                <td>{menuItem.foodPrice}</td>
+                <td>{menuItem.foodDescription}</td>
               </tr>
             ))}
           </table>
         ):(
-          <p>nooooooo</p>
+          <p className="nothing-show">There is no food to show!</p>
         )}
       </div>
 
