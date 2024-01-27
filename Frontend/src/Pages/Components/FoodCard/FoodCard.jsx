@@ -14,10 +14,14 @@ function FoodCard(props) {
       <Card style={{ width: "18rem" }} className="food-card">
         <Card.Img variant="top" src={`/assets/backendImage/${img}`} />
         <Card.Body>
-          <Card.Title><b>{props.name}</b></Card.Title>
-          <Card.Text>{props.desc}</Card.Text>
-          <Card.Title><b>${props.price}</b></Card.Title>
-          <Button variant="primary">Add to cart</Button>
+          <Card.Title className="food-price food-title">
+            <b>{props.name}</b>
+          </Card.Title>
+          <Card.Text className="food-price food-desc">{props.desc}</Card.Text>
+          <Card.Title>
+            <b className="food-price">${props.price}</b>
+          </Card.Title>
+          <Button className="food-button" variant="primary">Add to cart</Button>
         </Card.Body>
       </Card>
     </div>

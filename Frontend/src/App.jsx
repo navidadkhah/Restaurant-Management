@@ -48,8 +48,8 @@ function App() {
           </Route>
           <Route element={<ProfilePrivateRoute />}>
             <Route element={<UserProfile />} path="/profile" exact />
-            <Route element={<RestaurantPage />} path="/restaurant/:name" />
           </Route>
+          <Route element={<RestaurantPage />} path="/restaurant/:name" />
         </Routes>
       </BrowserRouter>
       <ToastContainer />
