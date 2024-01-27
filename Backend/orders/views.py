@@ -65,8 +65,9 @@ def reservation_create_view(request):
     serializer = ReservationsSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
-        subject = 'Reservation Placement'
-        message = f'Hi {user.username}, thank you for your Reservations! the table you requested is reserved for you today. the possible delay time is 15 minute and the table is at your service for 2 hours. For more info please contact the restaurant.\\n with love from tameshk💜'
+        resName = serializer.data['restaurantName']
+        subject = f'Reservation for {resName}'
+        message = f'Hi {user.firstName + " " + user.lastName}, thank you for your Reservations!\nthe table you requested is reserved for you today. the possible delay time is 15 minute and the table is at your service for 2 hours. For more info please contact the restaurant.\nwith love from tameshk💜'
         email_from = settings.EMAIL_HOST_USER
         recipient_list = [user_email, ]
         send_mail( subject, message, email_from, recipient_list )
