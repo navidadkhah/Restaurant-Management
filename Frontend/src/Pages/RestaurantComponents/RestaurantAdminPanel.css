@@ -34,3 +34,52 @@
     background-color: rgb(60, 160, 150);
     border-radius: 15px;
 }
+
+.res-infos {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.res-info-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgb(9, 18, 79);
+    border-radius: 5px;
+    padding: 0px 5px;
+    box-shadow: 7px 7px 10px rgb(15, 50, 91);
+}
+
+.df {
+    color: #000;
+}
+
+.res-info-cell p {
+    background-color: rgb(9, 18, 79);
+    margin: 5px 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    padding: 0;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+.res-info-cell p:nth-child(2) {
+    background-color: rgb(138, 144, 184);
+    margin: 5px 0 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}

@@ -45,7 +45,7 @@ export const AdminDashboard = () => {
         <div className="admin-list-button">
           <button onClick={openAddModal}>Add</button>
           <button onClick={logouthandler} className="admin-list-button-logout">
-            LogOut
+            Logout
           </button>
         </div>
         <Table restaurants={restaurants} />

@@ -19,8 +19,7 @@ export const RestaurantAdminLogin = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.log(data);
-    if (data.username === "" || data.password === "") {
+    if (data.restaurantUsername === "" || data.restaurantPassword === "") {
       notify("please fill all fields!", "error");
     } else {
       const loginData = {
@@ -28,10 +27,9 @@ export const RestaurantAdminLogin = () => {
         restaurantPassword: data.restaurantPassword,
       };
       try {
-        const res = restaurantAdminLogin_API(loginData).then((res) => {
-          setRestaurantData(res.data.detail);
-          localStorage.setItem("res_admin", JSON.stringify(res.data.detail));
-        });
+        const res = await restaurantAdminLogin_API(loginData);
+        setRestaurantData(res.data.detail);
+        localStorage.setItem("res_Token", JSON.stringify(res.data.detail));
         navigate("/restaurant-admin-panel");
         notify("successfylly logged in!", "success");
       } catch (error) {
@@ -89,7 +87,7 @@ export const RestaurantAdminLogin = () => {
               name="restaurantUsername"
               placeholder="Username"
               onChange={handleChange}
-              value={data.email}
+              value={data.restaurantUsername}
             />
           </div>
           <div>
@@ -99,7 +97,7 @@ export const RestaurantAdminLogin = () => {
               name="restaurantPassword"
               placeholder="Password"
               onChange={handleChange}
-              value={data.password}
+              value={data.restaurantPassword}
             />
           </div>
 

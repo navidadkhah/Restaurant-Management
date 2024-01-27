@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { Rate } from "../Rate/Rate";
 import "../Cards/Cards.css";
 import "../../..";
 
@@ -12,7 +13,9 @@ export const Cards = (props) => {
   }, [props.logo]);
   return (
     <div className="card">
-      <div className="card-image">{ <img src={`/assets/backendImage/${img}`} alt="img" />}</div>
+      <div className="card-image">
+        {<img src={`/assets/backendImage/${img}`} alt="img" />}
+      </div>
       <div className="aa">
         <div className="card-title">
           <p>{props.name} </p>
@@ -22,7 +25,7 @@ export const Cards = (props) => {
             <p>{props.type} </p>
           </div>
           <div className="cart-restaurant-rate">
-            {/* <Rate rate={3}></Rate> */}
+            <Rate rate={props.rate}></Rate>
           </div>
         </div>
       </div>
