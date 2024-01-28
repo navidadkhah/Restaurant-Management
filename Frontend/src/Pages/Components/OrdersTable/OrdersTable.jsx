@@ -1,7 +1,6 @@
-import "../Table/Table.css";
-import { ToastContainer, toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
-import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "../Table/Table.css";
 
 export const OrdersTable = (props) => {
   const timeAgo = (createdAtDate) => {

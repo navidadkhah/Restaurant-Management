@@ -7,6 +7,8 @@ import { MdDelete } from "react-icons/md";
 import { deleteFood_API } from "../../api/RestaurantController";
 
 import { useNavigate } from "react-router-dom";
+import { getRestaurantOrders_API } from "../../api/OrderController";
+import { RestaurantAdminOrderTable } from "../Components/RestaurantAdminOrderTable/RestaurantAdminOrderTable";
 
 export const RestaurantAdminPanel = () => {
   const navigate = useNavigate();
@@ -23,7 +25,7 @@ export const RestaurantAdminPanel = () => {
   const [isMenu, setIsMenu] = useState(true);
   const [isOrders, setIsOrders] = useState(false);
   const [isReserve, setIsReserve] = useState(false);
-
+  const [orders, setOrders] = useState([]);
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("res_Token"));
     setInfo({
@@ -33,7 +35,9 @@ export const RestaurantAdminPanel = () => {
       restaurantLocation: item.restaurantLocation,
       restaurantRate: item.restaurantRate,
     });
-
+    getRestaurantOrders_API(item.restaurantName).then((res) =>
+      setOrders(res.data)
+    );
     setRestaurantData(item);
     getRestaurantMenu_API(
       JSON.parse(localStorage.getItem("res_Token")).restaurantName
@@ -46,7 +50,7 @@ export const RestaurantAdminPanel = () => {
         console.log(error.response.data);
       });
   }, []);
-
+  console.log(orders);
   const handleAdmin = (e) => {
     e.preventDefault();
     console.log(e.target.name);
@@ -107,8 +111,7 @@ export const RestaurantAdminPanel = () => {
           Reservations
         </button>
       </div>
-      {isMenu &&
-      (
+      {isMenu && (
         <div>
           <CardPanel
             title="Current Food count"
@@ -181,6 +184,7 @@ export const RestaurantAdminPanel = () => {
           />
         </div>
       )}
+      {isOrders && <RestaurantAdminOrderTable orders={orders} />}
     </div>
   );
 };
