@@ -28,16 +28,13 @@ export const UserProfile = () => {
       address: item.address,
     });
 
-    try {
       getUserOrders_API(item.phoneNumber)
         .then((res) => setOrders(res.data))
         .catch((error) => console.error(error));
       getUserReservations_API(item.phoneNumber)
         .then((res) => setReservations(res.data))
         .catch((error) => console.error(error));
-    } catch (error) {
-      console.error("error in loading user: ", error);
-    }
+   
   }, []);
   console.log(reservations);
   return (

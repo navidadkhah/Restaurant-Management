@@ -45,10 +45,6 @@ export const Homepage = () => {
     }
   }, []);
 
-  const loginRoute = () => {
-    <Navigate to={"/"} />;
-  };
-
   const filteredRestaurants = restaurants.filter((res) =>
     res.restaurantName.toLowerCase().includes(search.toLowerCase())
   );
