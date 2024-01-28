@@ -41,13 +41,13 @@ export const RestaurantAdminPanel = () => {
       restaurantRate: item.restaurantRate,
     });
     try {
-      getRestaurantOrders_API(item.restaurantName).then((res) =>
-        setOrders(res.data)
-      );
+      getRestaurantOrders_API(item.restaurantName)
+        .then((res) => setOrders(res.data))
+        .catch((error) => console.error(error));
       setRestaurantData(item);
-      getRestaurantReservations_API(item.restaurantName).then((res) =>
-        setReservations(res.data)
-      );
+      getRestaurantReservations_API(item.restaurantName)
+        .then((res) => setReservations(res.data))
+        .catch((error) => console.error(error));
     } catch (error) {}
     getRestaurantMenu_API(
       JSON.parse(localStorage.getItem("res_Token")).restaurantName

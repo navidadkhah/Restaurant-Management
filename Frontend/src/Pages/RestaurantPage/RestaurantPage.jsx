@@ -5,7 +5,6 @@ import { getRestaurantDetail_API } from "../../api/RestaurantController";
 import FoodCard from "../Components/FoodCard/FoodCard";
 import { Navbar } from "../Components/Navbar/Navbar";
 import html2canvas from 'html2canvas'
-import jsPDF from 'jspdf '
 import "./RestaurantPage.css";
 import { Dropdown } from "primereact/dropdown";
 import Button from "react-bootstrap/esm/Button";
