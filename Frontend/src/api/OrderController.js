@@ -10,3 +10,8 @@ export const createOrder_API = async (formData) => {
   });
   return res;
 };
+
+export const getUserOrders_API = async (phoneNumber) => {
+  const res = await API_restaurant.get(`/Orders/users/${phoneNumber}`);
+  return res;
+};
