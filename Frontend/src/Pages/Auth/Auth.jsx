@@ -265,6 +265,17 @@ export const Auth = ({ setUser }) => {
               ? "Already have an account? Login."
               : "Don't have an account. Sign up."}
           </span>
+          {isSignup && (
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                handleGoogleLogin(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              buttonText="Login with google"
+            />
+          )}
           <button
             className="button"
             id="infoButton"
@@ -275,16 +286,7 @@ export const Auth = ({ setUser }) => {
           </button>
         </form>
       </div>
-      {isSignup && (
-        <GoogleLogin
-          onSuccess={(credentialResponse) => {
-            handleGoogleLogin(credentialResponse);
-          }}
-          onError={() => {
-            console.log("Login Failed");
-          }}
-        />
-      )}
+
       <ToastContainer />
     </div>
   );

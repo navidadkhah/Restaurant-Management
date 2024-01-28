@@ -58,6 +58,7 @@ export const OrderBag = () => {
     formData.append("orders", orders);
     formData.append("restaurantName", cart[0].restaurant)
     try {
+      console.log(formData)
       createOrder_API(formData)
       notify("Order created successfully", "success")
     } catch (error) {
