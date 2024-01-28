@@ -21,7 +21,7 @@ function FoodCard(props) {
           <Card.Title>
             <b className="food-price">${props.price}</b>
           </Card.Title>
-          <Button className="food-button" variant="primary">Add to cart</Button>
+          <Button className="food-button" variant="primary" onClick={props.addToCart}>Add to cart</Button>
         </Card.Body>
       </Card>
     </div>

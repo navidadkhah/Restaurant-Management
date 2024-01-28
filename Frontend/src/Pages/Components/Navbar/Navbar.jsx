@@ -7,14 +7,22 @@ import "./Navbar.css";
 import { Auth } from "../../Auth/Auth";
 import { FaShoppingCart } from "react-icons/fa";
 
-export const Navbar = ({ setSearch }) => {
+export const Navbar = ({ setSearch, tmp }) => {
   const [isChecked, setIsChecked] = useState(true);
   const [user, setUser] = useState();
   const navigate = useNavigate();
-
+  const [cart, setCart] = useState([]);
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
-  }, []);
+    if (tmp) {
+      setCart(tmp);
+    } else {
+      const storedCart = localStorage.getItem("cart");
+      if (storedCart) {
+        setCart(JSON.parse(storedCart));
+      }
+    }
+  }, [tmp]);
 
   const handleCheckboxChange = () => {
     setIsChecked(!isChecked);
@@ -27,8 +35,9 @@ export const Navbar = ({ setSearch }) => {
   const handleLogout = () => {
     localStorage.removeItem("user-Token");
     localStorage.removeItem("User");
+    localStorage.removeItem("cart");
     setUser(null);
-    navigate('/home')
+    navigate("/home");
   };
 
   const handleLogin = () => {
@@ -63,13 +72,17 @@ export const Navbar = ({ setSearch }) => {
               <a href="/">Login</a>
             )}
           </i>
-         
-            <i>
-              <a href="/Shopping-cart" className="shopping-card" shop-item={3}>
-                <FaShoppingCart />
-              </a>
-            </i>
-        
+
+          <i>
+            <a
+              href="/Shopping-cart"
+              className="shopping-card"
+              shop-item={cart.length}
+            >
+              <FaShoppingCart />
+            </a>
+          </i>
+
           <i className="search"></i>
         </ul>
         <div className="container">
