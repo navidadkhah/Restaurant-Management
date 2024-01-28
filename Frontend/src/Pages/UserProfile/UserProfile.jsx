@@ -1,8 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { Navbar } from "../Components/Navbar/Navbar";
 import "./UserProfile.css";
-import { getUserOrders_API } from "../../api/OrderController";
+import {
+  getUserOrders_API,
+  getUserReservations_API,
+} from "../../api/OrderController";
 import { OrdersTable } from "../Components/OrdersTable/OrdersTable";
+import { ReservationTable } from "../Components/ReservationTable/ReservationTable";
 
 export const UserProfile = () => {
   const [orders, setOrders] = useState();
@@ -13,6 +17,7 @@ export const UserProfile = () => {
     phoneNumber: "",
     address: "",
   });
+  const [reservations, setReservations] = useState([]);
   useEffect(() => {
     var item = JSON.parse(localStorage.getItem("User"));
     setInfo({
@@ -22,9 +27,16 @@ export const UserProfile = () => {
       phoneNumber: item.phoneNumber,
       address: item.address,
     });
-    getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data));
+    try {
+      getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data));
+      getUserReservations_API(item.phoneNumber).then((res) =>
+        setReservations(res.data)
+      );
+    } catch (error) {
+      console.error("error in loading user: ", error);
+    }
   }, []);
-  console.log(orders);
+  console.log(reservations);
   return (
     <div>
       <Navbar />
@@ -59,6 +71,7 @@ export const UserProfile = () => {
       </div>
       <div className="prof-reserve">
         <span className="span-info">Reservations</span>
+        <ReservationTable reservation={reservations} />
       </div>
     </div>
   );
