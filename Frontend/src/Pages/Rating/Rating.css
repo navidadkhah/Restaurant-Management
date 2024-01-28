@@ -1,6 +1,5 @@
 .rating {
     display: flex;
-    margin: auto;
     justify-content: center;
     margin: 30px 0 20px 0;
 }

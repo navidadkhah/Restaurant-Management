@@ -28,20 +28,12 @@ export const Navbar = ({ setSearch, tmp }) => {
     setIsChecked(!isChecked);
   };
 
-  const profileHandle = () => {
-    <Navigate to={UserProfile} />;
-  };
-
   const handleLogout = () => {
     localStorage.removeItem("user-Token");
     localStorage.removeItem("User");
     localStorage.removeItem("cart");
     setUser(null);
     navigate("/home");
-  };
-
-  const handleLogin = () => {
-    <Navigate to={"/"} />;
   };
 
   const handleSearchChange = (e) => {
