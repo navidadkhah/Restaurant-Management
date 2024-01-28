@@ -29,10 +29,12 @@ export const UserProfile = () => {
     });
 
     try {
-      getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data));
-      getUserReservations_API(item.phoneNumber).then((res) =>
-        setReservations(res.data)
-      );
+      getUserOrders_API(item.phoneNumber)
+        .then((res) => setOrders(res.data))
+        .catch((error) => console.error(error));
+      getUserReservations_API(item.phoneNumber)
+        .then((res) => setReservations(res.data))
+        .catch((error) => console.error(error));
     } catch (error) {
       console.error("error in loading user: ", error);
     }
