@@ -1,12 +1,15 @@
+import { GoogleLogin } from "@react-oauth/google";
 import React, { useRef, useState } from "react";
 import { IoLogoSlack } from "react-icons/io";
+import { useNavigate } from "react-router-dom";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.min.css";
 import { login_API, signup_API } from "../../api/AuthController";
 import "./Auth.css";
-import { useNavigate } from "react-router-dom";
+import { jwtDecode } from "jwt-decode";
+
 export const Auth = ({ setUser }) => {
-  const navigate = useNavigate()
+  const navigate = useNavigate();
   const [isSignup, setIsSignup] = useState(false);
   const confirmRef = useRef();
   const [data, setData] = useState({
@@ -84,34 +87,44 @@ export const Auth = ({ setUser }) => {
         }
       }
     } else {
-       let flag_is_fill = true;
-         if (data['email'] === "") {
-           flag_is_fill = false;
-         }
-           if (data["password"] === "") {
-             flag_is_fill = false;
-           }
-       
-       if (!flag_is_fill) {
+      let flag_is_fill = true;
+      if (data["email"] === "") {
+        flag_is_fill = false;
+      }
+      if (data["password"] === "") {
+        flag_is_fill = false;
+      }
+
+      if (!flag_is_fill) {
         notify("Please fill all fields!", "error");
-       }
-       if(flag_is_fill){
-         const loginData = { email: data.email, password: data.password };
-         try {
-           const res = await login_API(loginData);
-           localStorage.setItem("user-Token", JSON.stringify(res.data.token));
-           localStorage.setItem("User", JSON.stringify(res.data.detail));
-           notify("successfylly logged in!", "success");
-           navigate('/home');
-         } catch (error) {
-          if (error.response!=="undefined"){
+      }
+      if (flag_is_fill) {
+        const loginData = { email: data.email, password: data.password };
+        try {
+          const res = await login_API(loginData);
+          localStorage.setItem("user-Token", JSON.stringify(res.data.token));
+          localStorage.setItem("User", JSON.stringify(res.data.detail));
+          notify("successfylly logged in!", "success");
+          navigate("/home");
+        } catch (error) {
+          if (error.response !== "undefined") {
             notify(error.response.data, "error");
-          } 
-         }
-       }
+          }
+        }
+      }
     }
   };
 
+  const handleGoogleLogin = (credentials) => {
+    const decoded = jwtDecode(credentials.credential);
+
+    setData({
+      ...data,
+      firstName: decoded.given_name,
+      email: decoded.email,
+      lastName: decoded.family_name,
+    });
+  };
   const notify = (msg, type) => {
     if (type === "error") {
       toast.error(msg, {
@@ -252,6 +265,17 @@ export const Auth = ({ setUser }) => {
               ? "Already have an account? Login."
               : "Don't have an account. Sign up."}
           </span>
+          {isSignup && (
+            <GoogleLogin
+              onSuccess={(credentialResponse) => {
+                handleGoogleLogin(credentialResponse);
+              }}
+              onError={() => {
+                console.log("Login Failed");
+              }}
+              buttonText="Login with google"
+            />
+          )}
           <button
             className="button"
             id="infoButton"
@@ -262,6 +286,7 @@ export const Auth = ({ setUser }) => {
           </button>
         </form>
       </div>
+
       <ToastContainer />
     </div>
   );

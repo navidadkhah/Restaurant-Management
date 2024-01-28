@@ -8,11 +8,17 @@ import "./RestaurantPage.css";
 
 const RestaurantPage = () => {
   const [restaurantMenu, setRestaurantMenu] = useState([]);
-  const [restaurantDetail, setRestaurantDetailu] = useState();
-  const params = useParams();
+  const [restaurantDetail, setRestaurantDetail] = useState();
+  const [cart, setCart] = useState([]);
 
+  const params = useParams();
   useEffect(() => {
-    console.log(params.name);
+    const storedCart = localStorage.getItem("cart");
+    if (storedCart) {
+      setCart(JSON.parse(storedCart));
+    }
+  }, []);
+  useEffect(() => {
     getRestaurantMenu_API(params.name)
       .then((res) => {
         setRestaurantMenu(res.data);
@@ -20,19 +26,39 @@ const RestaurantPage = () => {
       .catch((error) => {
         console.log(error.response.data);
       });
-     getRestaurantDetail_API(params.name)
-       .then((res) => {
-        setRestaurantDetailu(res.data[0]);
+
+    getRestaurantDetail_API(params.name)
+      .then((res) => {
+        setRestaurantDetail(res.data[0]);
         console.log(res.data[0].restaurantRate);
-       })
-       .catch((error) => {
-         console.log(error.data);
-       });
+      })
+      .catch((error) => {
+        console.log(error.data);
+      });
   }, [params.name]);
 
+  const addToCart = (food) => {
+    // Check if the cart is not empty and if the restaurant name is different
+    if (cart.length > 0 && cart[0].restaurant !== params.name) {
+      // Clear the cart if the restaurant name is different
+      setCart([]);
+    }
+
+    // Add the item to the cart
+    const newItem = {
+      name: food.foodName,
+      restaurant: params.name,
+      price: food.foodPrice,
+    };
+
+    setCart([...cart, newItem]);
+
+    // Store the updated cart in local storage
+    localStorage.setItem("cart", JSON.stringify([...cart, newItem]));
+  };
   return (
     <div className="restaurant-page-container">
-      <Navbar />
+      <Navbar tmp={cart}/>
       <div className="restaurant-details">
         <div className="restaurant-details-class">
           <p>Name:</p>
@@ -51,6 +77,7 @@ const RestaurantPage = () => {
           <p>
             {restaurantDetail?.restaurantRate.toFixed(1)} from   {restaurantDetail?.restaurantRateNumber} votes
           </p>
+
         </div>
       </div>
 
@@ -63,6 +90,7 @@ const RestaurantPage = () => {
               desc={item.foodDescription}
               logo={item.foodImage}
               price={item.foodPrice}
+              addToCart={() => addToCart(item)}
             />
           ))
         ) : (
