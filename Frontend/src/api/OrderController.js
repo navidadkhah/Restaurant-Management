@@ -5,5 +5,8 @@ const API_restaurant = axios.create({
 });
 
 export const createOrder_API = async (formData) => {
-  return await API_restaurant.post("/CreateOrders/", formData);
+  const res = await API_restaurant.post("/CreateOrders/", formData, {
+    headers: { "Content-Type": "application/json" },
+  });
+  return res;
 };

@@ -56,38 +56,48 @@ export const OrderBag = () => {
     formData.append("userPhone", user.phoneNumber);
     formData.append("Price", totalPrice);
     formData.append("orders", orders);
-    formData.append("restaurantName", cart[0].restaurant)
+    formData.append("restaurantName", cart[0].restaurant);
     try {
-      console.log(formData)
-      createOrder_API(formData)
-      notify("Order created successfully", "success")
+      console.log(formData);
+      createOrder_API(formData);
+      notify("Order created successfully", "success");
+      setCart([]);
+      setTotalPrice(0)
+      localStorage.removeItem("cart");
     } catch (error) {
-      notify("Something goes wrong! try again", "error")
+      notify("Something goes wrong! try again", "error");
     }
   };
 
   return (
     <div>
-      <Navbar />
-      <div className="shop-card-content">
-        <div className="shop-card-card">
-          <h3>Restaurant: {cart.length > 0 ? cart[0].restaurant : "sample"}</h3>
-          <p className="shop-card-line"></p>
-          <div className="orders">
-            {cart.length > 0 &&
-              cart.map((food, index) => (
-                <div key={index} className="shop-card-orders">
-                  <span>Name: {food.name}</span>
-                  <span>Price: {food.price}</span>
-                </div>
-              ))}
+      <Navbar tmp={cart}/>
+      {cart.length > 0 && (
+        <div className="shop-card-content">
+          <div className="shop-card-card">
+            <h3>
+              Restaurant: {cart.length > 0 ? cart[0].restaurant : "sample"}
+            </h3>
+            <p className="shop-card-line"></p>
+            <div className="orders">
+              {cart.length > 0 &&
+                cart.map((food, index) => (
+                  <div key={index} className="shop-card-orders">
+                    <span>Name: {food.name}</span>
+                    <span>Price: {food.price}</span>
+                  </div>
+                ))}
+            </div>
+            <p>Total Price: {totalPrice}</p>
+            <button
+              className="button-order-shopping-card"
+              onClick={handleOrder}
+            >
+              Order Now!
+            </button>
           </div>
-          <p>Total Price: {totalPrice}</p>
-          <button className="button-order-shopping-card" onClick={handleOrder}>
-            Order Now!
-          </button>
         </div>
-      </div>
+      )}
     </div>
   );
 };
