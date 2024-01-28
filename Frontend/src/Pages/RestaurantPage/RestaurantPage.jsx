@@ -5,6 +5,7 @@ import { getRestaurantDetail_API } from "../../api/RestaurantController";
 import FoodCard from "../Components/FoodCard/FoodCard";
 import { Navbar } from "../Components/Navbar/Navbar";
 import html2canvas from "html2canvas";
+import { jsPDF } from "jspdf";
 import "./RestaurantPage.css";
 import { Dropdown } from "primereact/dropdown";
 import Button from "react-bootstrap/esm/Button";
@@ -117,7 +118,14 @@ const RestaurantPage = () => {
       }
     }
   };
-  console.log(user);
+  const handleDownloadMenu = () => {
+    const menuContainer = document.getElementById("menu-container");
+    html2canvas(menuContainer).then((canvas) => {
+      const pdf = new jsPDF();
+      pdf.addImage(canvas.toDataURL("image/png"), "PNG", -150, -0);
+      pdf.save(`${params.name}_menu.pdf`);
+    });
+  };
   return (
     <div className="restaurant-page-container">
       <Navbar tmp={cart} />
@@ -146,7 +154,7 @@ const RestaurantPage = () => {
       {restaurantMenu.length > 0 && (
         <h2 style={{ alignSelf: "center" }}>Menu</h2>
       )}
-      <div className="food-cards">
+      <div className="food-cards" id="menu-container">
         {restaurantMenu.length > 0 ? (
           restaurantMenu.map((item) => (
             <FoodCard
@@ -188,6 +196,9 @@ const RestaurantPage = () => {
           </Button>
         </>
       )}
+      <Button className="download-menu-button" onClick={handleDownloadMenu}>
+        Download Menu as PDF
+      </Button>
     </div>
   );
 };
