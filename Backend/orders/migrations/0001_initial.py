@@ -16,6 +16,7 @@ class Migration(migrations.Migration):
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
                 ('userEmail', models.EmailField(max_length=50)),
+                ('userPhone', models.CharField(max_length=11)),
                 ('restaurantName', models.CharField(max_length=50)),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('Price', models.IntegerField()),
@@ -26,10 +27,12 @@ class Migration(migrations.Migration):
             name='Reservations',
             fields=[
                 ('id', models.AutoField(primary_key=True, serialize=False)),
+                ('userPhone', models.CharField(max_length=11)),
                 ('userEmail', models.EmailField(max_length=50)),
                 ('restaurantName', models.CharField(max_length=50)),
                 ('date', models.DateTimeField(auto_now_add=True)),
                 ('place', models.CharField(max_length=50)),
+                ('occasion', models.CharField(max_length=50)),
             ],
         ),
     ]
