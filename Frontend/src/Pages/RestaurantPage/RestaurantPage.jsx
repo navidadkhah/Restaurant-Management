@@ -1,15 +1,35 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurantMenu_API } from "../../api/RestaurantController";
 import { getRestaurantDetail_API } from "../../api/RestaurantController";
 import FoodCard from "../Components/FoodCard/FoodCard";
 import { Navbar } from "../Components/Navbar/Navbar";
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf '
 import "./RestaurantPage.css";
 
 const RestaurantPage = () => {
+  const pdRef = useRef()
   const [restaurantMenu, setRestaurantMenu] = useState([]);
   const [restaurantDetail, setRestaurantDetail] = useState();
   const [cart, setCart] = useState([]);
+
+  const downloadPDF = ()=>{
+    const input = pdRef.current
+    html2canvas(input).then((canvas)=>{
+      const imgData = canvas.toDataURL("image/png");
+      const pdf = new jsPDF('p', 'mm', 'a4', true);
+      const pdfWidth = pdf.internal.pageSize.getWidth()
+      const pdfHeight = pdf.internal.pageSize.getHeight();
+      const imgWidth = canvas.width
+      const imgHeight = canvas.height
+      const ratio = Math.min(pdfWidth/imgWidth, pdfHeight/imgHeight)
+      const imgX = (pdfWidth-imgWidth * ratio)/2
+      const imgY = 30
+      pdf.addImage(imgData,'PNG', imgX, imgY, imgWidth*ratio, imgHeight* ratio)
+      pdf.save('menu.pdf')
+    });
+  }
 
   const params = useParams();
   useEffect(() => {
@@ -81,7 +101,7 @@ const RestaurantPage = () => {
         </div>
       </div>
 
-      <div className="food-cards">
+      <div className="food-cards" ref={pdRef}>
         {restaurantMenu.length > 0 ? (
           restaurantMenu.map((item) => (
             <FoodCard
@@ -97,6 +117,7 @@ const RestaurantPage = () => {
           <p className="no-search">there is no food</p>
         )}
       </div>
+      <button onClick={downloadPDF}>Download PDF</button>
     </div>
   );
 };
