@@ -1,0 +1,103 @@
+.admin-dash {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dash-title {
+    display: flex;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 700;
+    font-style: oblique;
+    margin-top: 40px;
+}
+
+.admin-lists {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.admin-list-button button {
+    background-color: rgb(63, 201, 93);
+    width: 60px;
+    height: 35px;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 18px;
+    transition: .3s ease;
+    margin: 0 0 10px 0;
+}
+
+.admin-list-button button:hover {
+    background-color: rgb(60, 160, 150);
+    border-radius: 15px;
+}
+
+.res-infos {
+    display: flex;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+}
+
+.res-info-cell {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 20px;
+    background-color: rgb(9, 18, 79);
+    border-radius: 5px;
+    padding: 0px 5px;
+    box-shadow: 7px 7px 10px rgb(15, 50, 91);
+}
+
+.df {
+    color: #000;
+}
+
+.res-info-cell p {
+    background-color: rgb(9, 18, 79);
+    margin: 5px 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    padding: 0;
+    border-radius: 2px;
+    font-size: 18px;
+}
+
+.res-info-cell p:nth-child(2) {
+    background-color: rgb(138, 144, 184);
+    margin: 5px 0 0;
+    width: 100%;
+    justify-content: center;
+    align-items: center;
+    display: flex;
+    color: white;
+    padding: 5px 5px;
+    border-radius: 5px;
+    font-size: 18px;
+    font-weight: 600;
+}
+
+.nothing-show {
+    display: flex;
+    margin: 10px auto;
+    font-weight: 600;
+    font-size: 24px
+}
+
+.set-admin-panel {
+    display: flex;
+    justify-content: center;
+    margin: 20px 0 0;
+}
+
+.set-admin-panel button {
+    margin: 0 20px;
+    color: white;
+}

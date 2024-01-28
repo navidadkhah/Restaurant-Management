@@ -1,0 +1,46 @@
+.admin-dash {
+    display: flex;
+    flex-direction: column;
+}
+
+.admin-dash-title {
+    display: flex;
+    justify-content: center;
+    font-size: 23px;
+    font-weight: 700;
+    font-style: oblique;
+    margin-top: 40px;
+}
+
+.admin-lists {
+    display: flex;
+    flex-direction: column;
+    margin: 0 20px;
+}
+
+.admin-list-button button {
+    background-color: rgb(63, 201, 93);
+    width: 60px;
+    height: 35px;
+    border: none;
+    color: rgb(255, 255, 255);
+    cursor: pointer;
+    border-radius: 18px;
+    transition: .3s ease;
+    margin: 0 0 10px 0;
+}
+
+.admin-list-button button:hover {
+    background-color: rgb(60, 160, 150);
+    border-radius: 15px;
+}
+
+.admin-list-button button:nth-child(2) {
+    background-color: rgb(255, 0, 0);
+    width: 80px;
+    margin-left: 10px;
+}
+
+.admin-list-button button:nth-child(2):hover {
+    background-color: rgb(156, 18, 18);
+}

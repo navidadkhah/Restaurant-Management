@@ -1,0 +1,93 @@
+.restaurant-page-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.food-cards {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  align-items: center;
+  gap: 10px;
+}
+
+/* .aa {
+    color: black;
+} */
+
+.restaurant-details {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-evenly;
+  font-size: 20px;
+}
+
+.restaurant-details-class {
+  display: flex;
+  align-items: center;
+  background-color: rgb(84, 82, 131);
+  border-radius: 50px;
+  margin: 10px 0 0;
+}
+
+.restaurant-details-class:nth-child(1) p {
+  text-transform: capitalize;
+}
+
+.restaurant-details-class p {
+  padding: 0 10px;
+  color: azure;
+}
+
+.restaurant-details-class p:nth-child(1) {
+  color: rgb(255, 66, 67);
+  font-weight: 800;
+}
+
+.restaurant-details-class p:nth-child(2) {
+  /* text-decoration: underline; */
+  /* color: black; */
+  font-weight: 500;
+}
+
+.reserve-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: large;
+  margin-bottom: 10px;
+  gap: 15px;
+}
+
+.p-dropdown {
+  display: inline-flex;
+  cursor: pointer;
+  position: relative;
+  user-select: none;
+  height: 40px;
+  width: 207px;
+  align-items: center;
+    border: 1px solid black;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.p-dropdown:not(.p-disabled).p-focus {
+  border-color: #00a97f;
+  box-shadow: none;
+}
+
+.p-dropdown:not(.p-disabled):hover {
+  border-color: #00a97f;
+}
+
+.p-dropdown-items-wrapper{
+    background-color: white;
+    padding-left: 5px;
+}
+
+.reserve-button {
+    width: fit-content;
+    align-self: center;
+}

@@ -1,0 +1,101 @@
+.navbar {
+    position: sticky;
+    top: 0px;
+    background: linear-gradient( rgb(27, 196, 237, 1), rgba(151, 201, 213, 1));
+    padding: 0px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row;
+    border-radius: 0 0 10px 10px;
+    width: 100%;
+    box-shadow: 10px 20px 40px 10px rgba(0, 0, 0, 0.3);
+    z-index: 3;
+}
+
+.navbar-ul {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    padding: 0;
+    margin: auto 0;
+}
+
+.navbar-img img {
+    display: flex;
+    justify-content: space-between;
+    border-radius: 20px;
+    width: 120px;
+    height: 120px;
+    margin-left: 30px;
+    cursor: pointer;
+    flex-direction: row;
+}
+
+.navbar-ul i {
+    padding: 0px 12px;
+}
+
+.navbar-ul i p {
+    text-decoration: none;
+    font-weight: 600;
+    font-style: italic;
+    color: rgb(240, 24, 24);
+    transition: 0.05s ease-in-out;
+}
+
+.navbar-ul i p:hover {
+    font-weight: 700;
+    font-size: medium;
+    color: rgb(183, 0, 0);
+    cursor: pointer;
+}
+
+.nav-cont {
+    display: flex;
+    justify-content: left;
+}
+
+.checkbox {
+    overflow: hidden;
+}
+
+.shopping-card {
+    margin-top: 30px;
+    width: 20px;
+    inline-size: 30px;
+    position: relative;
+}
+
+.shopping-card::before {
+    content: attr(shop-item);
+    position: absolute;
+    top: -1rem;
+    right: -1.25rem;
+    width: 1.5rem;
+    height: 1.5rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    color: aliceblue;
+    background-color: rgb(218, 163, 24);
+}
+
+@media only screen and (max-width: 500px) {
+    .navbar-img img {
+        margin-right: 60px;
+        width: 80px;
+        height: 80px;
+        padding-top: 5px;
+    }
+    .nav-cont {
+        display: flex;
+        justify-content: left;
+        padding: 5px 0;
+    }
+    .navbar {
+        flex-direction: column;
+    }
+}

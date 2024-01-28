@@ -1,0 +1,15 @@
+.rate {
+    width: 45px;
+    height: 30px;
+    background: linear-gradient(63deg, rgb(170, 114, 210) 30%, #9177df 70%);
+    border-radius: 20px;
+    border: 1.5px solid #000000;
+    margin: 10px 20px;
+    font-weight: 600;
+    font-size: 20px;
+    color: #000000;
+    display: flex;
+    justify-content: center;
+    line-height: 26px;
+    transition: 0.2s ease-out;
+}

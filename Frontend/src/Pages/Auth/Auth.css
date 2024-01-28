@@ -5,19 +5,19 @@
     height: 100vh;
     gap: 4rem;
     position: relative;
-  }
-  
-  .Auth > div {
+}
+
+.Auth>div {
     display: flex;
-    align-items: center;
-    justify-content: center;
-  }
-  
-  .a-left {
+    align-items: start;
+    justify-content: start;
+}
+
+.a-left {
     gap: 2rem;
-  }
-  
-  .Wbname h1 {
+}
+
+.Wbname h1 {
     font-size: 3rem;
     background-color: red;
     background-image: var(--buttonBg);
@@ -27,13 +27,13 @@
     -webkit-text-fill-color: transparent;
     -moz-background-clip: text;
     -moz-text-fill-color: transparent;
-  }
-  
-  .Wbname h6 {
-      font-size: 0.85rem;
-  }
-  
-  .infoForm {
+}
+
+.Wbname h6 {
+    font-size: 0.85rem;
+}
+
+.infoForm {
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -42,31 +42,38 @@
     background-color: var(--cardColor);
     border-radius: 1rem;
     padding: 1rem;
-  }
-  
-  .infoInput {
+    margin-right: 100px;
+}
+
+.infoInput {
     border: none;
     outline: none;
     background-color: var(--inputColor);
-    border-radius: 8px;
+    border-radius: 10rem;
     padding: 20px;
     flex: 1;
     font-size: 17px;
-  }
-  
-  .infoForm>div {
-      display: flex;
-      gap: 1rem;
-      height: 2rem;
-      width: 100%;
-      align-items: center;
-      justify-content: center;
-  }
-  
-  #infoButton {
-      width: 6rem;
-      height: 2rem;
-      align-self: flex-end;
-  }
-  
-  
+}
+
+.infoForm>div {
+    display: flex;
+    gap: 1rem;
+    height: 2rem;
+    width: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+#infoButton {
+    width: 6rem;
+    height: 2rem;
+    align-self: flex-end;
+}
+
+.islogin-tab {
+    color: rgb(103, 114, 114);
+}
+
+.islogin-tab:hover {
+    color: rgb(0, 0, 0);
+}
