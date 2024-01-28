@@ -73,7 +73,7 @@ export const Navbar = ({ setSearch, tmp }) => {
             )}
           </i>
 
-          <i>
+          {user && <i>
             <a
               href="/Shopping-cart"
               className="shopping-card"
@@ -81,7 +81,7 @@ export const Navbar = ({ setSearch, tmp }) => {
             >
               <FaShoppingCart />
             </a>
-          </i>
+          </i>}
 
           <i className="search"></i>
         </ul>
