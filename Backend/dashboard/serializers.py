@@ -33,6 +33,13 @@ class RestaurantAdminLoginSerializer(serializers.ModelSerializer):
       model = siteAdminModel
       fields = ('restaurantUsername','restaurantPassword',)
 
+# register restaurant admin
+class RestaurantRateSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = siteAdminModel
+      fields = ('restaurantRate',)
+
+
 # creating a new restaurant
 class siteAdminModelSerializer(serializers.ModelSerializer):
    class Meta:

@@ -14,6 +14,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
   const [restaurantPassword, setRestaurantPassword] = useState("");
   const [restaurantPhoto, setRestaurantPhoto] = useState();
   const restaurantRate = 5;
+  const restaurantRateNumber = 1;
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -31,6 +32,7 @@ const AddRestaurantModal = ({ isOpen, onRequestClose }) => {
         restaurantPassword: restaurantPassword,
         restaurantImage: restaurantPhoto,
         restaurantRate: restaurantRate,
+        restaurantRateNumber: restaurantRateNumber,
       };
 
       console.log(restaurantData);

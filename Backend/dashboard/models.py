@@ -10,6 +10,7 @@ class siteAdminModel(models.Model):
     restaurantImage = models.FileField(upload_to='restaurantImage/')
     restaurantLocation = models.CharField(max_length=50)
     restaurantRate = models.IntegerField()
+    restaurantRateNumber = models.IntegerField()
     restaurantUsername = models.CharField(max_length=50)
     restaurantPassword = models.CharField(max_length=50)
     
