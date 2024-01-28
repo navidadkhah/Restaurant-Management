@@ -48,7 +48,9 @@ const RestaurantPage = () => {
         </div>
         <div className="restaurant-details-class">
           <p>Rate:</p>
-          <p>{restaurantDetail?.restaurantRate}</p>
+          <p>
+            {restaurantDetail?.restaurantRate.toFixed(1)} from   {restaurantDetail?.restaurantRateNumber} votes
+          </p>
         </div>
       </div>
 
