@@ -4,7 +4,7 @@ import { getRestaurantMenu_API } from "../../api/RestaurantController";
 import { getRestaurantDetail_API } from "../../api/RestaurantController";
 import FoodCard from "../Components/FoodCard/FoodCard";
 import { Navbar } from "../Components/Navbar/Navbar";
-import html2canvas from 'html2canvas'
+import html2canvas from "html2canvas";
 import "./RestaurantPage.css";
 import { Dropdown } from "primereact/dropdown";
 import Button from "react-bootstrap/esm/Button";
@@ -12,7 +12,7 @@ import { toast } from "react-toastify";
 import { createReservation_API } from "../../api/OrderController";
 
 const RestaurantPage = () => {
-  const pdRef = useRef()
+  const pdRef = useRef();
   const [restaurantMenu, setRestaurantMenu] = useState([]);
   const [restaurantDetail, setRestaurantDetail] = useState();
   const [cart, setCart] = useState([]);
@@ -98,7 +98,7 @@ const RestaurantPage = () => {
       });
     }
   };
-  const handleReserve = async() => {
+  const handleReserve = async () => {
     if (selectedPlace === "" || occasion === "") {
       notify("please select place and occasion", "error");
     } else {
@@ -110,10 +110,10 @@ const RestaurantPage = () => {
       formData.append("occasion", occasion.name);
 
       try {
-        await createReservation_API(formData)
-        notify("reservattion created successfully!", "success")
+        await createReservation_API(formData);
+        notify("reservattion created successfully!", "success");
       } catch (error) {
-        notify("something went wrong! try again", "error")
+        notify("something went wrong! try again", "error");
       }
     }
   };
@@ -137,12 +137,11 @@ const RestaurantPage = () => {
         <div className="restaurant-details-class">
           <p>Rate:</p>
           <p>
-            {restaurantDetail?.restaurantRate.toFixed(1)} from   {restaurantDetail?.restaurantRateNumber} votes
+            {restaurantDetail?.restaurantRate.toFixed(1)} from{" "}
+            {restaurantDetail?.restaurantRateNumber} votes
           </p>
-
         </div>
       </div>
-
 
       {restaurantMenu.length > 0 && (
         <h2 style={{ alignSelf: "center" }}>Menu</h2>
@@ -164,27 +163,31 @@ const RestaurantPage = () => {
         )}
       </div>
 
-      <h2 style={{ alignSelf: "center" }}>Reserve</h2>
-      <div className="reserve-container">
-        <Dropdown
-          value={selectedPlace}
-          onChange={(e) => setSelectedPlace(e.value)}
-          options={places}
-          optionLabel="name"
-          placeholder="Select a place"
-          className="w-full md:w-14rem"
-        />
-        <Dropdown
-          value={occasion}
-          onChange={(e) => setOccasion(e.value)}
-          options={occasions}
-          optionLabel="name"
-          placeholder="Select a occasion"
-        />
-      </div>
-      <Button className="reserve-button" onClick={handleReserve}>
-        Reserve
-      </Button>
+      {user && (
+        <>
+          <h2 style={{ alignSelf: "center" }}>Reserve</h2>
+          <div className="reserve-container">
+            <Dropdown
+              value={selectedPlace}
+              onChange={(e) => setSelectedPlace(e.value)}
+              options={places}
+              optionLabel="name"
+              placeholder="Select a place"
+              className="w-full md:w-14rem"
+            />
+            <Dropdown
+              value={occasion}
+              onChange={(e) => setOccasion(e.value)}
+              options={occasions}
+              optionLabel="name"
+              placeholder="Select a occasion"
+            />
+          </div>
+          <Button className="reserve-button" onClick={handleReserve}>
+            Reserve
+          </Button>
+        </>
+      )}
     </div>
   );
 };
