@@ -68,7 +68,7 @@ def DeleteFood(request,restaurantName,foodName):
 # updating restaurant uncritical info by res-admin
 @swagger_auto_schema(method='PATCH')
 @api_view(["PATCH"])
-def updateResInfoView(request , restaurantName):
+def updateResInfoView(request , restaurantName, rate):
     try:
 
         user = siteAdminModel.objects.get(restaurantName=restaurantName)
@@ -76,15 +76,21 @@ def updateResInfoView(request , restaurantName):
         return Response({"error": "User not found"}, status=404)
 
     data_to_update = {}
-    if 'restaurantRate' in request.data:
-        data_to_update['restaurantRate'] =  (user.restaurantRate*user.restaurantRateNumber + request.data['restaurantRate'])/(user.restaurantRateNumber+1)
-        data_to_update['restaurantRateNumber'] = user.restaurantRate + 1
     
+    data_to_update['restaurantRate'] =  (user.restaurantRate*user.restaurantRateNumber + rate)/(user.restaurantRateNumber+1)
+    data_to_update['restaurantRateNumber'] = user.restaurantRateNumber+1 
+    # print((user.restaurantRate*user.restaurantRateNumber + rate)/(user.restaurantRateNumber+1))
+    print(type(data_to_update['restaurantRate']))
+    print(type(data_to_update['restaurantRateNumber']))
+    # print(user.restaurantRate)
+    # print(user.restaurantRateNumber)
+    # print(rate)
     serializer = RestaurantRateSerializer(user, data=data_to_update, partial=True)
-    
+    # print(serializer.data)
     if serializer.is_valid():
+        # print(serializer.data)
         serializer.save()
-        return Response(serializer.data)
+        return Response(serializer.data,)
     
     return Response(serializer.errors, status=400)
 
