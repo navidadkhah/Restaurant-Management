@@ -146,7 +146,7 @@ export const RestaurantAdminPanel = () => {
             </div>
             <div className="res-info-cell">
               <p>restaurant rate</p>
-              <p>{info.restaurantRate}</p>
+              <p>{parseInt(info.restaurantRate).toFixed(1)}</p>
             </div>
           </div>
 

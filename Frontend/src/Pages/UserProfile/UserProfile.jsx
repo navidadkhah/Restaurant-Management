@@ -27,6 +27,7 @@ export const UserProfile = () => {
       phoneNumber: item.phoneNumber,
       address: item.address,
     });
+
     try {
       getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data));
       getUserReservations_API(item.phoneNumber).then((res) =>

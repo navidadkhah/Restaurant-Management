@@ -12,9 +12,11 @@ import { ToastContainer } from "react-toastify";
 import { WebPrivateRoute } from "./utils/WebPrivateRoute.jsx";
 import { RestaurantPrivateRoute } from "./utils/RestaurantPrivateRoute.jsx";
 import { ProfilePrivateRoute } from "./utils/ProfilePrivateRoute.jsx";
+import { RatePrivateRoute } from "./utils/RatePrivateRoute.jsx";
 import { OrderBag } from "./Pages/orderBag/OrderBag.jsx";
 import RestaurantPage from "./Pages/RestaurantPage/RestaurantPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Rating } from "./Pages/Rating/Rating.jsx";
 
 function App() {
   const [user, setUser] = useState();
@@ -37,7 +39,6 @@ function App() {
               element={<RestaurantAdminLogin />}
             ></Route>
             <Route element={<OrderBag />} path="/Shopping-cart" exact />
-
             <Route element={<WebPrivateRoute />}>
               <Route
                 element={<AdminDashboard />}
@@ -55,6 +56,10 @@ function App() {
             <Route element={<ProfilePrivateRoute />}>
               <Route element={<UserProfile />} path="/profile" exact />
             </Route>
+            <Route element={<RatePrivateRoute />}>
+              <Route element={<Rating />} path="/rating" />
+            </Route>
+
             <Route element={<RestaurantPage />} path="/restaurant/:name" />
           </Routes>
         </BrowserRouter>

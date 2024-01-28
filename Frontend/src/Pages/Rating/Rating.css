@@ -1,0 +1,47 @@
+.rating {
+    display: flex;
+    margin: auto;
+    justify-content: center;
+    margin: 30px 0 20px 0;
+}
+
+.rating input {
+    display: none;
+}
+
+.rating label {
+    cursor: pointer;
+}
+
+.rating svg {
+    width: 24px;
+    height: 24px;
+    fill: none;
+    stroke: #000;
+    stroke-width: 2;
+    stroke-linecap: round;
+    stroke-linejoin: round;
+    transition: stroke 0.3s;
+    /* Add a transition for smooth color change */
+}
+
+#myParagraph {
+    display: flex;
+    justify-content: center;
+    margin: auto;
+    font-size: 30px;
+}
+
+.submit-rate {
+    display: flex;
+    justify-content: center;
+    margin: 30px auto;
+    font-size: 20px;
+}
+
+.title-rate {
+    display: flex;
+    justify-content: center;
+    font-weight: 600;
+    font-size: 20px;
+}

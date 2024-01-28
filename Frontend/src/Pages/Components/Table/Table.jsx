@@ -52,14 +52,14 @@ export const Table = (props) => {
           <th>Type</th>
           <th>Address</th>
           <th>Rate</th>
-          <th >Delete</th>
+          <th>Delete</th>
         </tr>
         {props.restaurants.map((res) => (
           <tr key={res.id}>
             <td>{res.restaurantName}</td>
             <td>{res.restaurantType}</td>
             <td>{res.restaurantLocation}</td>
-            <td>{res.restaurantRate}</td>
+            <td>{res.restaurantRate.toFixed(1)}</td>
             <td
               onClick={(e) => handleS(res.restaurantName)}
               className="delete-td"

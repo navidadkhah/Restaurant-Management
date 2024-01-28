@@ -54,3 +54,9 @@ export const getRestaurantDetail_API = async(restaurantName) => {
     const res = await API_restaurant.get(api);
     return res;
 };
+
+export const updateRate_API = async(restaurantName, rate) => {
+    let api = '/Rate/' + restaurantName + '/' + rate
+    const res = await API_restaurant.patch(api);
+    return res;
+};

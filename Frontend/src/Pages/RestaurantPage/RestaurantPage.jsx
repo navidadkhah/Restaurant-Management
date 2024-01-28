@@ -1,9 +1,11 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getRestaurantMenu_API } from "../../api/RestaurantController";
 import { getRestaurantDetail_API } from "../../api/RestaurantController";
 import FoodCard from "../Components/FoodCard/FoodCard";
 import { Navbar } from "../Components/Navbar/Navbar";
+import html2canvas from 'html2canvas'
+import jsPDF from 'jspdf '
 import "./RestaurantPage.css";
 import { Dropdown } from "primereact/dropdown";
 import Button from "react-bootstrap/esm/Button";
@@ -11,9 +13,11 @@ import { toast } from "react-toastify";
 import { createReservation_API } from "../../api/OrderController";
 
 const RestaurantPage = () => {
+  const pdRef = useRef()
   const [restaurantMenu, setRestaurantMenu] = useState([]);
   const [restaurantDetail, setRestaurantDetail] = useState();
   const [cart, setCart] = useState([]);
+
   const [selectedPlace, setSelectedPlace] = useState("");
   const [occasion, setOccasion] = useState("");
   const [user, setUser] = useState();
@@ -23,6 +27,7 @@ const RestaurantPage = () => {
     { name: "birthday" },
     { name: "anniversary" },
   ];
+
   const params = useParams();
   useEffect(() => {
     setUser(JSON.parse(localStorage.getItem("User")));
@@ -139,6 +144,7 @@ const RestaurantPage = () => {
         </div>
       </div>
 
+
       {restaurantMenu.length > 0 && (
         <h2 style={{ alignSelf: "center" }}>Menu</h2>
       )}
@@ -158,6 +164,7 @@ const RestaurantPage = () => {
           <p className="no-search">there is no food</p>
         )}
       </div>
+
       <h2 style={{ alignSelf: "center" }}>Reserve</h2>
       <div className="reserve-container">
         <Dropdown
