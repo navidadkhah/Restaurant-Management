@@ -2,7 +2,7 @@ import { formatDistanceToNow } from "date-fns";
 import { ToastContainer } from "react-toastify";
 import "../Table/Table.css";
 
-export const OrdersTable = (props) => {
+export const ReservationTable = (props) => {
   const timeAgo = (createdAtDate) => {
     return formatDistanceToNow(createdAtDate, {
       addSuffix: true,
@@ -10,24 +10,24 @@ export const OrdersTable = (props) => {
   };
 
   return (
-    <div style={{padding: "15px"}}>
-      {props.orders && (
+    <div style={{ padding: "15px" }}>
+      {props.reservation && (
         <table id="customers">
           <thead>
             <tr>
               <th>Restaurant</th>
               <th>Date</th>
-              <th>Total Price</th>
-              <th>Orders</th>
+              <th>place</th>
+              <th>occasion</th>
             </tr>
           </thead>
           <tbody>
-            {props.orders.map((order, index) => (
-              <tr key={order.id}>
-                <td>{order.restaurantName}</td>
-                <td>{timeAgo(new Date(order.date))}</td>
-                <td>{order.Price}</td>
-                <td>{order.orders}</td>
+            {props.reservation.map((reservation, index) => (
+              <tr key={reservation.id}>
+                <td>{reservation.restaurantName}</td>
+                <td>{timeAgo(new Date(reservation.date))}</td>
+                <td>{reservation.place}</td>
+                <td>{reservation.occasion}</td>
               </tr>
             ))}
           </tbody>
