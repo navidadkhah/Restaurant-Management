@@ -117,7 +117,7 @@ export const Auth = ({ setUser }) => {
 
   const handleGoogleLogin = (credentials) => {
     const decoded = jwtDecode(credentials.credential);
-  
+
     setData({
       ...data,
       firstName: decoded.given_name,
@@ -275,14 +275,16 @@ export const Auth = ({ setUser }) => {
           </button>
         </form>
       </div>
-      <GoogleLogin
-        onSuccess={(credentialResponse) => {
-          handleGoogleLogin(credentialResponse);
-        }}
-        onError={() => {
-          console.log("Login Failed");
-        }}
-      />
+      {isSignup && (
+        <GoogleLogin
+          onSuccess={(credentialResponse) => {
+            handleGoogleLogin(credentialResponse);
+          }}
+          onError={() => {
+            console.log("Login Failed");
+          }}
+        />
+      )}
       <ToastContainer />
     </div>
   );
