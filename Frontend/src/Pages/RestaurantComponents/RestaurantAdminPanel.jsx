@@ -7,8 +7,12 @@ import { MdDelete } from "react-icons/md";
 import { deleteFood_API } from "../../api/RestaurantController";
 
 import { useNavigate } from "react-router-dom";
-import { getRestaurantOrders_API } from "../../api/OrderController";
+import {
+  getRestaurantOrders_API,
+  getRestaurantReservations_API,
+} from "../../api/OrderController";
 import { RestaurantAdminOrderTable } from "../Components/RestaurantAdminOrderTable/RestaurantAdminOrderTable";
+import { RestaurantAdminReservationTable } from "../Components/RestaurantAdminReservationTable/RestaurantAdminReservationTable";
 
 export const RestaurantAdminPanel = () => {
   const navigate = useNavigate();
@@ -26,6 +30,7 @@ export const RestaurantAdminPanel = () => {
   const [isOrders, setIsOrders] = useState(false);
   const [isReserve, setIsReserve] = useState(false);
   const [orders, setOrders] = useState([]);
+  const [reservations, setReservations] = useState([]);
   useEffect(() => {
     const item = JSON.parse(localStorage.getItem("res_Token"));
     setInfo({
@@ -35,10 +40,15 @@ export const RestaurantAdminPanel = () => {
       restaurantLocation: item.restaurantLocation,
       restaurantRate: item.restaurantRate,
     });
-    getRestaurantOrders_API(item.restaurantName).then((res) =>
-      setOrders(res.data)
-    );
-    setRestaurantData(item);
+    try {
+      getRestaurantOrders_API(item.restaurantName).then((res) =>
+        setOrders(res.data)
+      );
+      setRestaurantData(item);
+      getRestaurantReservations_API(item.restaurantName).then((res) =>
+        setReservations(res.data)
+      );
+    } catch (error) {}
     getRestaurantMenu_API(
       JSON.parse(localStorage.getItem("res_Token")).restaurantName
     )
@@ -50,7 +60,7 @@ export const RestaurantAdminPanel = () => {
         console.log(error.response.data);
       });
   }, []);
-  console.log(orders);
+  console.log(reservations);
   const handleAdmin = (e) => {
     e.preventDefault();
     console.log(e.target.name);
@@ -184,7 +194,18 @@ export const RestaurantAdminPanel = () => {
           />
         </div>
       )}
-      {isOrders && <RestaurantAdminOrderTable orders={orders} />}
+      {isOrders && (
+        <>
+          <h2 style={{ alignSelf: "center" }}>Orders</h2>
+          <RestaurantAdminOrderTable orders={orders} />
+        </>
+      )}
+      {isReserve && (
+        <>
+          <h2 style={{ alignSelf: "center" }}>Reservations</h2>
+          <RestaurantAdminReservationTable reservations={reservations} />
+        </>
+      )}
     </div>
   );
 };

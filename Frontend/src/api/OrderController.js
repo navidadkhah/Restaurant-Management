@@ -32,3 +32,8 @@ export const getUserReservations_API = async (phone) => {
   const res = await API_restaurant.get(`/Reservations/users/${phone}`);
   return res;
 };
+
+export const getRestaurantReservations_API = async (name) => {
+  const res = await API_restaurant.get(`/Reservations/restaurants/${name}`);
+  return res;
+};
