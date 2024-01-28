@@ -15,6 +15,7 @@ import { ProfilePrivateRoute } from "./utils/ProfilePrivateRoute.jsx";
 import { OrderBag } from "./Pages/orderBag/OrderBag.jsx";
 import RestaurantPage from "./Pages/RestaurantPage/RestaurantPage";
 import { GoogleOAuthProvider } from "@react-oauth/google";
+import { Rating } from "./Pages/Rating/Rating.jsx";
 
 function App() {
   const [user, setUser] = useState();
@@ -37,7 +38,6 @@ function App() {
               element={<RestaurantAdminLogin />}
             ></Route>
             <Route element={<OrderBag />} path="/Shopping-cart" exact />
-
             <Route element={<WebPrivateRoute />}>
               <Route
                 element={<AdminDashboard />}
@@ -56,6 +56,7 @@ function App() {
               <Route element={<UserProfile />} path="/profile" exact />
             </Route>
             <Route element={<RestaurantPage />} path="/restaurant/:name" />
+            <Route element={<Rating />} path="/rating" />
           </Routes>
         </BrowserRouter>
         <ToastContainer />

@@ -1,4 +1,5 @@
 import "../Table/Table.css";
+import "./OrderTable.css";
 import { ToastContainer, toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
 import { useEffect, useState } from "react";
@@ -12,7 +13,7 @@ export const OrdersTable = (props) => {
 
   return (
     props.orders && (
-      <table id="customers">
+      <table id="customers-p" className="table-order-prof">
         <thead>
           <tr>
             <th>Restaurant</th>

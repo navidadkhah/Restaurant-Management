@@ -3,8 +3,10 @@ import { Navbar } from "../Components/Navbar/Navbar";
 import "./OrderBag.css";
 import { toast } from "react-toastify";
 import { createOrder_API } from "../../api/OrderController";
+import { useNavigate } from "react-router-dom";
 
 export const OrderBag = () => {
+  const navigate = useNavigate();
   const [totalPrice, setTotalPrice] = useState(0);
   const [cart, setCart] = useState([]);
   const [user, setUser] = useState();
@@ -52,6 +54,7 @@ export const OrderBag = () => {
   const handleOrder = () => {
     const orders = cart.map((food) => food.name).join(" ");
     let formData = new FormData();
+    let resName= cart[0].restaurant
     formData.append("userEmail", user.email);
     formData.append("userPhone", user.phoneNumber);
     formData.append("Price", totalPrice);
@@ -64,6 +67,10 @@ export const OrderBag = () => {
       setCart([]);
       setTotalPrice(0)
       localStorage.removeItem("cart");
+      navigate("/rating");
+      localStorage.setItem("res-name", resName);
+
+
     } catch (error) {
       notify("Something goes wrong! try again", "error");
     }
@@ -83,12 +90,13 @@ export const OrderBag = () => {
               {cart.length > 0 &&
                 cart.map((food, index) => (
                   <div key={index} className="shop-card-orders">
-                    <span>Name: {food.name}</span>
-                    <span>Price: {food.price}</span>
+                    <span>{food.name}</span>
+                    <span>{food.price}</span>
+                    {/* <span>---------------</span> */}
                   </div>
                 ))}
             </div>
-            <p>Total Price: {totalPrice}</p>
+            <p className="total-price">Total Price: {totalPrice}</p>
             <button
               className="button-order-shopping-card"
               onClick={handleOrder}

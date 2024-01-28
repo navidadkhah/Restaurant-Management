@@ -22,7 +22,9 @@ export const UserProfile = () => {
       phoneNumber: item.phoneNumber,
       address: item.address,
     });
-    getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data));
+    getUserOrders_API(item.phoneNumber).then((res) => setOrders(res.data)).catch((error) => {
+        console.log(error.response.data);
+      });
   }, []);
   console.log(orders);
   return (
