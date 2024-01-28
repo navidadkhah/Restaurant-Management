@@ -2,7 +2,8 @@ import "../Table/Table.css";
 import "./OrderTable.css";
 import { ToastContainer, toast } from "react-toastify";
 import { formatDistanceToNow } from "date-fns";
-import { useEffect, useState } from "react";
+import { ToastContainer } from "react-toastify";
+import "../Table/Table.css";
 
 export const OrdersTable = (props) => {
   const timeAgo = (createdAtDate) => {
@@ -12,6 +13,7 @@ export const OrdersTable = (props) => {
   };
 
   return (
+
     props.orders && (
       <table id="customers-p" className="table-order-prof">
         <thead>
@@ -29,11 +31,22 @@ export const OrdersTable = (props) => {
               <td>{timeAgo(new Date(order.date))}</td>
               <td>{order.Price}</td>
               <td>{order.orders}</td>
+
             </tr>
-          ))}
-        </tbody>
-        <ToastContainer />
-      </table>
-    )
+          </thead>
+          <tbody>
+            {props.orders.map((order, index) => (
+              <tr key={order.id}>
+                <td>{order.restaurantName}</td>
+                <td>{timeAgo(new Date(order.date))}</td>
+                <td>{order.Price}</td>
+                <td>{order.orders}</td>
+              </tr>
+            ))}
+          </tbody>
+          <ToastContainer />
+        </table>
+      )}
+    </div>
   );
 };
