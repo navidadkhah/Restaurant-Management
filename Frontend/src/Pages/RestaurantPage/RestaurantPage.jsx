@@ -60,23 +60,24 @@ const RestaurantPage = () => {
     <div className="restaurant-page-container">
       <Navbar tmp={cart}/>
       <div className="restaurant-details">
-        <div className="restaurant-details">
-          <div className="restaurant-details-class">
-            <p>Name:</p>
-            <p>{restaurantDetail?.restaurantName}</p>
-          </div>
-          <div className="restaurant-details-class">
-            <p>Location:</p>
-            <p>{restaurantDetail?.restaurantLocation}</p>
-          </div>
-          <div className="restaurant-details-class">
-            <p>Description:</p>
-            <p>{restaurantDetail?.restaurantDescription}</p>
-          </div>
-          <div className="restaurant-details-class">
-            <p>Rate:</p>
-            <p>{restaurantDetail?.restaurantRate}</p>
-          </div>
+        <div className="restaurant-details-class">
+          <p>Name:</p>
+          <p>{restaurantDetail?.restaurantName}</p>
+        </div>
+        <div className="restaurant-details-class">
+          <p>Location:</p>
+          <p>{restaurantDetail?.restaurantLocation}</p>
+        </div>
+        <div className="restaurant-details-class">
+          <p>Description:</p>
+          <p>{restaurantDetail?.restaurantDescription}</p>
+        </div>
+        <div className="restaurant-details-class">
+          <p>Rate:</p>
+          <p>
+            {restaurantDetail?.restaurantRate.toFixed(1)} from   {restaurantDetail?.restaurantRateNumber} votes
+          </p>
+
         </div>
       </div>
 

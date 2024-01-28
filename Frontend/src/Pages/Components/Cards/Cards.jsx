@@ -31,7 +31,7 @@ export const Cards = (props) => {
           <div className="cart-food-type">
             <p>{props.type} </p>
           </div>
-          <Rate rate={props.rate} />
+          <Rate rate={props.rate.toFixed(1)} />
         </div>
       </div>
     </div>

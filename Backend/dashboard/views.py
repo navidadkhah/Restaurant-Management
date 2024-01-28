@@ -3,7 +3,7 @@ from dashboard.models import RestaurantMenuModel, siteAdminModel
 from rest_framework import status
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer,RestaurantMenuAllSerializer
+from .serializers import RestaurantMenuModelSerializer,RestaurantAdminProfileModelSerializer,RestaurantAdminLoginSerializer,siteAdminModelSerializer, RestaurantAdminGetMenuSerializer,RestaurantMenuAllSerializer,RestaurantRateSerializer
 from drf_yasg.utils import swagger_auto_schema
 from django.conf import settings
 from rest_framework_simplejwt.tokens import RefreshToken
@@ -65,28 +65,34 @@ def DeleteFood(request,restaurantName,foodName):
         return Response(status=status.HTTP_403_FORBIDDEN)
 
 
-# # updating restaurant uncritical info by res-admin
-# @swagger_auto_schema(method='PATCH')
-# @api_view(["PATCH"])
-# def updateResInfoView(request , pk):
-#     try:
-#         user = RestaurantAdminProfileModel.objects.get(pk=pk)
-#     except RestaurantAdminProfileModel.DoesNotExist:
-#         return Response({"error": "User not found"}, status=404)
+# updating restaurant uncritical info by res-admin
+@swagger_auto_schema(method='PATCH')
+@api_view(["PATCH"])
+def updateResInfoView(request , restaurantName, rate):
+    try:
 
-#     data_to_update = {}
-#     if 'restaurantDescription' in request.data:
-#         data_to_update['restaurantDescription'] = request.data['restaurantDescription']
-#     if 'restaurantImage' in request.data:
-#         data_to_update['restaurantImage'] = request.data['restaurantImage']
+        user = siteAdminModel.objects.get(restaurantName=restaurantName)
+    except siteAdminModel.DoesNotExist:
+        return Response({"error": "User not found"}, status=404)
 
-#     serializer = RestaurantAdminProfileModelSerializer(user, data=data_to_update, partial=True)
+    data_to_update = {}
     
-#     if serializer.is_valid():
-#         serializer.save()
-#         return Response(serializer.data)
+    data_to_update['restaurantRate'] =  (user.restaurantRate*user.restaurantRateNumber + rate)/(user.restaurantRateNumber+1)
+    data_to_update['restaurantRateNumber'] = user.restaurantRateNumber+1 
+    # print((user.restaurantRate*user.restaurantRateNumber + rate)/(user.restaurantRateNumber+1))
+    print(type(data_to_update['restaurantRate']))
+    print(type(data_to_update['restaurantRateNumber']))
+    # print(user.restaurantRate)
+    # print(user.restaurantRateNumber)
+    # print(rate)
+    serializer = RestaurantRateSerializer(user, data=data_to_update, partial=True)
+    # print(serializer.data)
+    if serializer.is_valid():
+        # print(serializer.data)
+        serializer.save()
+        return Response(serializer.data,)
     
-#     return Response(serializer.errors, status=400)
+    return Response(serializer.errors, status=400)
 
 # create resturant by site admin
 @swagger_auto_schema(method='POST', request_body=siteAdminModelSerializer)

@@ -25,13 +25,20 @@ class RestaurantAdminProfileModelSerializer(serializers.ModelSerializer):
 class RestaurantAdminGetMenuSerializer(serializers.ModelSerializer):
    class Meta:
       model = siteAdminModel
-      fields = ('id','restaurantName','restaurantDescription','restaurantType','restaurantImage','restaurantLocation','restaurantRate',)
+      fields = ('id','restaurantName','restaurantDescription','restaurantType','restaurantImage','restaurantLocation','restaurantRate','restaurantRateNumber',)
 
 # register restaurant admin
 class RestaurantAdminLoginSerializer(serializers.ModelSerializer):
    class Meta:
       model = siteAdminModel
       fields = ('restaurantUsername','restaurantPassword',)
+
+# register restaurant admin
+class RestaurantRateSerializer(serializers.ModelSerializer):
+   class Meta:
+      model = siteAdminModel
+      fields = ('restaurantRate','restaurantRateNumber')
+
 
 # creating a new restaurant
 class siteAdminModelSerializer(serializers.ModelSerializer):
