@@ -2,16 +2,10 @@
 FROM python:3.7
 
 # Set the working directory in the container
-WORKDIR /Backend
+WORKDIR /code
 
-COPY . /Backend
-
-COPY requirements.txt . 
+COPY requirements.txt /code/
 
 RUN pip install -r requirements.txt
 
-COPY . . 
-
-EXPOSE 8000
-
-CMD ["python","manage.py","runserver"]
+COPY . /code/
