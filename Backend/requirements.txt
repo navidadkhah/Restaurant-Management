@@ -1,0 +1,12 @@
+asgiref==3.7.1
+Django==3.2.23
+pytz==2023.3
+sqlparse==0.4.4
+
+# Django                       == 4.2.7
+# django-cors-headers           ==4.3.1
+# django-rest-knox              ==4.2.0
+# django-rest-swagger           ==2.2.0
+# djangorestframework           ==3.14.0
+# djangorestframework-simplejwt ==5.3.0
+# drf-yasg                      ==1.21.7
