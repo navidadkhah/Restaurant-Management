@@ -1,6 +1,0 @@
-export const addFood_API = async(formData) = {
-    const res = await API_restaurant.post(createFood, formData, {
-        headers { Content-Type multipartform-data },
-    });
-    return res;
-};
